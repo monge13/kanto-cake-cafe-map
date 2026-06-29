@@ -1,0 +1,2205 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>関東有名ケーキ店・カフェマップ</title>
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23b23a48"/><path d="M15 37h34l-4 12H19l-4-12z" fill="white"/><path d="M18 28h28l3 8H15l3-8z" fill="%23ffe5e8"/><path d="M23 21h18l4 6H19l4-6z" fill="white"/></svg>'>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    :root {
+      --ink: #1f2528;
+      --muted: #6b7378;
+      --line: #d8ded9;
+      --paper: #fbfaf6;
+      --panel: #ffffff;
+      --accent: #b23a48;
+      --accent-dark: #832734;
+      --green: #2d6a4f;
+      --blue: #35628b;
+      --gold: #9a6b1f;
+      --shadow: 0 10px 28px rgba(31, 37, 40, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", "Noto Sans JP", sans-serif;
+      line-height: 1.55;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: minmax(360px, 430px) 1fr;
+      min-height: 100vh;
+    }
+
+    aside {
+      background: var(--panel);
+      border-right: 1px solid var(--line);
+      overflow: auto;
+      max-height: 100vh;
+    }
+
+    header {
+      padding: 22px 22px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 25px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .controls {
+      padding: 14px 22px;
+      display: grid;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .control-label {
+      display: block;
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    input[type="search"],
+    select {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 14px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      padding: 7px 10px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .chip.active {
+      border-color: var(--accent);
+      background: #fff2f3;
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+
+    .list-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 14px 22px 8px;
+    }
+
+    .list-head h2 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .shop-list {
+      display: grid;
+      gap: 10px;
+      padding: 0 14px 22px;
+    }
+
+    .maintenance {
+      margin: 0 14px 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fffdf9;
+      overflow: hidden;
+    }
+
+    .maintenance summary {
+      cursor: pointer;
+      padding: 13px 14px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .maintenance-body {
+      display: grid;
+      gap: 12px;
+      padding: 0 14px 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .maintenance p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .action-button {
+      min-height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      padding: 8px 10px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+    }
+
+    .action-button.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .action-button.warn {
+      color: var(--accent-dark);
+      border-color: #e2b8bd;
+      background: #fff5f6;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 10px;
+      font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    .update-log {
+      min-height: 30px;
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: #f4f6f4;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: pre-wrap;
+    }
+
+    .link-list {
+      display: grid;
+      gap: 6px;
+      max-height: 160px;
+      overflow: auto;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .link-list a {
+      color: var(--accent-dark);
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .shop-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 12px;
+      cursor: pointer;
+      transition: border-color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease;
+    }
+
+    .shop-card:hover,
+    .shop-card.active {
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+      transform: translateY(-1px);
+    }
+
+    .shop-card.visited {
+      border-color: #9fc7b2;
+      background: #fbfffc;
+    }
+
+    .shop-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .shop-name {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .rank {
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      background: #f7e8cc;
+      color: #6c4711;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .visited-toggle {
+      min-height: 30px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      padding: 5px 8px;
+      cursor: pointer;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .visited-toggle.active {
+      border-color: #75a98e;
+      background: #eef8f1;
+      color: #245b43;
+      font-weight: 700;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 8px 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border-radius: 6px;
+      padding: 3px 7px;
+      background: #f4f6f4;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .tag.area-tokyo { color: #7a2430; background: #fff0f1; }
+    .tag.area-kanagawa { color: #1d5d7c; background: #edf7fb; }
+    .tag.area-saitama { color: #2f654d; background: #eef8f1; }
+    .tag.area-chiba { color: #7a4c12; background: #fff5df; }
+    .tag.area-north { color: #4e4c88; background: #f1f0ff; }
+
+    .note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    main {
+      position: relative;
+      min-width: 0;
+    }
+
+    #map {
+      width: 100%;
+      height: 100vh;
+      background: #e9eee8;
+    }
+
+    .map-note {
+      position: absolute;
+      left: 14px;
+      bottom: 20px;
+      z-index: 550;
+      max-width: min(560px, calc(100% - 28px));
+      padding: 10px 12px;
+      border: 1px solid rgba(216, 222, 217, 0.9);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--muted);
+      font-size: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .popup h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .popup p {
+      margin: 5px 0;
+      color: #3e464a;
+    }
+
+    .popup a {
+      display: inline-flex;
+      margin-top: 6px;
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .leaflet-marker-icon {
+      filter: drop-shadow(0 4px 8px rgba(31, 37, 40, 0.24));
+    }
+
+    .legend {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      z-index: 550;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 8px;
+      border: 1px solid rgba(216, 222, 217, 0.9);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--shadow);
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .legend-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .legend-icon.cake { background: var(--accent); }
+    .legend-icon.cafe { background: var(--blue); }
+
+    @media (max-width: 900px) {
+      .app {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 56vh;
+      }
+
+      aside {
+        max-height: 44vh;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      #map {
+        height: 56vh;
+      }
+
+    }
+
+    @media (max-width: 520px) {
+      header,
+      .controls {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      .shop-list {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .maintenance {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside>
+      <header>
+        <h1>関東有名ケーキ店・カフェマップ</h1>
+        <p class="lead">名店感、駅からの行きやすさ、散歩との組み合わせで選ぶための地図。ケーキ店とカフェを切り替えて表示できます。</p>
+      </header>
+
+      <section class="controls" aria-label="絞り込み">
+        <label>
+          <span class="control-label">店名・駅・おすすめで検索</span>
+          <input id="searchInput" type="search" placeholder="例: ミルフィーユ、清澄白河、モンブラン">
+        </label>
+
+        <label>
+          <span class="control-label">エリア</span>
+          <select id="areaSelect">
+            <option value="all">すべて</option>
+            <option value="tokyo-east">東京 東側・都心東</option>
+            <option value="tokyo-west">東京 西側・城南</option>
+            <option value="kanagawa">神奈川</option>
+            <option value="saitama">埼玉</option>
+            <option value="chiba">千葉</option>
+            <option value="north-kanto">北関東</option>
+          </select>
+        </label>
+
+        <div>
+          <span class="control-label">表示</span>
+          <div class="chips" id="categoryChips">
+            <button class="chip active" data-category="all">すべて</button>
+            <button class="chip" data-category="cake">ケーキ</button>
+            <button class="chip" data-category="cafe">カフェ</button>
+          </div>
+        </div>
+
+        <div>
+          <span class="control-label">タイプ</span>
+          <div class="chips" id="typeChips">
+            <button class="chip active" data-type="all">すべて</button>
+            <button class="chip" data-type="top">名店・遠征級</button>
+            <button class="chip" data-type="walk">散歩向き</button>
+            <button class="chip" data-type="gift">手土産</button>
+            <button class="chip" data-type="salon">イートイン/サロン</button>
+          </div>
+        </div>
+
+        <div>
+          <span class="control-label">訪問状況</span>
+          <div class="chips" id="visitedChips">
+            <button class="chip active" data-visited="all">すべて</button>
+            <button class="chip" data-visited="visited">行った</button>
+            <button class="chip" data-visited="unvisited">未訪問</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="list-head">
+        <h2>候補一覧</h2>
+      </div>
+      <section class="shop-list" id="shopList" aria-label="ケーキ店・カフェ一覧"></section>
+
+      <details class="maintenance">
+        <summary>データ更新</summary>
+        <div class="maintenance-body">
+          <p>静的HTMLなので、食べログ等からの自動スクレイピングは行いません。高スコア候補の確認リンクを開き、更新JSON/CSVを取り込む形で地図へ反映します。</p>
+          <div class="button-row">
+            <button class="action-button" id="openRankingSources" type="button">高スコア候補を探す</button>
+            <button class="action-button" id="makeClosureLinks" type="button">閉店チェックリンク生成</button>
+            <button class="action-button" id="makeImportTemplate" type="button">500件化テンプレート</button>
+            <button class="action-button" id="exportData" type="button">現在データを書き出す</button>
+            <button class="action-button warn" id="resetData" type="button">追加データをリセット</button>
+          </div>
+          <label>
+            <span class="control-label">更新JSON/CSVを貼り付け</span>
+            <textarea id="updateInput" placeholder='JSON例: [{"name":"店名","category":"cake","area":"tokyo-east","areaLabel":"東京 東側・都心東","lat":35.68,"lng":139.77,"station":"駅名","walk":"徒歩3分","type":["top","gift"],"signature":"代表菓子","score":"食べログ3.80","note":"メモ","url":"https://..."}]
+
+CSV例: 店名,カテゴリ,東京 東側・都心東,35.68,139.77,駅名,徒歩3分,top|gift,代表菓子,メモ,https://...,食べログ3.80'></textarea>
+          </label>
+          <div class="button-row">
+            <button class="action-button primary" id="importUpdates" type="button">貼り付けデータを取り込む</button>
+          </div>
+          <div class="update-log" id="updateLog">更新操作の結果がここに表示されます。</div>
+          <div class="link-list" id="updateLinks" hidden></div>
+        </div>
+      </details>
+    </aside>
+
+    <main>
+      <div id="map" role="application" aria-label="関東有名ケーキ店・カフェマップ"></div>
+      <div class="legend" aria-label="地図アイコン凡例">
+        <span class="legend-item"><span class="legend-icon cake">🍰</span>ケーキ</span>
+        <span class="legend-item"><span class="legend-icon cafe">☕</span>カフェ</span>
+      </div>
+      <div class="map-note">駅徒歩は実用目安です。営業時間・定休日・売り切れ・予約可否は訪問前に公式または店舗SNSで確認してください。</div>
+    </main>
+  </div>
+
+  <script>
+    const baseShops = [
+      {
+        name: "フレデリック・カッセル 銀座三越店",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.67186,
+        lng: 139.76502,
+        station: "銀座駅すぐ",
+        walk: "徒歩1分",
+        type: ["top", "gift"],
+        signature: "ミルフィーユ・ヴァニーユ、フランス菓子",
+        note: "東側広義なら最上位候補。百貨店内で買いやすい。",
+        url: "https://www.frederic-cassel.jp/boutique/"
+      },
+      {
+        name: "ザ マンダリン オリエンタル グルメショップ",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68697,
+        lng: 139.77335,
+        station: "三越前駅直結",
+        walk: "徒歩1分",
+        type: ["top", "gift", "salon"],
+        signature: "KUMO、ホテルメイドのケーキ",
+        note: "日本橋でホテルメイドの華やかさを狙うなら強い。",
+        url: "https://www.mandarinoriental.com/ja/tokyo/nihonbashi/dine/the-mandarin-oriental-gourmet-shop"
+      },
+      {
+        name: "PAYSAGE 日本橋三越本店",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68519,
+        lng: 139.77352,
+        station: "三越前駅",
+        walk: "徒歩1分",
+        type: ["top", "gift"],
+        signature: "季節の生菓子、焼き菓子",
+        note: "2026年6月オープンの注目店。江藤英樹シェフ系。",
+        url: "https://paysage-he.com/shop"
+      },
+      {
+        name: "トシ・ヨロイヅカ 東京",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.67642,
+        lng: 139.77079,
+        station: "京橋駅直結",
+        walk: "東京駅徒歩5分",
+        type: ["top", "salon", "gift"],
+        signature: "生ケーキ、カウンターデザート",
+        note: "買うだけでなく、その場で食べる体験込みで強い。",
+        url: "https://www.grand-patissier.info/ToshiYoroizuka/"
+      },
+      {
+        name: "patisserie ease",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68111,
+        lng: 139.77816,
+        station: "茅場町駅",
+        walk: "徒歩2〜3分",
+        type: ["top", "gift", "walk"],
+        signature: "現代的な生菓子、焼き菓子",
+        note: "日本橋兜町の現代的パティスリー。東側散歩にも足しやすい。",
+        url: "https://patisserie-ease.com/"
+      },
+      {
+        name: "EN VEDETTE",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68154,
+        lng: 139.80216,
+        station: "清澄白河駅",
+        walk: "徒歩4〜6分",
+        type: ["top", "walk", "gift"],
+        signature: "華やかなフランス菓子、ショコラ",
+        note: "清澄白河散歩と相性抜群。見た目も手土産感も強い。",
+        url: "https://envedette.jp/"
+      },
+      {
+        name: "Patisserie FOBS",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.70454,
+        lng: 139.79133,
+        station: "大江戸線 蔵前駅",
+        walk: "徒歩1分",
+        type: ["walk", "gift"],
+        signature: "ゴーフレット、ミルフィーユ、サバラン",
+        note: "両国・蔵前散歩に組み込みやすい実力派。",
+        url: "https://patisserie-fobs.jp/"
+      },
+      {
+        name: "ル・グッテ",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.69902,
+        lng: 139.78546,
+        station: "浅草橋駅",
+        walk: "徒歩1〜2分",
+        type: ["walk", "gift"],
+        signature: "シュー、カヌレ、プリン",
+        note: "営業日が限られる小さな人気店。訪問前確認必須。",
+        url: "https://www.facebook.com/legouter.yuriko.k/?locale=ja_JP"
+      },
+      {
+        name: "CONFECT-CONCEPT",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.70786,
+        lng: 139.78296,
+        station: "稲荷町駅",
+        walk: "徒歩3分",
+        type: ["walk", "gift"],
+        signature: "フィナンシェ、タルト、焼き菓子",
+        note: "焼き菓子好きなら入れておきたい稲荷町の候補。",
+        url: "https://confect-concept.square.site/"
+      },
+      {
+        name: "イナムラショウゾウ",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.72792,
+        lng: 139.77034,
+        station: "日暮里駅",
+        walk: "徒歩2分",
+        type: ["top", "gift"],
+        signature: "モンブラン、ショコラ、ムース",
+        note: "東側の名店感が強い。日暮里・谷根千散歩にも。",
+        url: "https://www.inamura.jp/"
+      },
+      {
+        name: "アヴランシュ・ゲネー",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.70959,
+        lng: 139.75278,
+        station: "春日駅",
+        walk: "徒歩1分",
+        type: ["top", "gift"],
+        signature: "本格フランス菓子、ムース、タルト",
+        note: "東京全体でも上位級。後楽園・小石川散歩に。",
+        url: "https://avranches-guesnay.com/"
+      },
+      {
+        name: "パティシエ・ヒロ ヤマモト",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.70543,
+        lng: 139.90357,
+        station: "篠崎駅",
+        walk: "徒歩7分前後",
+        type: ["top", "gift"],
+        signature: "モンブラン、ミルフィーユ、季節ケーキ",
+        note: "江戸川区方面まで広げるなら有力。",
+        url: "http://hiro-yamamoto.com/"
+      },
+      {
+        name: "ラ・ローズ・ジャポネ",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.76652,
+        lng: 139.84765,
+        station: "亀有駅",
+        walk: "徒歩3〜4分",
+        type: ["top", "salon", "gift"],
+        signature: "ピクシー、ピスタチオ×苺",
+        note: "亀有香取神社境内の有名店。カフェ利用も可。",
+        url: "https://www.kameari-katori.or.jp/la-rose-japonais/"
+      },
+      {
+        name: "パティスリー リョーコ",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.63124,
+        lng: 139.73002,
+        station: "高輪台駅",
+        walk: "徒歩3分",
+        type: ["top", "gift"],
+        signature: "予約制ケーキ、ショコラ、焼き菓子",
+        note: "東京トップ級。予約難度込みで遠征級。",
+        url: "https://www.ryoco.jp/"
+      },
+      {
+        name: "アテスウェイ",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.71396,
+        lng: 139.58498,
+        station: "西荻窪駅/吉祥寺駅",
+        walk: "徒歩15〜18分",
+        type: ["top", "gift"],
+        signature: "モンブラン、ショコラ、フランス菓子",
+        note: "東京を代表するパティスリー。駅から歩くが行く価値あり。",
+        url: "https://www.atessouhaits.co.jp/"
+      },
+      {
+        name: "エーグルドゥース",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.72140,
+        lng: 139.69518,
+        station: "目白駅",
+        walk: "徒歩8〜10分",
+        type: ["top", "gift"],
+        signature: "フランス菓子、焼き菓子、ガトー",
+        note: "クラシックな強さ。手土産にも遠征にも。",
+        url: "https://www.aigredouce.jp/"
+      },
+      {
+        name: "クリオロ本店",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.74378,
+        lng: 139.68119,
+        station: "小竹向原駅",
+        walk: "徒歩3分",
+        type: ["top", "salon", "gift"],
+        signature: "幻のチーズケーキ、チョコレート",
+        note: "買いやすさと知名度のバランスが良い。",
+        url: "https://ecolecriollo.com/"
+      },
+      {
+        name: "PÂTISSERIE ASAKO IWAYANAGI",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.60872,
+        lng: 139.64814,
+        station: "等々力駅",
+        walk: "徒歩3分",
+        type: ["top", "salon", "gift"],
+        signature: "パフェ、季節の生菓子、焼き菓子",
+        note: "サロン体験込みで東京トップ級。",
+        url: "https://patisserie.asakoiwayanagi.net/"
+      },
+      {
+        name: "Ryoura",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.62613,
+        lng: 139.63467,
+        station: "用賀駅",
+        walk: "徒歩3分",
+        type: ["top", "gift"],
+        signature: "正統派フランス菓子、季節ケーキ",
+        note: "世田谷方面の実力派。華やかで完成度が高い。",
+        url: "https://www.ryoura.com/"
+      },
+      {
+        name: "リリエンベルグ",
+        area: "kanagawa",
+        areaLabel: "神奈川",
+        lat: 35.60718,
+        lng: 139.51255,
+        station: "新百合ヶ丘駅",
+        walk: "徒歩15分前後",
+        type: ["top", "gift"],
+        signature: "ザッハトルテ、季節菓子、焼き菓子",
+        note: "神奈川を代表する名店。建物の雰囲気も良い。",
+        url: "https://www.lilienberg.jp/"
+      },
+      {
+        name: "SWEETS garden YUJI AJIKI",
+        area: "kanagawa",
+        areaLabel: "神奈川",
+        lat: 35.56032,
+        lng: 139.59555,
+        station: "北山田駅",
+        walk: "徒歩1分",
+        type: ["top", "gift"],
+        signature: "生ケーキ、焼き菓子、アントルメ",
+        note: "横浜北部の超有名店。駅近なのも強い。",
+        url: "https://sweets-garden-yuji-ajiki.com/"
+      },
+      {
+        name: "Patisserie Etienne",
+        area: "kanagawa",
+        areaLabel: "神奈川",
+        lat: 35.60336,
+        lng: 139.51060,
+        station: "新百合ヶ丘駅",
+        walk: "徒歩7分前後",
+        type: ["top", "gift"],
+        signature: "モンブラン、季節菓子、焼き菓子",
+        note: "新百合ヶ丘でリリエンベルグと合わせて考えたい。",
+        url: "https://patisserie-etienne.com/"
+      },
+      {
+        name: "パティスリー パクタージュ",
+        area: "kanagawa",
+        areaLabel: "神奈川",
+        lat: 35.55636,
+        lng: 139.60735,
+        station: "センター北駅",
+        walk: "徒歩4分前後",
+        type: ["top", "gift"],
+        signature: "フランス菓子、タルト、焼き菓子",
+        note: "港北ニュータウン方面の実力派。",
+        url: "https://patisserie-pactage.com/"
+      },
+      {
+        name: "Pâtisserie Kouglapin",
+        area: "kanagawa",
+        areaLabel: "神奈川",
+        lat: 35.31908,
+        lng: 139.55153,
+        station: "鎌倉駅",
+        walk: "徒歩3分",
+        type: ["walk", "gift"],
+        signature: "クグロフ、ケーキ、焼き菓子",
+        note: "鎌倉散歩と相性の良い駅近パティスリー。",
+        url: "https://www.kouglapin.com/"
+      },
+      {
+        name: "CALVA",
+        area: "kanagawa",
+        areaLabel: "神奈川",
+        lat: 35.35433,
+        lng: 139.53191,
+        station: "大船駅",
+        walk: "徒歩3分",
+        type: ["gift", "walk"],
+        signature: "ケーキ、ショコラ、パン",
+        note: "大船の人気店。パンとケーキをまとめて買える。",
+        url: "https://calva.jp/"
+      },
+      {
+        name: "アカシエ 浦和店",
+        area: "saitama",
+        areaLabel: "埼玉",
+        lat: 35.85610,
+        lng: 139.65070,
+        station: "浦和駅",
+        walk: "徒歩15分前後",
+        type: ["top", "gift"],
+        signature: "アントワネット、フランス菓子",
+        note: "埼玉を代表する名店。遠征価値あり。",
+        url: "https://acacier.co.jp/"
+      },
+      {
+        name: "Patisserie APLANOS",
+        area: "saitama",
+        areaLabel: "埼玉",
+        lat: 35.84363,
+        lng: 139.64606,
+        station: "武蔵浦和駅",
+        walk: "徒歩8分前後",
+        type: ["top", "gift"],
+        signature: "生ケーキ、焼き菓子、季節菓子",
+        note: "埼玉南部で外しにくい実力派。",
+        url: "https://www.aplanos.jp/"
+      },
+      {
+        name: "パティスリー ポルトボヌール",
+        area: "saitama",
+        areaLabel: "埼玉",
+        lat: 35.88986,
+        lng: 139.62652,
+        station: "与野駅",
+        walk: "徒歩7分前後",
+        type: ["gift"],
+        signature: "季節ケーキ、焼き菓子",
+        note: "さいたま市周辺で候補に入る良店。",
+        url: "https://porte-bonheur2014.com/"
+      },
+      {
+        name: "Rêve",
+        area: "chiba",
+        areaLabel: "千葉",
+        lat: 35.63550,
+        lng: 140.04392,
+        station: "検見川浜駅",
+        walk: "徒歩2分前後",
+        type: ["top", "gift"],
+        signature: "生菓子、焼き菓子、アントルメ",
+        note: "千葉側の有名候補。駅近で行きやすい。",
+        url: "https://reve1972.co.jp/"
+      },
+      {
+        name: "ル・パティシエ ヨコヤマ 京成大久保店",
+        area: "chiba",
+        areaLabel: "千葉",
+        lat: 35.68648,
+        lng: 140.05192,
+        station: "京成大久保駅",
+        walk: "徒歩5分前後",
+        type: ["top", "gift"],
+        signature: "岩シュー、ロールケーキ、生菓子",
+        note: "千葉の有名店。売り切れ注意。",
+        url: "https://www.l-p-yokoyama.com/"
+      },
+      {
+        name: "パティスリー SATSUKI",
+        area: "chiba",
+        areaLabel: "千葉",
+        lat: 35.64838,
+        lng: 140.04076,
+        station: "海浜幕張駅",
+        walk: "徒歩5分前後",
+        type: ["salon", "gift"],
+        signature: "スーパーメロンショートケーキ",
+        note: "ホテルニューオータニ幕張内。ホテルケーキ枠。",
+        url: "https://www.newotani.co.jp/makuhari/restaurant/satsuki/"
+      },
+      {
+        name: "ル・コントントモン",
+        area: "north-kanto",
+        areaLabel: "北関東",
+        lat: 36.38760,
+        lng: 139.06612,
+        station: "前橋駅/中央前橋駅",
+        walk: "車推奨",
+        type: ["top", "gift"],
+        signature: "フランス菓子、焼き菓子",
+        note: "群馬方面まで含めるなら入れたい実力派。",
+        url: "https://le-contentement.com/"
+      },
+      {
+        name: "パティスリー ラ・マーレ・ド・チャヤ 葉山本店",
+        area: "kanagawa",
+        areaLabel: "神奈川",
+        lat: 35.27908,
+        lng: 139.57750,
+        station: "逗子・葉山駅",
+        walk: "バス/車推奨",
+        type: ["gift", "salon", "walk"],
+        signature: "フレッシュケーキ、焼き菓子、葉山土産",
+        note: "葉山散歩・ドライブと合わせる老舗候補。",
+        url: "https://patisseries.chaya.co.jp/"
+      }
+    ];
+
+    const cafeShops = [
+      {
+        name: "ダンデライオン・チョコレート ファクトリー&カフェ蔵前",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.70465,
+        lng: 139.79082,
+        station: "蔵前駅",
+        walk: "徒歩3分",
+        type: ["walk", "salon", "gift"],
+        signature: "Bean to Barチョコレート、ホットチョコレート",
+        note: "蔵前散歩の定番休憩地点。チョコ好きなら目的地になる。",
+        url: "https://dandelionchocolate.jp/pages/factory-cafe-kuramae"
+      },
+      {
+        name: "喫茶 半月",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.70516,
+        lng: 139.79148,
+        station: "蔵前駅",
+        walk: "徒歩2分前後",
+        type: ["walk", "salon"],
+        signature: "季節菓子、シュー、喫茶",
+        note: "大人っぽい空気感の喫茶。蔵前の目的地カフェ枠。",
+        url: "https://www.instagram.com/kissa_hangetsu/"
+      },
+      {
+        name: "Nui. HOSTEL & BAR LOUNGE",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.70431,
+        lng: 139.79382,
+        station: "蔵前駅",
+        walk: "徒歩4分前後",
+        type: ["walk", "salon"],
+        signature: "コーヒー、軽食、ラウンジ",
+        note: "広めで散歩途中に休みやすい。夜の雰囲気も良い。",
+        url: "https://backpackersjapan.co.jp/nuihostel/"
+      },
+      {
+        name: "COFFEE WRIGHTS 蔵前",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.70543,
+        lng: 139.78968,
+        station: "蔵前駅",
+        walk: "徒歩2分前後",
+        type: ["walk", "salon"],
+        signature: "スペシャルティコーヒー",
+        note: "豆・抽出寄り。蔵前でコーヒーを主役にするなら候補。",
+        url: "https://coffee-wrights.jp/"
+      },
+      {
+        name: "WESTSIDE COFFEE",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.69930,
+        lng: 139.78458,
+        station: "浅草橋駅",
+        walk: "徒歩2分前後",
+        type: ["walk", "salon"],
+        signature: "コーヒー、プリン、チーズケーキ",
+        note: "浅草橋側まで抜ける散歩に合うカフェ。",
+        url: "https://www.instagram.com/westsidecoffee_tokyo/"
+      },
+      {
+        name: "北斎茶房",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.69785,
+        lng: 139.80720,
+        station: "錦糸町駅/両国駅",
+        walk: "徒歩10〜12分",
+        type: ["walk", "salon"],
+        signature: "白玉、あんみつ、わらび餅、かき氷",
+        note: "両国・北斎美術館散歩の甘味休憩に強い。",
+        url: "https://tabelog.com/tokyo/A1312/A131201/13009563/"
+      },
+      {
+        name: "両国テラスカフェ",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.69964,
+        lng: 139.79310,
+        station: "両国駅",
+        walk: "徒歩5分前後",
+        type: ["walk", "salon"],
+        signature: "カフェ、ランチ、テラス",
+        note: "旧安田庭園・国技館近くで休憩しやすい。",
+        url: "https://ryogokuterrace.jp/"
+      },
+      {
+        name: "CHILL OUT COFFEE&...RECORDS",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.69572,
+        lng: 139.79982,
+        station: "両国駅",
+        walk: "徒歩5分前後",
+        type: ["walk", "salon"],
+        signature: "コーヒー、レコード",
+        note: "両国で小さく雰囲気のあるコーヒー休憩ならここ。",
+        url: "https://www.instagram.com/chill_out_coffeeandrecords/"
+      },
+      {
+        name: "fukadaso CAFE",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68116,
+        lng: 139.80298,
+        station: "清澄白河駅",
+        walk: "徒歩5分前後",
+        type: ["walk", "salon"],
+        signature: "リノベカフェ、焼き菓子、ランチ",
+        note: "古建築リノベの雰囲気が良い。清澄庭園散歩と相性が良い。",
+        url: "https://fukadaso.com/"
+      },
+      {
+        name: "Blue Bottle Coffee 清澄白河フラッグシップカフェ",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68066,
+        lng: 139.80724,
+        station: "清澄白河駅",
+        walk: "徒歩8分前後",
+        type: ["walk", "salon", "gift"],
+        signature: "スペシャルティコーヒー、ワッフル、グッズ",
+        note: "清澄白河コーヒー散歩の定番。広めで使いやすい。",
+        url: "https://store.bluebottlecoffee.jp/pages/kiyosumi"
+      },
+      {
+        name: "iki ESPRESSO",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68102,
+        lng: 139.79564,
+        station: "清澄白河駅/森下駅",
+        walk: "徒歩5〜7分",
+        type: ["walk", "salon"],
+        signature: "エスプレッソ、ブランチ、パンケーキ",
+        note: "軽食までしっかり。深川・清澄白河散歩に組みやすい。",
+        url: "https://www.instagram.com/iki_espresso/"
+      },
+      {
+        name: "ARiSE COFFEE ROASTERS",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68018,
+        lng: 139.80268,
+        station: "清澄白河駅",
+        walk: "徒歩5分前後",
+        type: ["walk", "salon", "gift"],
+        signature: "自家焙煎コーヒー",
+        note: "清澄白河のコーヒー文化を感じる小さな名店。",
+        url: "https://www.instagram.com/arisecoffeeroasters/"
+      },
+      {
+        name: "茶亭 羽當",
+        category: "cafe",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.65906,
+        lng: 139.70334,
+        station: "渋谷駅",
+        walk: "徒歩7分前後",
+        type: ["top", "salon"],
+        signature: "ネルドリップ、シフォンケーキ、喫茶",
+        note: "東京喫茶の代表格。ケーキより空間と珈琲の名店枠。",
+        url: "https://tabelog.com/tokyo/A1303/A130301/13004639/"
+      },
+      {
+        name: "カフェ・バッハ",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.72293,
+        lng: 139.80106,
+        station: "南千住駅",
+        walk: "徒歩10分前後",
+        type: ["top", "salon", "gift"],
+        signature: "自家焙煎コーヒー、ケーキ",
+        note: "東京のコーヒー名店。浅草北側まで歩けるなら候補。",
+        url: "https://www.bach-kaffee.co.jp/"
+      },
+      {
+        name: "猿田彦珈琲 恵比寿本店",
+        category: "cafe",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.64657,
+        lng: 139.71110,
+        station: "恵比寿駅",
+        walk: "徒歩2分前後",
+        type: ["top", "salon", "gift"],
+        signature: "スペシャルティコーヒー",
+        note: "有名カフェ枠として入れておきたい本店。",
+        url: "https://sarutahiko.co/"
+      },
+      {
+        name: "喫茶 you",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.66856,
+        lng: 139.76792,
+        station: "東銀座駅",
+        walk: "徒歩1分",
+        type: ["top", "salon"],
+        signature: "オムライス、喫茶、デザート",
+        note: "銀座・東銀座の有名喫茶。ケーキ散歩の休憩候補にも。",
+        url: "https://tabelog.com/tokyo/A1301/A130101/13002318/"
+      }
+    ];
+
+    const expandedShops = [
+      {
+        name: "パティスリー・パリセヴェイユ",
+        category: "cake",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.60724,
+        lng: 139.66718,
+        station: "自由が丘駅",
+        walk: "徒歩3分前後",
+        type: ["top", "salon", "gift"],
+        signature: "フランス菓子、ムース、タルト",
+        note: "自由が丘を代表する名店。東京全体でも上位級。",
+        url: "https://tabelog.com/tokyo/A1317/A131703/13004184/"
+      },
+      {
+        name: "モンサンクレール",
+        category: "cake",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.60703,
+        lng: 139.66883,
+        station: "自由が丘駅",
+        walk: "徒歩10分前後",
+        type: ["top", "salon", "gift"],
+        signature: "セラヴィ、ショコラ、季節ケーキ",
+        note: "辻口博啓シェフの有名店。自由が丘パティスリー巡りの中心。",
+        url: "https://www.ms-clair.co.jp/"
+      },
+      {
+        name: "オーボンヴュータン 尾山台店",
+        category: "cake",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.60739,
+        lng: 139.65366,
+        station: "尾山台駅",
+        walk: "徒歩5分前後",
+        type: ["top", "salon", "gift"],
+        signature: "クラシックなフランス菓子、焼き菓子",
+        note: "日本のフランス菓子史を語るうえで外せない老舗名店。",
+        url: "https://www.aubonvieuxtemps.jp/"
+      },
+      {
+        name: "PÂTISSERIE SATSUKI",
+        category: "cake",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68114,
+        lng: 139.73455,
+        station: "赤坂見附駅/永田町駅",
+        walk: "徒歩3〜5分",
+        type: ["top", "salon", "gift"],
+        signature: "スーパーメロンショートケーキ",
+        note: "ホテルニューオータニ東京内。ホテルケーキの代表格。",
+        url: "https://www.newotani.co.jp/tokyo/restaurant/p-satsuki/"
+      },
+      {
+        name: "ピエール・エルメ・パリ 青山",
+        category: "cake",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.66508,
+        lng: 139.71256,
+        station: "表参道駅",
+        walk: "徒歩3分前後",
+        type: ["top", "salon", "gift"],
+        signature: "イスパハン、マカロン、ケーキ",
+        note: "華やかさと手土産力の強い世界的パティスリー。",
+        url: "https://www.pierreherme.co.jp/boutique/aoyama/"
+      },
+      {
+        name: "パティスリー・サダハル・アオキ・パリ 丸の内店",
+        category: "cake",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.67827,
+        lng: 139.76307,
+        station: "東京駅/二重橋前駅",
+        walk: "徒歩3〜5分",
+        type: ["top", "salon", "gift"],
+        signature: "マカロン、抹茶系、フランス菓子",
+        note: "東京駅・丸の内で買いやすい有名店。",
+        url: "https://www.sadaharuaoki.jp/boutique/marunouchi.html"
+      },
+      {
+        name: "銀座ウエスト 銀座本店",
+        category: "cake",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.66996,
+        lng: 139.76073,
+        station: "銀座駅/新橋駅",
+        walk: "徒歩5〜7分",
+        type: ["top", "salon", "gift"],
+        signature: "リーフパイ、ショートケーキ、喫茶",
+        note: "クラシックな銀座の洋菓子・喫茶枠。",
+        url: "https://www.ginza-west.co.jp/"
+      },
+      {
+        name: "資生堂パーラー 銀座本店ショップ",
+        category: "cake",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.66903,
+        lng: 139.76186,
+        station: "銀座駅/新橋駅",
+        walk: "徒歩5分前後",
+        type: ["top", "salon", "gift"],
+        signature: "チーズケーキ、季節ケーキ、パフェ",
+        note: "銀座の老舗洋菓子。喫茶・レストラン利用も強い。",
+        url: "https://parlour.shiseido.co.jp/"
+      },
+      {
+        name: "HIGASHIYA GINZA",
+        category: "cake",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.67155,
+        lng: 139.76424,
+        station: "銀座駅",
+        walk: "徒歩2分前後",
+        type: ["top", "salon", "gift"],
+        signature: "和菓子、棗バター、茶房",
+        note: "ケーキではないが、甘味マップとして外しにくい銀座の上質枠。",
+        url: "https://www.higashiya.com/shop/ginza/"
+      },
+      {
+        name: "アディクト オ シュクル",
+        category: "cake",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.61724,
+        lng: 139.67457,
+        station: "都立大学駅",
+        walk: "徒歩5分前後",
+        type: ["top", "gift"],
+        signature: "ミルフィーユ、タルト、焼き菓子",
+        note: "猫モチーフも印象的な人気パティスリー。",
+        url: "https://www.addict-au-sucre.com/"
+      },
+      {
+        name: "Patisserie Yu Sasage",
+        category: "cake",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.66679,
+        lng: 139.60211,
+        station: "千歳烏山駅",
+        walk: "徒歩4分前後",
+        type: ["top", "gift"],
+        signature: "フランス菓子、ショコラ、焼き菓子",
+        note: "世田谷西側の実力派。繊細なケーキが強い。",
+        url: "https://www.yusasage.com/"
+      },
+      {
+        name: "パティスリー ノリエット",
+        category: "cake",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.66649,
+        lng: 139.64153,
+        station: "下高井戸駅",
+        walk: "徒歩3分前後",
+        type: ["top", "salon", "gift"],
+        signature: "クラシックフランス菓子、焼き菓子",
+        note: "下高井戸の老舗実力派。喫茶利用も可能。",
+        url: "https://www.noliette.jp/"
+      },
+      {
+        name: "リベルターブル 赤坂店",
+        category: "cake",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.67224,
+        lng: 139.73645,
+        station: "赤坂駅",
+        walk: "徒歩3分前後",
+        type: ["top", "gift"],
+        signature: "ラグジュアリー系ケーキ、焼き菓子",
+        note: "香りや素材の組み合わせが独創的。大人向き。",
+        url: "https://libertable.jp/"
+      },
+      {
+        name: "オクシタニアル 東京本店",
+        category: "cake",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68343,
+        lng: 139.78622,
+        station: "水天宮前駅",
+        walk: "徒歩1分",
+        type: ["gift", "salon"],
+        signature: "マカロン、ムース、焼き菓子",
+        note: "水天宮前の使いやすいパティスリー。日本橋散歩にも。",
+        url: "https://occitanial.jp/"
+      },
+      {
+        name: "パティスリー ラヴィアンレーヴ",
+        category: "cake",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.77356,
+        lng: 139.80386,
+        station: "梅島駅",
+        walk: "徒歩5分前後",
+        type: ["top", "salon", "gift"],
+        signature: "ショートケーキ、季節菓子、焼き菓子",
+        note: "足立区方面の人気パティスリー。カフェ併設。",
+        url: "https://lavieunreve.com/"
+      },
+      {
+        name: "アングランパ",
+        category: "cake",
+        area: "saitama",
+        areaLabel: "埼玉",
+        lat: 35.89335,
+        lng: 139.63688,
+        station: "さいたま新都心駅",
+        walk: "徒歩7分前後",
+        type: ["top", "gift"],
+        signature: "ミルフィーユ、フランス菓子",
+        note: "さいたま新都心の有名パティスリー。百名店常連級。",
+        url: "https://www.ungrandpas.jp/"
+      },
+      {
+        name: "シャンドワゾー 本店",
+        category: "cake",
+        area: "saitama",
+        areaLabel: "埼玉",
+        lat: 35.80416,
+        lng: 139.71931,
+        station: "川口駅",
+        walk: "徒歩6分前後",
+        type: ["top", "gift"],
+        signature: "ショコラ、フランス菓子、ケーキ",
+        note: "川口の名店。ショコラティエとしても有名。",
+        url: "https://chant-doiseau.com/"
+      },
+      {
+        name: "菓子工房オークウッド",
+        category: "cake",
+        area: "saitama",
+        areaLabel: "埼玉",
+        lat: 35.97385,
+        lng: 139.75361,
+        station: "春日部駅",
+        walk: "徒歩20分前後",
+        type: ["top", "salon", "gift"],
+        signature: "季節ケーキ、焼き菓子、カフェ",
+        note: "埼玉東部の有名店。車でも行きやすい。",
+        url: "https://www.oakwood.co.jp/"
+      },
+      {
+        name: "パティスリー ル・ラピュタ",
+        category: "cake",
+        area: "chiba",
+        areaLabel: "千葉",
+        lat: 35.66551,
+        lng: 140.01621,
+        station: "津田沼駅",
+        walk: "徒歩10分前後",
+        type: ["gift"],
+        signature: "生ケーキ、焼き菓子",
+        note: "津田沼周辺で候補になるパティスリー。",
+        url: "https://tabelog.com/chiba/A1202/A120201/12005125/"
+      },
+      {
+        name: "Grandir",
+        category: "cake",
+        area: "chiba",
+        areaLabel: "千葉",
+        lat: 35.83716,
+        lng: 139.90278,
+        station: "新松戸駅",
+        walk: "徒歩8分前後",
+        type: ["gift"],
+        signature: "季節ケーキ、焼き菓子",
+        note: "松戸方面で押さえたい街の実力派候補。",
+        url: "https://tabelog.com/chiba/A1203/A120302/12002566/"
+      },
+      {
+        name: "パティスリー・シュシュクリエ 三軒茶屋店",
+        category: "cake",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.64257,
+        lng: 139.66931,
+        station: "三軒茶屋駅",
+        walk: "徒歩7分前後",
+        type: ["gift", "salon"],
+        signature: "シュークリーム、季節ケーキ",
+        note: "世田谷散歩で使いやすいパティスリー。",
+        url: "https://www.susucrier.com/"
+      },
+      {
+        name: "ル・ププラン",
+        category: "cake",
+        area: "tokyo-west",
+        areaLabel: "東京 西側・城南",
+        lat: 35.65624,
+        lng: 139.40635,
+        station: "聖蹟桜ヶ丘駅",
+        walk: "徒歩4分前後",
+        type: ["top", "gift"],
+        signature: "フランス菓子、焼き菓子",
+        note: "多摩方面まで含めるなら入れたい名店候補。",
+        url: "https://tabelog.com/tokyo/A1327/A132702/13006048/"
+      },
+      {
+        name: "M&C Cafe 丸の内オアゾ",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68315,
+        lng: 139.76644,
+        station: "東京駅",
+        walk: "徒歩1分",
+        type: ["salon", "walk"],
+        signature: "ハヤシライス、カフェ、丸善併設",
+        note: "東京駅近くで本屋と組み合わせやすいカフェ。",
+        url: "https://www.marunouchi.com/tenants/1003/"
+      },
+      {
+        name: "文明堂カフェ",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68464,
+        lng: 139.77347,
+        station: "三越前駅",
+        walk: "徒歩1分",
+        type: ["salon", "gift"],
+        signature: "カステラ、パンケーキ、喫茶",
+        note: "日本橋で休憩と手土産を兼ねられる老舗カフェ。",
+        url: "https://www.bunmeido.co.jp/"
+      },
+      {
+        name: "Cafe 1894",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.67801,
+        lng: 139.76370,
+        station: "東京駅/二重橋前駅",
+        walk: "徒歩5分前後",
+        type: ["top", "salon", "walk"],
+        signature: "クラシック建築カフェ、ランチ、デザート",
+        note: "三菱一号館美術館隣。建築込みで雰囲気が強い。",
+        url: "https://mimt.jp/cafe1894/"
+      },
+      {
+        name: "BONGEN COFFEE",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.66961,
+        lng: 139.77056,
+        station: "東銀座駅",
+        walk: "徒歩4分前後",
+        type: ["walk", "gift"],
+        signature: "コーヒー、和モダン、豆",
+        note: "銀座東側の小さなコーヒースタンド。散歩途中に。",
+        url: "https://www.bongen.jp/"
+      },
+      {
+        name: "丸福珈琲店 銀座喫茶室",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.67179,
+        lng: 139.76511,
+        station: "銀座駅",
+        walk: "徒歩1分",
+        type: ["salon"],
+        signature: "濃いめの珈琲、ホットケーキ、喫茶",
+        note: "銀座三越内でケーキ買い物と合わせやすい。",
+        url: "https://www.marufukucoffeeten.com/"
+      },
+      {
+        name: "トリコロール本店",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.67116,
+        lng: 139.76586,
+        station: "銀座駅",
+        walk: "徒歩3分前後",
+        type: ["top", "salon"],
+        signature: "老舗喫茶、エクレア、珈琲",
+        note: "銀座のクラシック喫茶。ケーキ散歩の休憩に。",
+        url: "https://tricolore.co.jp/"
+      },
+      {
+        name: "カヤバ珈琲",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.72372,
+        lng: 139.76619,
+        station: "日暮里駅/根津駅",
+        walk: "徒歩8〜10分",
+        type: ["top", "walk", "salon"],
+        signature: "たまごサンド、喫茶、古民家",
+        note: "谷根千散歩の代表的カフェ。イナムラショウゾウと組みやすい。",
+        url: "https://kayaba-coffee.com/"
+      },
+      {
+        name: "HAGI CAFE",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.72679,
+        lng: 139.76728,
+        station: "日暮里駅",
+        walk: "徒歩5分前後",
+        type: ["walk", "salon"],
+        signature: "リノベカフェ、ランチ、スイーツ",
+        note: "谷中の宿泊施設HAGISO内。谷根千散歩向き。",
+        url: "https://hagiso.jp/hagicafe/"
+      },
+      {
+        name: "from afar",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.70948,
+        lng: 139.78663,
+        station: "田原町駅/蔵前駅",
+        walk: "徒歩4〜7分",
+        type: ["walk", "salon"],
+        signature: "コーヒー、季節タルト、花",
+        note: "浅草・蔵前散歩に合う雰囲気カフェ。",
+        url: "https://www.instagram.com/fromafar_tokyo/"
+      },
+      {
+        name: "FEBRUARY CAFE",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.71131,
+        lng: 139.79345,
+        station: "浅草駅/田原町駅",
+        walk: "徒歩5分前後",
+        type: ["walk", "salon"],
+        signature: "トースト、プリン、コーヒー",
+        note: "浅草散歩で使いやすい人気カフェ。",
+        url: "https://www.instagram.com/february_cafe/"
+      },
+      {
+        name: "cafe vivement dimanche",
+        category: "cafe",
+        area: "kanagawa",
+        areaLabel: "神奈川",
+        lat: 35.31860,
+        lng: 139.55110,
+        station: "鎌倉駅",
+        walk: "徒歩3分前後",
+        type: ["top", "walk", "salon"],
+        signature: "コーヒー、オムライス、鎌倉カフェ",
+        note: "鎌倉カフェ文化の代表格。散歩目的地として強い。",
+        url: "https://dimanche.shopinfo.jp/"
+      },
+      {
+        name: "ミルクホール",
+        category: "cafe",
+        area: "kanagawa",
+        areaLabel: "神奈川",
+        lat: 35.32020,
+        lng: 139.55246,
+        station: "鎌倉駅",
+        walk: "徒歩5分前後",
+        type: ["walk", "salon"],
+        signature: "レトロ喫茶、プリン、軽食",
+        note: "鎌倉の古い喫茶空間を楽しむ候補。",
+        url: "https://tabelog.com/kanagawa/A1404/A140402/14000549/"
+      },
+      {
+        name: "UNDER BLUFF COFFEE",
+        category: "cafe",
+        area: "kanagawa",
+        areaLabel: "神奈川",
+        lat: 35.43770,
+        lng: 139.64715,
+        station: "元町・中華街駅",
+        walk: "徒歩8分前後",
+        type: ["walk", "salon"],
+        signature: "コーヒー、焼き菓子",
+        note: "山手・元町散歩に合うコーヒー店。",
+        url: "https://www.instagram.com/underbluffcoffee/"
+      },
+      {
+        name: "SLOW JET COFFEE",
+        category: "cafe",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.76170,
+        lng: 139.80576,
+        station: "牛田駅/京成関屋駅",
+        walk: "徒歩8分前後",
+        type: ["walk", "salon"],
+        signature: "焙煎コーヒー、広めカフェ",
+        note: "北千住・千住周辺で休みやすいカフェ候補。",
+        url: "https://tabelog.com/tokyo/A1324/A132402/13175715/"
+      }
+    ];
+
+    const storageKey = "kantoCakeMap.extraShops.v1";
+    const visitedStorageKey = "kantoCakeMap.visited.v1";
+    let shops = loadShops();
+
+    const rankingSources = [
+      ["食べログ ケーキ TOKYO ランキング", "https://tabelog.com/cake/tokyo/rank/"],
+      ["食べログ ケーキ 神奈川 ランキング", "https://tabelog.com/cake/kanagawa/rank/"],
+      ["食べログ ケーキ 埼玉 ランキング", "https://tabelog.com/cake/saitama/rank/"],
+      ["食べログ ケーキ 千葉 ランキング", "https://tabelog.com/cake/chiba/rank/"],
+      ["食べログ ケーキ 茨城 ランキング", "https://tabelog.com/cake/ibaraki/rank/"],
+      ["食べログ ケーキ 栃木 ランキング", "https://tabelog.com/cake/tochigi/rank/"],
+      ["食べログ ケーキ 群馬 ランキング", "https://tabelog.com/cake/gunma/rank/"],
+      ["食べログ カフェ 東京 ランキング", "https://tabelog.com/cafe/tokyo/rank/"],
+      ["食べログ カフェ 神奈川 ランキング", "https://tabelog.com/cafe/kanagawa/rank/"],
+      ["食べログ カフェ 埼玉 ランキング", "https://tabelog.com/cafe/saitama/rank/"],
+      ["食べログ カフェ 千葉 ランキング", "https://tabelog.com/cafe/chiba/rank/"],
+      ["食べログ カフェ 茨城 ランキング", "https://tabelog.com/cafe/ibaraki/rank/"],
+      ["食べログ カフェ 栃木 ランキング", "https://tabelog.com/cafe/tochigi/rank/"],
+      ["食べログ カフェ 群馬 ランキング", "https://tabelog.com/cafe/gunma/rank/"],
+      ["Google: 東京 パティスリー 名店", "https://www.google.com/search?q=%E6%9D%B1%E4%BA%AC+%E3%83%91%E3%83%86%E3%82%A3%E3%82%B9%E3%83%AA%E3%83%BC+%E5%90%8D%E5%BA%97"],
+      ["Google: 神奈川 パティスリー 名店", "https://www.google.com/search?q=%E7%A5%9E%E5%A5%88%E5%B7%9D+%E3%83%91%E3%83%86%E3%82%A3%E3%82%B9%E3%83%AA%E3%83%BC+%E5%90%8D%E5%BA%97"],
+      ["Google: 埼玉 パティスリー 名店", "https://www.google.com/search?q=%E5%9F%BC%E7%8E%89+%E3%83%91%E3%83%86%E3%82%A3%E3%82%B9%E3%83%AA%E3%83%BC+%E5%90%8D%E5%BA%97"],
+      ["Google: 千葉 パティスリー 名店", "https://www.google.com/search?q=%E5%8D%83%E8%91%89+%E3%83%91%E3%83%86%E3%82%A3%E3%82%B9%E3%83%AA%E3%83%BC+%E5%90%8D%E5%BA%97"],
+      ["Google: 関東 カフェ 名店", "https://www.google.com/search?q=%E9%96%A2%E6%9D%B1+%E3%82%AB%E3%83%95%E3%82%A7+%E5%90%8D%E5%BA%97"]
+    ];
+
+    const areaClass = {
+      "tokyo-east": "area-tokyo",
+      "tokyo-west": "area-tokyo",
+      "kanagawa": "area-kanagawa",
+      "saitama": "area-saitama",
+      "chiba": "area-chiba",
+      "north-kanto": "area-north"
+    };
+
+    const typeLabel = {
+      top: "名店・遠征級",
+      walk: "散歩向き",
+      gift: "手土産",
+      salon: "イートイン/サロン"
+    };
+
+    const categoryLabel = {
+      cake: "ケーキ",
+      cafe: "カフェ"
+    };
+
+    const map = L.map("map", { zoomControl: true }).setView([35.6762, 139.6503], 10);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    const markerLayer = L.layerGroup().addTo(map);
+    const markers = new Map();
+    let activeCategory = "all";
+    let activeType = "all";
+    let activeVisited = "all";
+    let filtered = shops.slice();
+    let visitedSet = loadVisited();
+
+    function loadVisited() {
+      try {
+        const values = JSON.parse(localStorage.getItem(visitedStorageKey) || "[]");
+        return new Set(Array.isArray(values) ? values : []);
+      } catch {
+        return new Set();
+      }
+    }
+
+    function saveVisited() {
+      localStorage.setItem(visitedStorageKey, JSON.stringify(Array.from(visitedSet)));
+    }
+
+    function isVisited(shop) {
+      return visitedSet.has(shop.name);
+    }
+
+    function toggleVisited(shopName) {
+      if (visitedSet.has(shopName)) {
+        visitedSet.delete(shopName);
+      } else {
+        visitedSet.add(shopName);
+      }
+      saveVisited();
+      render();
+    }
+
+    function loadShops() {
+      try {
+        const extra = JSON.parse(localStorage.getItem(storageKey) || "[]");
+        return mergeShops([...baseShops, ...cafeShops, ...expandedShops], Array.isArray(extra) ? extra : []);
+      } catch {
+        return [...baseShops, ...cafeShops, ...expandedShops];
+      }
+    }
+
+    function saveExtraShops(extra) {
+      localStorage.setItem(storageKey, JSON.stringify(extra));
+      shops = loadShops();
+      render();
+    }
+
+    function getExtraShops() {
+      try {
+        const extra = JSON.parse(localStorage.getItem(storageKey) || "[]");
+        return Array.isArray(extra) ? extra : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function mergeShops(base, additions) {
+      const byName = new Map();
+      base.forEach(shop => byName.set(shop.name, { ...shop }));
+      additions.forEach(shop => {
+        if (!shop || !shop.name) return;
+        if (shop.status === "closed") {
+          byName.delete(shop.name);
+          return;
+        }
+        const existing = byName.get(shop.name) || {};
+        byName.set(shop.name, normalizeShop({ ...existing, ...shop }));
+      });
+      return Array.from(byName.values());
+    }
+
+    function normalizeShop(shop) {
+      const area = shop.area || areaFromLabel(shop.areaLabel);
+      return {
+        name: String(shop.name || "").trim(),
+        area,
+        areaLabel: shop.areaLabel || labelFromArea(area),
+        lat: Number(shop.lat),
+        lng: Number(shop.lng),
+        station: shop.station || "最寄駅要確認",
+        walk: shop.walk || "徒歩目安要確認",
+        category: shop.category || "cake",
+        type: Array.isArray(shop.type) ? shop.type : String(shop.type || "gift").split("|").map(s => s.trim()).filter(Boolean),
+        signature: shop.signature || "代表菓子要確認",
+        note: shop.note || "追加候補。詳細要確認。",
+        url: shop.url || googleMapUrl({ name: shop.name, station: shop.station || "" }),
+        score: shop.score || ""
+      };
+    }
+
+    function areaFromLabel(label) {
+      if (/神奈川/.test(label || "")) return "kanagawa";
+      if (/埼玉/.test(label || "")) return "saitama";
+      if (/千葉/.test(label || "")) return "chiba";
+      if (/茨城|栃木|群馬|北関東/.test(label || "")) return "north-kanto";
+      if (/西側|城南|城西|多摩/.test(label || "")) return "tokyo-west";
+      return "tokyo-east";
+    }
+
+    function labelFromArea(area) {
+      return {
+        "tokyo-east": "東京 東側・都心東",
+        "tokyo-west": "東京 西側・城南",
+        "kanagawa": "神奈川",
+        "saitama": "埼玉",
+        "chiba": "千葉",
+        "north-kanto": "北関東"
+      }[area] || "東京 東側・都心東";
+    }
+
+    const iconCache = new Map();
+    function markerIcon(area, category = "cake") {
+      const cacheKey = `${area}:${category}`;
+      if (iconCache.has(cacheKey)) return iconCache.get(cacheKey);
+      const colors = {
+        "tokyo-east": "#b23a48",
+        "tokyo-west": "#7a3b92",
+        "kanagawa": "#35628b",
+        "saitama": "#2d6a4f",
+        "chiba": "#9a6b1f",
+        "north-kanto": "#58508d"
+      };
+      const color = category === "cafe" ? "#35628b" : (colors[area] || "#b23a48");
+      const symbol = category === "cafe"
+        ? `<path d="M11 14h13v7.5a6.5 6.5 0 0 1-6.5 6.5A6.5 6.5 0 0 1 11 21.5V14z" fill="white"/>
+           <path d="M24 16h2.2a3.8 3.8 0 0 1 0 7.6H24v-2.5h2.1a1.3 1.3 0 0 0 0-2.6H24V16z" fill="white"/>
+           <path d="M10 30h16" stroke="white" stroke-width="2.4" stroke-linecap="round"/>
+           <path d="M13 10c0-2 2-2 2-4M18 10c0-2 2-2 2-4M23 10c0-2 2-2 2-4" stroke="white" stroke-width="1.7" stroke-linecap="round"/>`
+        : `<path d="M9 20h16l-2.2 9H11.2L9 20z" fill="white"/>
+           <path d="M10.2 14h13.6l2 5H8.2l2-5z" fill="#ffe5e8"/>
+           <path d="M13.5 10h7l2.5 3.5H11l2.5-3.5z" fill="white"/>
+           <circle cx="17" cy="17" r="1.5" fill="${color}"/>`;
+      const svg = encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="44" viewBox="0 0 34 44">
+          <path d="M17 43S2 25.8 2 15.9C2 7.7 8.7 1 17 1s15 6.7 15 14.9C32 25.8 17 43 17 43z" fill="${color}" stroke="white" stroke-width="2"/>
+          ${symbol}
+        </svg>
+      `);
+      const icon = L.icon({
+        iconUrl: `data:image/svg+xml;charset=UTF-8,${svg}`,
+        iconSize: [34, 44],
+        iconAnchor: [17, 43],
+        popupAnchor: [0, -39]
+      });
+      iconCache.set(cacheKey, icon);
+      return icon;
+    }
+
+    function googleMapUrl(shop) {
+      return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(shop.name + " " + shop.station)}`;
+    }
+
+    function popupHtml(shop) {
+      const tags = shop.type.map(t => typeLabel[t]).join(" / ");
+      const visited = isVisited(shop);
+      return `
+        <div class="popup">
+          <h3>${shop.name}</h3>
+          <p><strong>${categoryLabel[shop.category || "cake"]}</strong>・${shop.areaLabel}・${shop.station} ${shop.walk}</p>
+          <p>${shop.signature}</p>
+          ${shop.score ? `<p><strong>${shop.score}</strong></p>` : ""}
+          <p>${shop.note}</p>
+          <p>${tags}</p>
+          <button class="visited-toggle ${visited ? "active" : ""}" type="button" data-visited-toggle="${encodeURIComponent(shop.name)}">${visited ? "行った ✓" : "未訪問"}</button><br>
+          <a href="${shop.url}" target="_blank" rel="noreferrer">公式/店舗情報を見る</a><br>
+          <a href="${googleMapUrl(shop)}" target="_blank" rel="noreferrer">Googleマップで開く</a>
+        </div>
+      `;
+    }
+
+    function setUpdateLog(message) {
+      document.getElementById("updateLog").textContent = message;
+    }
+
+    function normalize(text) {
+      return String(text || "").toLowerCase();
+    }
+
+    function matches(shop) {
+      const query = normalize(document.getElementById("searchInput").value);
+      const area = document.getElementById("areaSelect").value;
+      const haystack = normalize([
+        shop.name,
+        shop.areaLabel,
+        shop.station,
+        shop.walk,
+        categoryLabel[shop.category || "cake"],
+        shop.signature,
+        shop.note,
+        shop.score,
+        shop.type.map(t => typeLabel[t]).join(" ")
+      ].join(" "));
+
+      const queryOk = !query || haystack.includes(query);
+      const areaOk = area === "all" || shop.area === area;
+      const categoryOk = activeCategory === "all" || (shop.category || "cake") === activeCategory;
+      const typeOk = activeType === "all" || shop.type.includes(activeType);
+      const visited = isVisited(shop);
+      const visitedOk = activeVisited === "all" || (activeVisited === "visited" && visited) || (activeVisited === "unvisited" && !visited);
+      return queryOk && areaOk && categoryOk && typeOk && visitedOk;
+    }
+
+    function render() {
+      shops = loadShops();
+      filtered = shops.filter(matches);
+      markerLayer.clearLayers();
+      markers.clear();
+
+      filtered.forEach((shop, index) => {
+        const marker = L.marker([shop.lat, shop.lng], { icon: markerIcon(shop.area, shop.category || "cake") })
+          .bindPopup(popupHtml(shop));
+        marker.addTo(markerLayer);
+        markers.set(shop.name, marker);
+      });
+
+      renderList();
+      if (filtered.length) {
+        const bounds = L.latLngBounds(filtered.map(s => [s.lat, s.lng]));
+        map.fitBounds(bounds.pad(0.18), { maxZoom: 12, animate: false });
+      }
+    }
+
+    function renderList() {
+      const list = document.getElementById("shopList");
+      list.innerHTML = "";
+
+      filtered.forEach((shop, index) => {
+        const article = document.createElement("article");
+        const visited = isVisited(shop);
+        article.className = `shop-card${visited ? " visited" : ""}`;
+        article.tabIndex = 0;
+        article.innerHTML = `
+          <div class="shop-title">
+            <h3 class="shop-name">${shop.name}</h3>
+            <button class="visited-toggle ${visited ? "active" : ""}" type="button" data-card-visited="${encodeURIComponent(shop.name)}">${visited ? "行った ✓" : "未訪問"}</button>
+          </div>
+          <div class="meta">
+            <span class="tag ${areaClass[shop.area]}">${shop.areaLabel}</span>
+            <span class="tag">${categoryLabel[shop.category || "cake"]}</span>
+            <span class="tag">${shop.station} ${shop.walk}</span>
+            ${shop.score ? `<span class="tag">${shop.score}</span>` : ""}
+            ${shop.type.map(t => `<span class="tag">${typeLabel[t]}</span>`).join("")}
+          </div>
+          <p class="note">${shop.signature}。${shop.note}</p>
+        `;
+        article.addEventListener("click", () => focusShop(shop, article));
+        article.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            focusShop(shop, article);
+          }
+        });
+        list.appendChild(article);
+      });
+    }
+
+    function focusShop(shop, card) {
+      document.querySelectorAll(".shop-card.active").forEach(el => el.classList.remove("active"));
+      card.classList.add("active");
+      const marker = markers.get(shop.name);
+      map.setView([shop.lat, shop.lng], 15);
+      if (marker) marker.openPopup();
+    }
+
+    document.addEventListener("click", (event) => {
+      const popupToggle = event.target.closest("[data-visited-toggle]");
+      if (popupToggle) {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleVisited(decodeURIComponent(popupToggle.dataset.visitedToggle));
+        return;
+      }
+      const cardToggle = event.target.closest("[data-card-visited]");
+      if (cardToggle) {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleVisited(decodeURIComponent(cardToggle.dataset.cardVisited));
+      }
+    });
+
+    document.getElementById("searchInput").addEventListener("input", render);
+    document.getElementById("areaSelect").addEventListener("change", render);
+    document.getElementById("categoryChips").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-category]");
+      if (!button) return;
+      activeCategory = button.dataset.category;
+      document.querySelectorAll("#categoryChips .chip").forEach(chip => chip.classList.remove("active"));
+      button.classList.add("active");
+      render();
+    });
+    document.getElementById("typeChips").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-type]");
+      if (!button) return;
+      activeType = button.dataset.type;
+      document.querySelectorAll("#typeChips .chip").forEach(chip => chip.classList.remove("active"));
+      button.classList.add("active");
+      render();
+    });
+    document.getElementById("visitedChips").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-visited]");
+      if (!button) return;
+      activeVisited = button.dataset.visited;
+      document.querySelectorAll("#visitedChips .chip").forEach(chip => chip.classList.remove("active"));
+      button.classList.add("active");
+      render();
+    });
+
+    document.getElementById("openRankingSources").addEventListener("click", () => {
+      const container = document.getElementById("updateLinks");
+      container.hidden = false;
+      container.innerHTML = rankingSources
+        .map(([label, url]) => `<a href="${url}" target="_blank" rel="noreferrer">${label}</a>`)
+        .join("");
+      setUpdateLog("食べログ等のランキング確認リンクを生成しました。高スコア店は、店名・住所・最寄駅・公式URLを確認してJSON/CSVで取り込んでください。");
+    });
+
+    document.getElementById("makeClosureLinks").addEventListener("click", () => {
+      const container = document.getElementById("updateLinks");
+      container.hidden = false;
+      container.innerHTML = shops
+        .map(shop => {
+          const query = `${shop.name} 閉店 営業中 公式`;
+          const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+          return `<a href="${url}" target="_blank" rel="noreferrer">${shop.name} の閉店チェック</a>`;
+        })
+        .join("");
+      setUpdateLog("掲載店の閉店チェック用リンクを生成しました。閉店確認できた店は、JSONで {\"name\":\"店名\",\"status\":\"closed\"} を取り込むと地図から外せます。");
+    });
+
+    document.getElementById("makeImportTemplate").addEventListener("click", async () => {
+      const template = [
+        "店名,カテゴリ,エリア,緯度,経度,最寄駅,徒歩,タイプ,代表菓子/特徴,メモ,URL,スコア",
+        "例のパティスリー,cake,東京 東側・都心東,35.6800,139.7700,東京駅,徒歩3分,top|gift,ショートケーキ,高スコア候補。公式/閉店確認済み,https://example.com,食べログ3.80",
+        "例のカフェ,cafe,神奈川,35.4500,139.6300,横浜駅,徒歩5分,walk|salon,自家焙煎コーヒー,散歩向き。公式/閉店確認済み,https://example.com,食べログ3.70"
+      ].join("\\n");
+      document.getElementById("updateInput").value = template;
+      try {
+        await navigator.clipboard.writeText(template);
+        setUpdateLog("500件化用CSVテンプレートをテキスト欄へ出力し、クリップボードにもコピーしました。1行目のヘッダーは取り込み前に削除してください。");
+      } catch {
+        setUpdateLog("500件化用CSVテンプレートをテキスト欄へ出力しました。1行目のヘッダーは取り込み前に削除してください。");
+      }
+    });
+
+    document.getElementById("exportData").addEventListener("click", async () => {
+      const data = JSON.stringify(shops, null, 2);
+      document.getElementById("updateInput").value = data;
+      try {
+        await navigator.clipboard.writeText(data);
+        setUpdateLog("現在の全データをテキスト欄へ出力し、クリップボードにもコピーしました。");
+      } catch {
+        setUpdateLog("現在の全データをテキスト欄へ出力しました。");
+      }
+    });
+
+    document.getElementById("resetData").addEventListener("click", () => {
+      if (!confirm("取り込んだ追加/閉店データをリセットしますか？")) return;
+      localStorage.removeItem(storageKey);
+      shops = loadShops();
+      render();
+      setUpdateLog("追加データをリセットしました。初期掲載店だけに戻っています。");
+    });
+
+    document.getElementById("importUpdates").addEventListener("click", () => {
+      const raw = document.getElementById("updateInput").value.trim();
+      if (!raw) {
+        setUpdateLog("取り込むJSONまたはCSVを貼り付けてください。");
+        return;
+      }
+      try {
+        const updates = parseUpdates(raw);
+        const extra = getExtraShops();
+        const next = mergeShops(extra, updates);
+        saveExtraShops(next);
+        setUpdateLog(`${updates.length}件の更新データを取り込みました。店名が同じものは上書き、status: closed は除外扱いです。`);
+      } catch (error) {
+        setUpdateLog(`取り込みに失敗しました: ${error.message}`);
+      }
+    });
+
+    function parseUpdates(raw) {
+      if (raw.startsWith("[") || raw.startsWith("{")) {
+        const parsed = JSON.parse(raw);
+        return (Array.isArray(parsed) ? parsed : [parsed]).map(normalizeShopOrClosed);
+      }
+      return raw.split(/\n+/)
+        .map(line => line.trim())
+        .filter(line => line && !line.startsWith("店名,カテゴリ,"))
+        .map(parseCsvLine)
+        .map(normalizeShopOrClosed);
+    }
+
+    function normalizeShopOrClosed(row) {
+      if (row.status === "closed") return { name: row.name, status: "closed" };
+      return normalizeShop(row);
+    }
+
+    function parseCsvLine(line) {
+      const cols = line.split(",").map(col => col.trim());
+      if (cols.length < 11) throw new Error("CSVは 店名,カテゴリ,エリア,緯度,経度,最寄駅,徒歩,タイプ,代表菓子,メモ,URL,スコア任意 の形式で入力してください。");
+      return {
+        name: cols[0],
+        category: cols[1] === "カフェ" || cols[1] === "cafe" ? "cafe" : "cake",
+        areaLabel: cols[2],
+        area: areaFromLabel(cols[2]),
+        lat: cols[3],
+        lng: cols[4],
+        station: cols[5],
+        walk: cols[6],
+        type: cols[7].split("|").map(s => s.trim()).filter(Boolean),
+        signature: cols[8],
+        note: cols[9],
+        url: cols[10],
+        score: cols[11] || ""
+      };
+    }
+
+    render();
+  </script>
+</body>
+</html>
