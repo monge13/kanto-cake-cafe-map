@@ -140,6 +140,10 @@
       padding: 0 14px 22px;
     }
 
+    .list-more-row {
+      padding: 0 14px 18px;
+    }
+
     .maintenance {
       margin: 0 14px 22px;
       border: 1px solid var(--line);
@@ -587,6 +591,9 @@
         <h2>候補一覧</h2>
       </div>
       <section class="shop-list" id="shopList" aria-label="ケーキ店・カフェ一覧"></section>
+      <div class="button-row list-more-row" id="listMoreRow" hidden>
+        <button class="action-button" id="showMoreShops" type="button">さらに表示</button>
+      </div>
 
       <details class="maintenance">
         <summary>データ更新</summary>
@@ -3364,6 +3371,11 @@
     let activeVisited = "all";
     let filtered = shops.slice();
     let visitedSet = loadVisited();
+    let visibleListLimit = 30;
+    const initialMapLimit = 80;
+    const listPageSize = 30;
+    const searchDebounceMs = 180;
+    let searchTimer = 0;
 
     function loadVisited() {
       try {
@@ -3642,7 +3654,11 @@
       markerLayer.clearLayers();
       markers.clear();
 
-      filtered.forEach((shop, index) => {
+      const markerShops = filtered.length > initialMapLimit && activeType === "all"
+        ? filtered.filter(shop => shop.type.includes("top") || isDepachika(shop)).slice(0, initialMapLimit)
+        : filtered;
+
+      markerShops.forEach((shop, index) => {
         const marker = L.marker([shop.lat, shop.lng], { icon: markerIcon(shop) })
           .bindPopup(popupHtml(shop));
         marker.addTo(markerLayer);
@@ -3650,8 +3666,8 @@
       });
 
       renderList();
-      if (filtered.length) {
-        const bounds = L.latLngBounds(filtered.map(s => [s.lat, s.lng]));
+      if (markerShops.length) {
+        const bounds = L.latLngBounds(markerShops.map(s => [s.lat, s.lng]));
         map.fitBounds(bounds.pad(0.18), { maxZoom: 12, animate: false });
       }
     }
@@ -3659,8 +3675,9 @@
     function renderList() {
       const list = document.getElementById("shopList");
       list.innerHTML = "";
+      const shown = filtered.slice(0, visibleListLimit);
 
-      filtered.forEach((shop, index) => {
+      shown.forEach((shop, index) => {
         const article = document.createElement("article");
         const visited = isVisited(shop);
         const shouldShowInside = activeType === "depachika" && isDepachika(shop);
@@ -3691,12 +3708,26 @@
         });
         list.appendChild(article);
       });
+
+      const moreRow = document.getElementById("listMoreRow");
+      const moreButton = document.getElementById("showMoreShops");
+      const hasMore = visibleListLimit < filtered.length;
+      moreRow.hidden = !hasMore;
+      if (hasMore) {
+        moreButton.textContent = `さらに表示 (${Math.min(listPageSize, filtered.length - visibleListLimit)}件)`;
+      }
     }
 
     function focusShop(shop, card) {
       document.querySelectorAll(".shop-card.active").forEach(el => el.classList.remove("active"));
       card.classList.add("active");
-      const marker = markers.get(shop.name);
+      let marker = markers.get(shop.name);
+      if (!marker) {
+        marker = L.marker([shop.lat, shop.lng], { icon: markerIcon(shop) })
+          .bindPopup(popupHtml(shop));
+        marker.addTo(markerLayer);
+        markers.set(shop.name, marker);
+      }
       map.setView([shop.lat, shop.lng], 15);
       if (marker) marker.openPopup();
     }
@@ -3717,15 +3748,28 @@
       }
     });
 
-    document.getElementById("searchInput").addEventListener("input", render);
-    document.getElementById("areaSelect").addEventListener("change", render);
+    function resetAndRender() {
+      visibleListLimit = listPageSize;
+      render();
+    }
+
+    document.getElementById("showMoreShops").addEventListener("click", () => {
+      visibleListLimit += listPageSize;
+      renderList();
+    });
+
+    document.getElementById("searchInput").addEventListener("input", () => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(resetAndRender, searchDebounceMs);
+    });
+    document.getElementById("areaSelect").addEventListener("change", resetAndRender);
     document.getElementById("categoryChips").addEventListener("click", (event) => {
       const button = event.target.closest("[data-category]");
       if (!button) return;
       activeCategory = button.dataset.category;
       document.querySelectorAll("#categoryChips .chip").forEach(chip => chip.classList.remove("active"));
       button.classList.add("active");
-      render();
+      resetAndRender();
     });
     document.getElementById("typeChips").addEventListener("click", (event) => {
       const button = event.target.closest("[data-type]");
@@ -3733,7 +3777,7 @@
       activeType = button.dataset.type;
       document.querySelectorAll("#typeChips .chip").forEach(chip => chip.classList.remove("active"));
       button.classList.add("active");
-      render();
+      resetAndRender();
     });
     document.getElementById("visitedChips").addEventListener("click", (event) => {
       const button = event.target.closest("[data-visited]");
@@ -3741,7 +3785,7 @@
       activeVisited = button.dataset.visited;
       document.querySelectorAll("#visitedChips .chip").forEach(chip => chip.classList.remove("active"));
       button.classList.add("active");
-      render();
+      resetAndRender();
     });
 
     document.getElementById("runUpdateCheck").addEventListener("click", () => {
