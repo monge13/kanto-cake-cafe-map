@@ -259,6 +259,29 @@
       background: #fbfffc;
     }
 
+    .shop-photo {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 0 0 10px;
+      background: #f4f0e8;
+      border: 1px solid var(--line);
+    }
+
+    .shop-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .photo-credit {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
     .shop-title {
       display: flex;
       justify-content: space-between;
@@ -334,6 +357,40 @@
       font-size: 12px;
     }
 
+    .inside-list {
+      margin-top: 10px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      background: #f8f5ef;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .inside-list strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink);
+      font-size: 12px;
+    }
+
+    .inside-list ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .inside-list li {
+      padding: 4px 7px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #eadfce;
+      color: #6c4c22;
+      line-height: 1.25;
+    }
+
     main {
       position: relative;
       min-width: 0;
@@ -378,6 +435,10 @@
       text-decoration: none;
     }
 
+    .popup .shop-photo {
+      margin: 8px 0;
+    }
+
     .leaflet-marker-icon {
       filter: drop-shadow(0 4px 8px rgba(31, 37, 40, 0.24));
     }
@@ -419,6 +480,7 @@
 
     .legend-icon.cake { background: var(--accent); }
     .legend-icon.cafe { background: var(--blue); }
+    .legend-icon.depachika { background: #9a6b1f; }
 
     @media (max-width: 900px) {
       .app {
@@ -544,6 +606,7 @@
       <div class="legend" aria-label="地図アイコン凡例">
         <span class="legend-item"><span class="legend-icon cake">🍰</span>ケーキ</span>
         <span class="legend-item"><span class="legend-icon cafe">☕</span>カフェ</span>
+        <span class="legend-item"><span class="legend-icon depachika">🎁</span>デパ地下</span>
       </div>
       <div class="map-note">駅徒歩は実用目安です。営業時間・定休日・売り切れ・予約可否は訪問前に公式または店舗SNSで確認してください。</div>
     </main>
@@ -3199,6 +3262,35 @@
       }
     ];
 
+    const depachikaItems = {
+      "日本橋三越本店 デパ地下スイーツ": ["PAYSAGE", "teal", "クラブハリエ", "ノワ・ドゥ・ブール", "日本橋 千疋屋総本店", "とらや", "榮太樓總本鋪", "叶 匠壽庵"],
+      "日本橋高島屋S.C. デパ地下スイーツ": ["AUDREY", "GRAMERCY NEWYORK", "FOUNDRY", "DEMEL", "京都洋菓子司ジュヴァンセル", "たねや", "とらや", "福砂屋"],
+      "大丸東京店 ほっぺタウン": ["N.Y.C.SAND", "銀のぶどう", "ねんりん家", "ヴィタメール", "アンリ・シャルパンティエ", "鎌倉五郎本店", "舟和", "東京ばな奈"],
+      "グランスタ東京 スイーツゾーン": ["カファレル", "COCORIS", "THE DROS", "喫茶店に恋して。", "nuevo by BUNMEIDO", "Fairycake Fair", "東京ミルクチーズ工場", "じゃがボルダ"],
+      "銀座三越 デパ地下スイーツ": ["フレデリック・カッセル", "ラデュレ", "ジャン＝ポール・エヴァン", "ノワ・ドゥ・ブール", "日本橋 千疋屋総本店", "とらや", "たねや", "菓匠 花桔梗"],
+      "松屋銀座 デパ地下スイーツ": ["ルノートル", "GINZA SEMBIKIYA", "東京風月堂", "クラブハリエ", "アンリ・シャルパンティエ", "赤坂柿山", "とらや", "宗家 源吉兆庵"],
+      "GINZA SIX B2F スイーツ": ["パティスリー パブロフ", "HONMIDO", "ISHIYA G", "辻利", "中村藤吉本店", "くろぎ茶々", "綾farm", "The Pie Hole Los Angeles"],
+      "伊勢丹新宿店 デパ地下スイーツ": ["ノワ・ドゥ・ブール", "エシレ・パティスリー オ ブール", "ピエール・エルメ・パリ", "ジャン＝ポール・エヴァン", "ホレンディッシェ・カカオシュトゥーベ", "アンリ・シャルパンティエ", "鈴懸", "とらや"],
+      "新宿高島屋 デパ地下スイーツ": ["パティシェリア", "AUDREY", "GRAMERCY NEWYORK", "FOUNDRY", "DEMEL", "クラブハリエ", "たねや", "福砂屋"],
+      "京王百貨店 新宿店 デパ地下スイーツ": ["モロゾフ", "ユーハイム", "銀座ウエスト", "アンテノール", "文明堂", "榮太樓總本鋪", "宗家 源吉兆庵", "叶 匠壽庵"],
+      "渋谷 東急フードショー": ["Mels CARAMEL WORKS", "プレスバターサンド", "フェルム ラ・テール美瑛", "Now on Cheese", "銀座甘楽", "菓匠三全", "資生堂パーラー", "和楽紅屋"],
+      "渋谷スクランブルスクエア ショップ&レストラン": ["MORI YOSHIDA PARIS", "エシレ・パティスリー オ ブール", "PRESS BUTTER SAND", "FRUCTUS", "Butter Butler", "銀座甘楽", "治一郎", "中川政七商店の菓子"],
+      "二子玉川高島屋 デパ地下スイーツ": ["GRAMERCY NEWYORK", "FOUNDRY", "アンリ・シャルパンティエ", "ヴィタメール", "たねや", "とらや", "福砂屋", "鎌倉紅谷"],
+      "アトレ恵比寿 スイーツ": ["ラ・プレシューズ", "成城石井", "ア・ラ・カンパーニュ", "治一郎", "フルーツピークス", "ANTENOR", "東京ミルクチーズ工場", "ゴディバ"],
+      "西武池袋本店 デパ地下スイーツ": ["AUDREY", "アンリ・シャルパンティエ", "ヴィタメール", "たねや", "とらや", "新宿高野", "銀座鈴屋", "福砂屋"],
+      "東武百貨店 池袋店 デパ地下スイーツ": ["GRAMERCY NEWYORK", "FOUNDRY", "クラブハリエ", "アンテノール", "モロゾフ", "銀座文明堂", "榮太樓總本鋪", "叶 匠壽庵"],
+      "エキュート赤羽 スイーツ": ["赤羽あんこ", "東京ミルクチーズ工場", "ユーハイム", "文明堂", "ゴディバ", "銀座コージーコーナー", "船橋屋", "フロプレステージュ"],
+      "東急百貨店 吉祥寺店 デパ地下スイーツ": ["アンリ・シャルパンティエ", "ユーハイム", "モロゾフ", "ゴディバ", "銀座あけぼの", "宗家 源吉兆庵", "叶 匠壽庵", "舟和"],
+      "アトレ吉祥寺 スイーツ": ["a la campagne", "治一郎", "成城石井", "フロプレステージュ", "ゴディバ", "船橋屋", "コージーコーナー", "リンツ"],
+      "横浜高島屋 デパ地下スイーツ": ["AUDREY", "GRAMERCY NEWYORK", "FOUNDRY", "クラブハリエ", "ヴィタメール", "たねや", "とらや", "鎌倉紅谷"],
+      "そごう横浜店 デパ地下スイーツ": ["ピエール・エルメ・パリ", "アンリ・シャルパンティエ", "ヴィタメール", "新宿高野", "ゴディバ", "ありあけ", "横濱文明堂", "福砂屋"],
+      "NEWoMan横浜 スイーツ": ["ブルーボトルコーヒー", "THE CITY BAKERY", "800°DEGREES", "MARGARET HOWELL SHOP & CAFE", "TORAYA AN STAND", "DEAN & DELUCA", "リンツ", "成城石井"],
+      "伊勢丹浦和店 デパ地下スイーツ": ["アンリ・シャルパンティエ", "モロゾフ", "ユーハイム", "ゴディバ", "とらや", "文明堂", "宗家 源吉兆庵", "菓匠 清閑院"],
+      "そごう大宮店 デパ地下スイーツ": ["アンリ・シャルパンティエ", "ヴィタメール", "ゴディバ", "モロゾフ", "新宿高野", "銀座あけぼの", "叶 匠壽庵", "福砂屋"],
+      "そごう千葉店 デパ地下スイーツ": ["アンリ・シャルパンティエ", "ゴディバ", "モロゾフ", "ユーハイム", "新宿高野", "銀座あけぼの", "宗家 源吉兆庵", "文明堂"],
+      "柏高島屋ステーションモール デパ地下スイーツ": ["アンリ・シャルパンティエ", "ゴディバ", "モロゾフ", "ユーハイム", "銀座あけぼの", "宗家 源吉兆庵", "叶 匠壽庵", "文明堂"]
+    };
+
     const storageKey = "kantoCakeMap.extraShops.v1";
     const visitedStorageKey = "kantoCakeMap.visited.v1";
     let shops = loadShops();
@@ -3371,6 +3463,7 @@
         signature: shop.signature || "代表菓子要確認",
         note: shop.note || "追加候補。詳細要確認。",
         url: shop.url || googleMapUrl({ name: shop.name, station: shop.station || "" }),
+        image: shop.image || null,
         score: shop.score || ""
       };
     }
@@ -3400,25 +3493,73 @@
     }
 
     const iconCache = new Map();
-    function markerIcon(area, category = "cake") {
-      const cacheKey = `${area}:${category}`;
+    function isDepachika(shop) {
+      return Array.isArray(shop.type) && shop.type.includes("depachika");
+    }
+
+    function depachikaInsideList(shop) {
+      return shop.inside || depachikaItems[shop.name] || [];
+    }
+
+    function insideListHtml(shop) {
+      const items = depachikaInsideList(shop);
+      if (!items.length) return "";
+      return `
+        <div class="inside-list">
+          <strong>中で見るもの・代表例</strong>
+          <ul>${items.map(item => `<li>${item}</li>`).join("")}</ul>
+        </div>
+      `;
+    }
+
+    function imageData(shop) {
+      if (!shop.image) return null;
+      if (typeof shop.image === "string") {
+        return { src: shop.image, alt: `${shop.name}の代表写真` };
+      }
+      if (!shop.image.src) return null;
+      return {
+        src: shop.image.src,
+        alt: shop.image.alt || `${shop.name}の代表写真`,
+        credit: shop.image.credit || "",
+        source: shop.image.source || ""
+      };
+    }
+
+    function imageHtml(shop) {
+      const image = imageData(shop);
+      if (!image) return "";
+      const credit = image.credit || image.source
+        ? `<div class="photo-credit">${[image.credit, image.source].filter(Boolean).join(" / ")}</div>`
+        : "";
+      return `
+        <figure class="shop-photo">
+          <img src="${image.src}" alt="${image.alt}" loading="lazy" referrerpolicy="no-referrer">
+        </figure>
+        ${credit}
+      `;
+    }
+
+    function markerIcon(shop) {
+      const category = shop.category || "cake";
+      const iconType = isDepachika(shop) ? "depachika" : category;
+      const cacheKey = iconType;
       if (iconCache.has(cacheKey)) return iconCache.get(cacheKey);
       const colors = {
-        "tokyo-east": "#b23a48",
-        "tokyo-west": "#7a3b92",
-        "tokyo-south": "#9a4b2f",
-        "tokyo-north": "#4e5f9f",
-        "kanagawa": "#35628b",
-        "saitama": "#2d6a4f",
-        "chiba": "#9a6b1f",
-        "north-kanto": "#58508d"
+        cake: "#b23a48",
+        cafe: "#35628b",
+        depachika: "#9a6b1f"
       };
-      const color = category === "cafe" ? "#35628b" : (colors[area] || "#b23a48");
-      const symbol = category === "cafe"
+      const color = colors[iconType] || colors.cake;
+      const symbol = iconType === "cafe"
         ? `<path d="M11 14h13v7.5a6.5 6.5 0 0 1-6.5 6.5A6.5 6.5 0 0 1 11 21.5V14z" fill="white"/>
            <path d="M24 16h2.2a3.8 3.8 0 0 1 0 7.6H24v-2.5h2.1a1.3 1.3 0 0 0 0-2.6H24V16z" fill="white"/>
            <path d="M10 30h16" stroke="white" stroke-width="2.4" stroke-linecap="round"/>
            <path d="M13 10c0-2 2-2 2-4M18 10c0-2 2-2 2-4M23 10c0-2 2-2 2-4" stroke="white" stroke-width="1.7" stroke-linecap="round"/>`
+        : iconType === "depachika"
+          ? `<path d="M10 16h14v13H10V16z" fill="white"/>
+             <path d="M12 16c0-3 2-5 5-5s5 2 5 5" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+             <path d="M12 20h10M17 16v13" stroke="${color}" stroke-width="1.5" stroke-linecap="round"/>`
         : `<path d="M9 20h16l-2.2 9H11.2L9 20z" fill="white"/>
            <path d="M10.2 14h13.6l2 5H8.2l2-5z" fill="#ffe5e8"/>
            <path d="M13.5 10h7l2.5 3.5H11l2.5-3.5z" fill="white"/>
@@ -3449,11 +3590,13 @@
       return `
         <div class="popup">
           <h3>${shop.name}</h3>
+          ${imageHtml(shop)}
           <p><strong>${categoryLabel[shop.category || "cake"]}</strong>・${shop.areaLabel}・${shop.station} ${shop.walk}</p>
           <p>${shop.signature}</p>
           ${shop.score ? `<p><strong>${shop.score}</strong></p>` : ""}
           <p>${shop.note}</p>
           <p>${tags}</p>
+          ${insideListHtml(shop)}
           <button class="visited-toggle ${visited ? "active" : ""}" type="button" data-visited-toggle="${encodeURIComponent(shop.name)}">${visited ? "行った ✓" : "未訪問"}</button><br>
           <a href="${shop.url}" target="_blank" rel="noreferrer">公式/店舗情報を見る</a><br>
           <a href="${googleMapUrl(shop)}" target="_blank" rel="noreferrer">Googleマップで開く</a>
@@ -3500,7 +3643,7 @@
       markers.clear();
 
       filtered.forEach((shop, index) => {
-        const marker = L.marker([shop.lat, shop.lng], { icon: markerIcon(shop.area, shop.category || "cake") })
+        const marker = L.marker([shop.lat, shop.lng], { icon: markerIcon(shop) })
           .bindPopup(popupHtml(shop));
         marker.addTo(markerLayer);
         markers.set(shop.name, marker);
@@ -3520,9 +3663,11 @@
       filtered.forEach((shop, index) => {
         const article = document.createElement("article");
         const visited = isVisited(shop);
+        const shouldShowInside = activeType === "depachika" && isDepachika(shop);
         article.className = `shop-card${visited ? " visited" : ""}`;
         article.tabIndex = 0;
         article.innerHTML = `
+          ${imageHtml(shop)}
           <div class="shop-title">
             <h3 class="shop-name">${shop.name}</h3>
             <button class="visited-toggle ${visited ? "active" : ""}" type="button" data-card-visited="${encodeURIComponent(shop.name)}">${visited ? "行った ✓" : "未訪問"}</button>
@@ -3535,6 +3680,7 @@
             ${shop.type.map(t => `<span class="tag">${typeLabel[t]}</span>`).join("")}
           </div>
           <p class="note">${shop.signature}。${shop.note}</p>
+          ${shouldShowInside ? insideListHtml(shop) : ""}
         `;
         article.addEventListener("click", () => focusShop(shop, article));
         article.addEventListener("keydown", (event) => {
