@@ -2273,7 +2273,24 @@
         visitedSet.add(shopName);
       }
       saveVisited();
-      render();
+      updateVisitedControls(shopName);
+    }
+
+    function updateVisitedControls(shopName) {
+      const visited = visitedSet.has(shopName);
+      const encodedName = encodeURIComponent(shopName);
+      document.querySelectorAll("[data-card-visited], [data-visited-toggle]").forEach(button => {
+        const buttonName = button.dataset.cardVisited || button.dataset.visitedToggle;
+        if (buttonName !== encodedName) return;
+        button.classList.toggle("active", visited);
+        button.textContent = visited ? "行った ✓" : "未訪問";
+        const card = button.closest(".shop-card");
+        if (card) card.classList.toggle("visited", visited);
+      });
+
+      const shop = shops.find(item => item.name === shopName);
+      const marker = markers.get(shopName);
+      if (shop && marker) marker.setPopupContent(popupHtml(shop));
     }
 
     function loadShops() {
