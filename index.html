@@ -3,10 +3,110 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>関東有名ケーキ店・カフェマップ</title>
+  <title>関東有名ケーキ店・カフェマップ｜194店を地図で探す</title>
+  <meta name="description" content="関東の有名パティスリー・カフェ194店を地図で探せる無料マップ。東京・神奈川・埼玉・千葉・北関東のエリアや、名店・散歩向き・手土産・デパ地下などの目的から絞り込み。現在地から近い順の並べ替えも。登録不要。">
+  <link rel="canonical" href="https://avansare.com/kanto-cake-cafe-map/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="関東有名ケーキ店・カフェマップ">
+  <meta property="og:title" content="関東有名ケーキ店・カフェマップ｜194店を地図で探す">
+  <meta property="og:description" content="関東の有名パティスリー・カフェ194店を地図で探せる無料マップ。エリアや目的から絞り込み、現在地から近い順に並べ替えできます。登録不要。">
+  <meta property="og:url" content="https://avansare.com/kanto-cake-cafe-map/">
+  <meta property="og:image" content="https://avansare.com/kanto-cake-cafe-map/og-image.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="関東有名ケーキ店・カフェマップ｜194店を地図で探す">
+  <meta name="twitter:description" content="関東の有名パティスリー・カフェ194店を地図で。登録不要ですぐ使えます。">
+  <meta name="twitter:image" content="https://avansare.com/kanto-cake-cafe-map/og-image.png">
   <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23b23a48"/><path d="M15 37h34l-4 12H19l-4-12z" fill="white"/><path d="M18 28h28l3 8H15l3-8z" fill="%23ffe5e8"/><path d="M23 21h18l4 6H19l4-6z" fill="white"/></svg>'>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2515880566682877"
+    crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "関東有名ケーキ店・カフェマップ",
+    "url": "https://avansare.com/kanto-cake-cafe-map/",
+    "description": "関東の有名パティスリー・カフェ194店を、名店性・目的地性・手土産力・イートイン体験の観点でキュレーションした地図サービス。エリアや目的から絞り込み、現在地から近い順に並べ替えできます。会員登録・ログイン不要。",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "ja",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "利用に会員登録やログインは必要ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "不要です。会員登録・ログインなしで、誰でも無料ですぐに地図と一覧を利用できます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "どんな店が掲載されていますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "関東のケーキ店・パティスリー・カフェを194店掲載しています。内訳は東京158店（東側・都心東52、南側・城南41、西側・多摩38、北側27）、神奈川14店、埼玉9店、千葉7店、北関東6店です。ケーキ・洋菓子系が147店、カフェ・喫茶系が47店です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "どういう基準で店を選んでいますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ランキングの転載ではなく、名店性（そのジャンルで名前が残っている店）、目的地性（その店のために移動する価値があるか）、手土産力、イートイン・サロンの体験価値、そしてケーキのランキングには出にくいがスイーツ地図として重要な店（ショコラ専門店、老舗喫茶、ホテルペストリーなど）という5つの観点で選んでいます。掲載理由は各店のメモに記載しています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "現在地から近い店を探せますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "探せます。「近い順」ボタンで現在地から近い順に並べ替わり、各店に現在地からの距離が表示されます。「イートインが近い順」を使うと、その場で食べられる店だけに絞って近い順に並べ替えます。位置情報はブラウザ内での並べ替えにだけ使い、サーバーへの送信や保存はしません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "手土産を買う店やデパ地下も探せますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "探せます。タイプで「手土産」を選ぶと160店、「デパ地下」を選ぶと百貨店・駅ビルのスイーツ売場25か所に絞り込めます。デパ地下は売場単位で掲載し、中に入っている代表的なブランドも一覧で確認できます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "掲載情報はどのくらい正確ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "各店の公式サイトや食べログの店舗ページで確認した情報を掲載し、194店中161店に食べログの店舗ページへのリンクを用意しています。ただし営業時間・定休日・売り切れ・予約可否は変わりやすく、駅からの徒歩分数も実用上の目安です。訪問前に公式サイトや店舗SNSでの確認をおすすめします。閉店を確認した店は掲載から外しています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "「行った」の記録はどこに保存されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "お使いの端末のブラウザ内（localStorage）にのみ保存されます。サーバーには送信されないため、別の端末やブラウザには引き継がれません。ブラウザのデータを消去すると記録も消えます。"
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     :root {
       --ink: #1f2528;
@@ -107,6 +207,49 @@
       font-size: 13px;
     }
 
+    .tool-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: end;
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .summary-item {
+      min-height: 52px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 9px;
+      background: #fffdf9;
+    }
+
+    .summary-value {
+      display: block;
+      color: var(--ink);
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 1.15;
+    }
+
+    .summary-label {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.25;
+    }
+
+    .utility-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
     .chip.active {
       border-color: var(--accent);
       background: #fff2f3;
@@ -138,6 +281,26 @@
       display: grid;
       gap: 10px;
       padding: 0 14px 22px;
+    }
+
+    .empty-state {
+      margin: 0 14px 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 16px;
+    }
+
+    .empty-state strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .empty-state p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
     }
 
     .list-more-row {
@@ -203,6 +366,13 @@
       background: #fff5f6;
     }
 
+    .action-button.active {
+      border-color: var(--green);
+      background: #eef8f1;
+      color: #245b43;
+      font-weight: 700;
+    }
+
     textarea {
       width: 100%;
       min-height: 110px;
@@ -213,6 +383,156 @@
       font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       color: var(--ink);
       background: #fff;
+    }
+
+    .about-panel,
+    .faq-panel,
+    .area-guide {
+      margin: 0 14px 18px;
+      padding: 16px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fffdf9;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .about-panel h2,
+    .faq-panel h2,
+    .area-guide h2 {
+      margin: 0 0 10px;
+      font-size: 15px;
+    }
+
+    .area-guide h3 {
+      margin: 18px 0 6px;
+      font-size: 13px;
+    }
+
+    .area-guide .ag-lead,
+    .area-guide .ag-intro {
+      margin: 0 0 10px;
+      color: var(--muted);
+    }
+
+    .area-guide strong {
+      color: var(--ink);
+    }
+
+    .ag-details {
+      border-top: 1px solid var(--line);
+      padding-top: 9px;
+    }
+
+    .ag-details summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--accent-dark);
+    }
+
+    .ag-list {
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .ag-list li {
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ag-list li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .ag-list b {
+      display: block;
+      font-size: 13px;
+    }
+
+    .ag-meta,
+    .ag-desc {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .ag-meta {
+      margin: 2px 0 3px;
+    }
+
+    .about-panel h3 {
+      margin: 16px 0 6px;
+      font-size: 13px;
+    }
+
+    .about-panel p {
+      margin: 0 0 10px;
+      color: var(--muted);
+    }
+
+    .about-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-panel strong {
+      color: var(--ink);
+    }
+
+    .faq-panel details {
+      border-bottom: 1px solid var(--line);
+      padding: 9px 0;
+    }
+
+    .faq-panel details:last-of-type {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-panel summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .faq-panel details p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .panel-footer {
+      margin: 0 14px 22px;
+      padding: 14px 2px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .panel-footer p {
+      margin: 0 0 10px;
+    }
+
+    .panel-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+    }
+
+    .panel-footer-links a {
+      color: var(--muted);
+      text-decoration: underline;
+    }
+
+    .location-status {
+      margin: 8px 0 0;
+      color: var(--accent-dark);
+      font-size: 12px;
     }
 
     .update-log {
@@ -361,6 +681,15 @@
       font-size: 12px;
     }
 
+    .card-tabelog-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
     .inside-list {
       margin-top: 10px;
       padding: 9px 10px;
@@ -447,6 +776,29 @@
       filter: drop-shadow(0 4px 8px rgba(31, 37, 40, 0.24));
     }
 
+    .cake-cluster {
+      border-radius: 50%;
+      background: rgba(178, 58, 72, 0.92);
+      border: 3px solid rgba(255, 255, 255, 0.92);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      box-shadow: 0 7px 18px rgba(31, 37, 40, 0.28);
+    }
+
+    .cake-cluster span {
+      line-height: 1;
+    }
+
+    .cake-cluster.medium {
+      background: rgba(154, 107, 31, 0.94);
+    }
+
+    .cake-cluster.large {
+      background: rgba(45, 106, 79, 0.94);
+    }
+
     .legend {
       position: absolute;
       right: 14px;
@@ -486,22 +838,94 @@
     .legend-icon.cafe { background: var(--blue); }
     .legend-icon.depachika { background: #9a6b1f; }
 
+    .sheet-handle {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0 0;
+      cursor: pointer;
+      touch-action: none;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .sheet-handle-bar {
+      width: 36px;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--line);
+      margin-bottom: 0;
+    }
+
+    .sheet-handle-hint {
+      font-size: 11px;
+      color: var(--muted);
+      padding: 5px 0 8px;
+      letter-spacing: 0.02em;
+    }
+
     @media (max-width: 900px) {
       .app {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto 56vh;
+        display: block;
       }
 
-      aside {
-        max-height: 44vh;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
+      main {
+        position: fixed;
+        inset: 0;
       }
 
       #map {
-        height: 56vh;
+        width: 100%;
+        height: 100%;
       }
 
+      aside {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 600;
+        height: calc(100dvh - 52px);
+        height: calc(100vh - 52px);
+        border-right: none;
+        border-top: 1px solid var(--line);
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 -4px 28px rgba(31, 37, 40, 0.16);
+        overflow: hidden;
+        will-change: transform;
+        transform: translateY(calc(100% - 240px));
+        transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1);
+        max-height: none;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .sheet-scroll-body {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        flex: 1 1 auto;
+        min-height: 0;
+      }
+
+      aside.sheet-open {
+        transform: translateY(0);
+      }
+
+      aside.sheet-collapsed {
+        transform: translateY(calc(100% - 52px));
+      }
+
+      .sheet-handle {
+        display: flex;
+        flex-shrink: 0;
+      }
+
+      .lead { display: none; }
+
+      /* 注意書きはパネル内フッターへ移動済み。小画面では地図を優先する */
+      .map-note {
+        display: none;
+      }
     }
 
     @media (max-width: 520px) {
@@ -520,6 +944,14 @@
         padding-right: 10px;
       }
 
+      .tool-row {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-strip {
+        grid-template-columns: 1fr;
+      }
+
       .maintenance {
         margin-left: 10px;
         margin-right: 10px;
@@ -529,7 +961,12 @@
 </head>
 <body>
   <div class="app">
-    <aside>
+    <aside id="bottomSheet">
+      <div class="sheet-handle" id="sheetHandle" role="button" aria-label="リストを開閉" tabindex="0">
+        <div class="sheet-handle-bar"></div>
+        <span class="sheet-handle-hint">フィルター・一覧</span>
+      </div>
+      <div class="sheet-scroll-body">
       <header>
         <h1>関東有名ケーキ店・カフェマップ</h1>
         <p class="lead">名店感、駅からの行きやすさ、散歩との組み合わせで選ぶための地図。ケーキ店とカフェを切り替えて表示できます。</p>
@@ -541,20 +978,23 @@
           <input id="searchInput" type="search" placeholder="例: ミルフィーユ、清澄白河、モンブラン">
         </label>
 
-        <label>
-          <span class="control-label">エリア</span>
-          <select id="areaSelect">
-            <option value="all">すべて</option>
-            <option value="tokyo-east">東京 東側・都心東</option>
-            <option value="tokyo-west">東京 西側・多摩</option>
-            <option value="tokyo-south">東京 南側・城南</option>
-            <option value="tokyo-north">東京 北側</option>
-            <option value="kanagawa">神奈川</option>
-            <option value="saitama">埼玉</option>
-            <option value="chiba">千葉</option>
-            <option value="north-kanto">北関東</option>
-          </select>
-        </label>
+        <div class="tool-row">
+          <label>
+            <span class="control-label">エリア</span>
+            <select id="areaSelect">
+              <option value="all">すべて</option>
+              <option value="tokyo-east">東京 東側・都心東</option>
+              <option value="tokyo-west">東京 西側・多摩</option>
+              <option value="tokyo-south">東京 南側・城南</option>
+              <option value="tokyo-north">東京 北側</option>
+              <option value="kanagawa">神奈川</option>
+              <option value="saitama">埼玉</option>
+              <option value="chiba">千葉</option>
+              <option value="north-kanto">北関東</option>
+            </select>
+          </label>
+          <button class="action-button" id="resetFilters" type="button">絞り込みクリア</button>
+        </div>
 
         <div>
           <span class="control-label">表示</span>
@@ -585,17 +1025,39 @@
             <button class="chip" data-visited="unvisited">未訪問</button>
           </div>
         </div>
+
+        <div>
+          <span class="control-label">探し方</span>
+          <div class="utility-row">
+            <button class="action-button" id="currentLocationButton" type="button">現在地へ</button>
+            <button class="action-button" id="nearbyButton" type="button">近い順</button>
+            <button class="action-button" id="nearbySalonButton" type="button">イートインが近い順</button>
+          </div>
+          <p class="location-status" id="locationStatus" hidden></p>
+        </div>
+
+        <div class="summary-strip" aria-label="表示状況">
+          <div class="summary-item">
+            <span class="summary-value" id="filteredCount">0件</span>
+            <span class="summary-label">表示候補</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-value" id="visitedCount">0件</span>
+            <span class="summary-label">行った</span>
+          </div>
+        </div>
       </section>
 
       <div class="list-head">
         <h2>候補一覧</h2>
+        <span class="count" id="listCount"></span>
       </div>
       <section class="shop-list" id="shopList" aria-label="ケーキ店・カフェ一覧"></section>
       <div class="button-row list-more-row" id="listMoreRow" hidden>
         <button class="action-button" id="showMoreShops" type="button">さらに表示</button>
       </div>
 
-      <details class="maintenance">
+      <details class="maintenance" id="maintenancePanel" hidden>
         <summary>データ更新</summary>
         <div class="maintenance-body">
           <p>候補探しと閉店確認をまとめて開始します。外部サイト側の制約があるため自動巡回はせず、確認用リンクをまとめて開ける形にしています。</p>
@@ -606,6 +1068,322 @@
           <div class="link-list" id="updateLinks" hidden></div>
         </div>
       </details>
+
+      <section class="about-panel" aria-label="このマップについて">
+        <h2>このマップについて</h2>
+        <p>関東のケーキ店・パティスリー・カフェを194店掲載した地図サービスです。会員登録もログインも不要で、すべての機能を無料で使えます。</p>
+        <p>ランキングをそのまま並べるのではなく、<strong>名店性</strong>（そのジャンルで名前が残っている店）、<strong>目的地性</strong>（その店のために移動する価値があるか）、<strong>手土産力</strong>、<strong>イートイン・サロンの体験価値</strong>、そして<strong>ケーキのランキングには出にくいがスイーツ地図として重要な店</strong>という5つの観点で選んでいます。ショコラ専門店、老舗喫茶、ホテルペストリー、焼き菓子の名店など、「ケーキ店」の枠だけでは漏れてしまう店も拾っているのが特徴です。掲載した理由は店ごとのメモに書いています。</p>
+        <h3>掲載エリアと内訳</h3>
+        <p>東京158店（東側・都心東52、南側・城南41、西側・多摩38、北側27）、神奈川14店、埼玉9店、千葉7店、北関東6店。ケーキ・洋菓子系が147店、カフェ・喫茶系が47店です。タイプ別では、名店・遠征級112店、手土産向き160店、イートイン/サロン92店、デパ地下・駅ビルのスイーツ売場25か所に絞り込めます。</p>
+        <h3>情報の確認と更新</h3>
+        <p>各店の公式サイトや食べログの店舗ページで確認した情報を掲載し、194店中161店に食べログの店舗ページへのリンクを用意しています。閉店を確認した店は掲載から外し、移転・リニューアルした店は最新の店舗情報に差し替えています。営業時間・定休日・売り切れ・予約可否は変わりやすいため、訪問前に各店の公式サイトや店舗SNSでご確認ください。</p>
+      </section>
+
+      <section class="faq-panel" aria-label="よくある質問">
+        <h2>よくある質問</h2>
+        <details>
+          <summary>利用に会員登録やログインは必要ですか？</summary>
+          <p>不要です。会員登録・ログインなしで、誰でも無料ですぐに地図と一覧を利用できます。</p>
+        </details>
+        <details>
+          <summary>どんな店が掲載されていますか？</summary>
+          <p>関東のケーキ店・パティスリー・カフェを194店掲載しています。内訳は東京158店（東側・都心東52、南側・城南41、西側・多摩38、北側27）、神奈川14店、埼玉9店、千葉7店、北関東6店です。ケーキ・洋菓子系が147店、カフェ・喫茶系が47店です。</p>
+        </details>
+        <details>
+          <summary>どういう基準で店を選んでいますか？</summary>
+          <p>ランキングの転載ではなく、名店性（そのジャンルで名前が残っている店）、目的地性（その店のために移動する価値があるか）、手土産力、イートイン・サロンの体験価値、そしてケーキのランキングには出にくいがスイーツ地図として重要な店（ショコラ専門店、老舗喫茶、ホテルペストリーなど）という5つの観点で選んでいます。掲載理由は各店のメモに記載しています。</p>
+        </details>
+        <details>
+          <summary>現在地から近い店を探せますか？</summary>
+          <p>探せます。「近い順」ボタンで現在地から近い順に並べ替わり、各店に現在地からの距離が表示されます。「イートインが近い順」を使うと、その場で食べられる店だけに絞って近い順に並べ替えます。位置情報はブラウザ内での並べ替えにだけ使い、サーバーへの送信や保存はしません。</p>
+        </details>
+        <details>
+          <summary>手土産を買う店やデパ地下も探せますか？</summary>
+          <p>探せます。タイプで「手土産」を選ぶと160店、「デパ地下」を選ぶと百貨店・駅ビルのスイーツ売場25か所に絞り込めます。デパ地下は売場単位で掲載し、中に入っている代表的なブランドも一覧で確認できます。</p>
+        </details>
+        <details>
+          <summary>掲載情報はどのくらい正確ですか？</summary>
+          <p>各店の公式サイトや食べログの店舗ページで確認した情報を掲載し、194店中161店に食べログの店舗ページへのリンクを用意しています。ただし営業時間・定休日・売り切れ・予約可否は変わりやすく、駅からの徒歩分数も実用上の目安です。訪問前に公式サイトや店舗SNSでの確認をおすすめします。閉店を確認した店は掲載から外しています。</p>
+        </details>
+        <details>
+          <summary>「行った」の記録はどこに保存されますか？</summary>
+          <p>お使いの端末のブラウザ内（localStorage）にのみ保存されます。サーバーには送信されないため、別の端末やブラウザには引き継がれません。ブラウザのデータを消去すると記録も消えます。</p>
+        </details>
+      </section>
+
+      <section class="area-guide" aria-label="エリア別ガイド">
+        <h2>エリア別ガイド</h2>
+        <p class="ag-lead">掲載している194店を、エリアごとの特徴とあわせて紹介します。店名の下は「代表菓子・特徴」と「掲載した理由」です。地図で場所を確認したい場合は、上の検索欄に店名を入力してください。</p>
+
+        <h3>東京 東側・都心東（52店）</h3>
+        <p class="ag-intro">銀座・日本橋から浅草・谷根千、清澄白河までを含むエリアで、掲載数は52店と最多です。性格の異なる街が並んでいるのが特徴で、<strong>銀座（8店）</strong>は銀座ウエストや資生堂パーラーといった老舗洋菓子・喫茶と、フレデリック・カッセルなど百貨店に入る名店が重なるエリア。<strong>日本橋・三越前（4店）</strong>と<strong>東京駅（5店）</strong>は手土産の拠点で、デパ地下・駅ナカのスイーツ売場がまとまっています。一方<strong>清澄白河（5店）</strong>はブルーボトルコーヒーやARiSE COFFEE ROASTERSを中心としたコーヒーの街、<strong>蔵前（4店）</strong>はダンデライオン・チョコレートや喫茶 半月など、歩きながら寄りたい店が集まります。兜町のtealやpatisserie ease、日暮里・谷根千のイナムラショウゾウとカヤバ珈琲のように、ケーキ店とカフェを一日で組み合わせやすいのもこのエリアです。</p>
+        <details class="ag-details">
+          <summary>東京 東側・都心東の掲載店52件を見る</summary>
+          <ul class="ag-list">
+            <li><b>patisserie ease</b><span class="ag-meta">茅場町駅 徒歩2〜3分／名店・遠征級・手土産・散歩向き</span><span class="ag-desc">現代的な生菓子、焼き菓子。日本橋兜町の現代的パティスリー。東側散歩にも足しやすい。</span></li>
+            <li><b>teal</b><span class="ag-meta">茅場町駅 徒歩4〜5分／名店・遠征級・手土産・イートイン/サロン</span><span class="ag-desc">チョコレート、アイスクリーム、ケーキ。兜町・日証館のチョコレート&amp;アイスクリーム店。ケーキランキングだけだと漏れやすい重要候補。</span></li>
+            <li><b>ラ・ローズ・ジャポネ</b><span class="ag-meta">亀有駅 徒歩3〜4分／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">ピクシー、ピスタチオ×苺。亀有香取神社境内の有名店。カフェ利用も可。</span></li>
+            <li><b>トシ・ヨロイヅカ 東京</b><span class="ag-meta">京橋駅直結 東京駅徒歩5分／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">生ケーキ、カウンターデザート。買うだけでなく、その場で食べる体験込みで強い。</span></li>
+            <li><b>HIGASHIYA GINZA</b><span class="ag-meta">銀座駅 徒歩2分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">和菓子、棗バター、茶房。ケーキではないが、甘味マップとして外しにくい銀座の上質枠。</span></li>
+            <li><b>トリコロール本店</b><span class="ag-meta">銀座駅 徒歩3分前後／名店・遠征級・イートイン/サロン</span><span class="ag-desc">老舗喫茶、エクレア、珈琲。銀座のクラシック喫茶。ケーキ散歩の休憩に。</span></li>
+            <li><b>銀座ウエスト 銀座本店</b><span class="ag-meta">銀座駅/新橋駅 徒歩5〜7分／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">リーフパイ、ショートケーキ、喫茶。クラシックな銀座の洋菓子・喫茶枠。</span></li>
+            <li><b>資生堂パーラー 銀座本店ショップ</b><span class="ag-meta">銀座駅/新橋駅 徒歩5分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">チーズケーキ、季節ケーキ、パフェ。銀座の老舗洋菓子。喫茶・レストラン利用も強い。</span></li>
+            <li><b>フレデリック・カッセル 銀座三越店</b><span class="ag-meta">銀座駅すぐ 徒歩1分／名店・遠征級・手土産</span><span class="ag-desc">ミルフィーユ・ヴァニーユ、フランス菓子。東側広義なら最上位候補。百貨店内で買いやすい。</span></li>
+            <li><b>キルフェボン 東京ドームシティ店</b><span class="ag-meta">後楽園駅/春日駅 徒歩2分前後／名店・遠征級・手土産・散歩向き</span><span class="ag-desc">フルーツタルト。フルーツタルト専門店の代表格。手土産力・目的地性ともに強い。後楽園散歩に組み込みやすい。</span></li>
+            <li><b>パティシエ・シマ</b><span class="ag-meta">麹町駅 徒歩1分／名店・遠征級・手土産</span><span class="ag-desc">フランス菓子、季節のアントルメ。麹町の名店。ケーキランキング常連で東京トップ級の実力。</span></li>
+            <li><b>PAYSAGE 日本橋三越本店</b><span class="ag-meta">三越前駅 徒歩1分／名店・遠征級・手土産</span><span class="ag-desc">季節の生菓子、焼き菓子。2026年6月オープンの注目店。江藤英樹シェフ系。</span></li>
+            <li><b>ザ マンダリン オリエンタル グルメショップ</b><span class="ag-meta">三越前駅直結 徒歩1分／名店・遠征級・手土産・イートイン/サロン</span><span class="ag-desc">KUMO、ホテルメイドのケーキ。日本橋でホテルメイドの華やかさを狙うなら強い。</span></li>
+            <li><b>パティシエ・ヒロ ヤマモト</b><span class="ag-meta">篠崎駅 徒歩7分前後／名店・遠征級・手土産</span><span class="ag-desc">モンブラン、ミルフィーユ、季節ケーキ。江戸川区方面まで広げるなら有力。</span></li>
+            <li><b>アヴランシュ・ゲネー</b><span class="ag-meta">春日駅 徒歩1分／名店・遠征級・手土産</span><span class="ag-desc">本格フランス菓子、ムース、タルト。東京全体でも上位級。後楽園・小石川散歩に。</span></li>
+            <li><b>EN VEDETTE</b><span class="ag-meta">清澄白河駅 徒歩4〜6分／名店・遠征級・散歩向き・手土産</span><span class="ag-desc">華やかなフランス菓子、ショコラ。清澄白河散歩と相性抜群。見た目も手土産感も強い。</span></li>
+            <li><b>リベルターブル 赤坂店</b><span class="ag-meta">赤坂駅 徒歩3分前後／名店・遠征級・手土産</span><span class="ag-desc">ラグジュアリー系ケーキ、焼き菓子。香りや素材の組み合わせが独創的。大人向き。</span></li>
+            <li><b>PÂTISSERIE SATSUKI</b><span class="ag-meta">赤坂見附駅/永田町駅 徒歩3〜5分／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">スーパーメロンショートケーキ。ホテルニューオータニ東京内。ホテルケーキの代表格。</span></li>
+            <li><b>Cafe 1894</b><span class="ag-meta">東京駅/二重橋前駅 徒歩5分前後／名店・遠征級・イートイン/サロン・散歩向き</span><span class="ag-desc">クラシック建築カフェ、ランチ、デザート。三菱一号館美術館隣。建築込みで雰囲気が強い。</span></li>
+            <li><b>パティスリー・サダハル・アオキ・パリ 丸の内店</b><span class="ag-meta">東京駅/二重橋前駅 徒歩3〜5分／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">マカロン、抹茶系、フランス菓子。東京駅・丸の内で買いやすい有名店。</span></li>
+            <li><b>喫茶 you</b><span class="ag-meta">東銀座駅 徒歩1分／名店・遠征級・イートイン/サロン</span><span class="ag-desc">オムライス、喫茶、デザート。銀座・東銀座の有名喫茶。ケーキ散歩の休憩候補にも。</span></li>
+            <li><b>カフェ・バッハ</b><span class="ag-meta">南千住駅 徒歩10分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">自家焙煎コーヒー、ケーキ。東京のコーヒー名店。浅草北側まで歩けるなら候補。</span></li>
+            <li><b>イナムラショウゾウ</b><span class="ag-meta">日暮里駅 徒歩2分／名店・遠征級・手土産</span><span class="ag-desc">モンブラン、ショコラ、ムース。東側の名店感が強い。日暮里・谷根千散歩にも。</span></li>
+            <li><b>カヤバ珈琲</b><span class="ag-meta">日暮里駅/根津駅 徒歩8〜10分／名店・遠征級・散歩向き・イートイン/サロン</span><span class="ag-desc">たまごサンド、喫茶、古民家。谷根千散歩の代表的カフェ。イナムラショウゾウと組みやすい。</span></li>
+            <li><b>オクシタニアル 日本橋浜町店</b><span class="ag-meta">浜町駅/水天宮前駅 浜町駅 徒歩6分/水天宮前駅 徒歩5分／名店・遠征級・手土産</span><span class="ag-desc">マカロン、ムース、焼き菓子。2025年6月、水天宮前の旧店舗跡地からトルナーレ日本橋浜町へ移転リニューアルオープン。シェフ中山和大は旧店舗から継続。</span></li>
+            <li><b>銀座三越 デパ地下スイーツ</b><span class="ag-meta">銀座駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">フレデリック・カッセル、洋菓子、和菓子、ギフト。銀座のデパ地下定番。既掲載のフレデリック・カッセルもここに入る。</span></li>
+            <li><b>松屋銀座 デパ地下スイーツ</b><span class="ag-meta">銀座駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">銀座手土産、和洋菓子、限定菓子。銀座三越と近く、比較して選びやすいデパ地下ハブ。</span></li>
+            <li><b>GINZA SIX B2F スイーツ</b><span class="ag-meta">銀座駅/東銀座駅 徒歩2〜3分／デパ地下・手土産・散歩向き</span><span class="ag-desc">高級手土産、チョコレート、焼き菓子。百貨店ではないが銀座の高級スイーツ手土産拠点として重要。</span></li>
+            <li><b>日本橋三越本店 デパ地下スイーツ</b><span class="ag-meta">三越前駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">老舗和洋菓子、PAYSAGE、teal、手土産。日本橋のデパ地下ハブ。老舗系と新しめのスイーツをまとめて確認できる。</span></li>
+            <li><b>グランスタ東京 スイーツゾーン</b><span class="ag-meta">東京駅 改札内外／デパ地下・手土産・散歩向き</span><span class="ag-desc">駅ナカ限定菓子、東京土産、焼き菓子。百貨店ではないが東京駅スイーツの最大級ハブ。手土産用途では必須。</span></li>
+            <li><b>大丸東京店 ほっぺタウン</b><span class="ag-meta">東京駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">駅近スイーツ、ケーキ、焼き菓子、東京土産。東京駅直結のデパ地下ハブ。新幹線前の手土産探しに強い。</span></li>
+            <li><b>日本橋高島屋S.C. デパ地下スイーツ</b><span class="ag-meta">日本橋駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">老舗和洋菓子、焼き菓子、ギフト。日本橋駅直結級の手土産拠点。三越・コレド方面と合わせて回りやすい。</span></li>
+            <li><b>北斎茶房</b><span class="ag-meta">錦糸町駅/両国駅 徒歩10〜12分／散歩向き・イートイン/サロン</span><span class="ag-desc">白玉、あんみつ、わらび餅、かき氷。両国・北斎美術館散歩の甘味休憩に強い。</span></li>
+            <li><b>文明堂カフェ</b><span class="ag-meta">三越前駅 徒歩1分／イートイン/サロン・手土産</span><span class="ag-desc">カステラ、パンケーキ、喫茶。日本橋で休憩と手土産を兼ねられる老舗カフェ。</span></li>
+            <li><b>ARiSE COFFEE ROASTERS</b><span class="ag-meta">清澄白河駅 徒歩5分前後／散歩向き・イートイン/サロン・手土産</span><span class="ag-desc">自家焙煎コーヒー。清澄白河のコーヒー文化を感じる小さな名店。</span></li>
+            <li><b>Blue Bottle Coffee 清澄白河フラッグシップカフェ</b><span class="ag-meta">清澄白河駅 徒歩8分前後／散歩向き・イートイン/サロン・手土産</span><span class="ag-desc">スペシャルティコーヒー、ワッフル、グッズ。清澄白河コーヒー散歩の定番。広めで使いやすい。</span></li>
+            <li><b>fukadaso CAFE</b><span class="ag-meta">清澄白河駅 徒歩5分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">リノベカフェ、焼き菓子、ランチ。古建築リノベの雰囲気が良い。清澄庭園散歩と相性が良い。</span></li>
+            <li><b>iki ESPRESSO</b><span class="ag-meta">清澄白河駅/森下駅 徒歩5〜7分／散歩向き・イートイン/サロン</span><span class="ag-desc">エスプレッソ、ブランチ、パンケーキ。軽食までしっかり。深川・清澄白河散歩に組みやすい。</span></li>
+            <li><b>FEBRUARY CAFE</b><span class="ag-meta">浅草駅/田原町駅 徒歩5分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">トースト、プリン、コーヒー。浅草散歩で使いやすい人気カフェ。</span></li>
+            <li><b>WESTSIDE COFFEE</b><span class="ag-meta">浅草橋駅 徒歩2分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">コーヒー、プリン、チーズケーキ。浅草橋側まで抜ける散歩に合うカフェ。</span></li>
+            <li><b>COFFEE WRIGHTS 蔵前</b><span class="ag-meta">蔵前駅 徒歩2分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">スペシャルティコーヒー。豆・抽出寄り。蔵前でコーヒーを主役にするなら候補。</span></li>
+            <li><b>Nui. HOSTEL &amp; BAR LOUNGE</b><span class="ag-meta">蔵前駅 徒歩4分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">コーヒー、軽食、ラウンジ。広めで散歩途中に休みやすい。夜の雰囲気も良い。</span></li>
+            <li><b>ダンデライオン・チョコレート ファクトリー&amp;カフェ蔵前</b><span class="ag-meta">蔵前駅 徒歩3分／散歩向き・イートイン/サロン・手土産</span><span class="ag-desc">Bean to Barチョコレート、ホットチョコレート。蔵前散歩の定番休憩地点。チョコ好きなら目的地になる。</span></li>
+            <li><b>喫茶 半月</b><span class="ag-meta">蔵前駅 徒歩2分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">季節菓子、シュー、喫茶。大人っぽい空気感の喫茶。蔵前の目的地カフェ枠。</span></li>
+            <li><b>from afar</b><span class="ag-meta">田原町駅/蔵前駅 徒歩4〜7分／散歩向き・イートイン/サロン</span><span class="ag-desc">コーヒー、季節タルト、花。浅草・蔵前散歩に合う雰囲気カフェ。</span></li>
+            <li><b>M&amp;C Cafe 丸の内オアゾ</b><span class="ag-meta">東京駅 徒歩1分／イートイン/サロン・散歩向き</span><span class="ag-desc">ハヤシライス、カフェ、丸善併設。東京駅近くで本屋と組み合わせやすいカフェ。</span></li>
+            <li><b>HAGI CAFE</b><span class="ag-meta">日暮里駅 徒歩5分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">リノベカフェ、ランチ、スイーツ。谷中の宿泊施設HAGISO内。谷根千散歩向き。</span></li>
+            <li><b>CHILL OUT COFFEE&amp;...RECORDS</b><span class="ag-meta">両国駅 徒歩5分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">コーヒー、レコード。両国で小さく雰囲気のあるコーヒー休憩ならここ。</span></li>
+            <li><b>両国テラスカフェ</b><span class="ag-meta">両国駅 徒歩5分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">カフェ、ランチ、テラス。旧安田庭園・国技館近くで休憩しやすい。</span></li>
+            <li><b>CONFECT-CONCEPT</b><span class="ag-meta">稲荷町駅 徒歩3分／散歩向き・手土産</span><span class="ag-desc">フィナンシェ、タルト、焼き菓子。焼き菓子好きなら入れておきたい稲荷町の候補。</span></li>
+            <li><b>ル・グッテ</b><span class="ag-meta">浅草橋駅 徒歩1〜2分／散歩向き・手土産</span><span class="ag-desc">シュー、カヌレ、プリン。営業日が限られる小さな人気店。訪問前確認必須。</span></li>
+            <li><b>Patisserie FOBS</b><span class="ag-meta">大江戸線 蔵前駅 徒歩1分／散歩向き・手土産</span><span class="ag-desc">ゴーフレット、ミルフィーユ、サバラン。両国・蔵前散歩に組み込みやすい実力派。</span></li>
+          </ul>
+        </details>
+
+        <h3>東京 南側・城南（41店）</h3>
+        <p class="ag-intro">渋谷・恵比寿から自由が丘、世田谷方面までの41店。掲載店のうち27店が「名店・遠征級」で、<strong>4エリア中もっとも名店の密度が高い</strong>のが特徴です。東急東横線・大井町線の沿線にパティスリーが連なり、<strong>自由が丘</strong>のパリセヴェイユとモンサンクレール、<strong>尾山台</strong>のオーボンヴュータン、<strong>等々力</strong>のPÂTISSERIE ASAKO IWAYANAGI、<strong>用賀</strong>のRyouraなど、その店のために出かける価値のある店が点在します。<strong>都立大学・学芸大学（5店）</strong>にはアディクト オ シュクル、パティスリー ジュンウジタ、MATTERHORNが集まり、駅ごとに巡りやすい構成。<strong>恵比寿（4店）</strong>と<strong>中目黒（3店）</strong>はレザネフォールやカカオエット・パリに加え、猿田彦珈琲やONIBUS COFFEEといったコーヒーの名店を挟めます。表参道のUN GRAINやピエール・エルメも同エリアです。</p>
+        <details class="ag-details">
+          <summary>東京 南側・城南の掲載店41件を見る</summary>
+          <ul class="ag-list">
+            <li><b>ogawa coffee laboratory 下北沢</b><span class="ag-meta">下北沢駅 徒歩4分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">スペシャルティコーヒー、体験型ラボ。豆選び・抽出体験寄り。下北沢散歩に組み込みやすい。</span></li>
+            <li><b>MATTERHORN</b><span class="ag-meta">学芸大学駅 徒歩3分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">ダミエ、バウムクーヘン、クラシック洋菓子。学芸大学の老舗名店。城南の洋菓子史としても外せない。</span></li>
+            <li><b>LESS</b><span class="ag-meta">恵比寿駅 徒歩6分前後／名店・遠征級・手土産・イートイン/サロン</span><span class="ag-desc">パネトーネ、焼き菓子、ケーキ。ケーキ店ランキングだけでは漏れやすい、恵比寿の個性派スイーツ店。</span></li>
+            <li><b>パティスリー レザネフォール 恵比寿本店</b><span class="ag-meta">恵比寿駅 徒歩5分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">フランス菓子、ショコラ、焼き菓子。恵比寿の実力派。華やかさと買いやすさのバランスが良い。</span></li>
+            <li><b>猿田彦珈琲 恵比寿本店</b><span class="ag-meta">恵比寿駅 徒歩2分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">スペシャルティコーヒー。有名カフェ枠として入れておきたい本店。</span></li>
+            <li><b>アンジェリーナ 原宿ハラカド店</b><span class="ag-meta">原宿駅 徒歩1分／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">モンブラン、ショコラ・ショー。1903年創業パリの老舗サロン・ド・テ。名物モンブランをその場で味わえる体験価値の高い店。</span></li>
+            <li><b>レ・カカオ</b><span class="ag-meta">五反田駅/大崎広小路駅 徒歩7分前後／名店・遠征級・手土産</span><span class="ag-desc">チョコレート、ケーキ、焼き菓子。ショコラ文脈で拾うべき城南の重要候補。</span></li>
+            <li><b>パティスリー リョーコ</b><span class="ag-meta">高輪台駅 徒歩3分／名店・遠征級・手土産</span><span class="ag-desc">予約制ケーキ、ショコラ、焼き菓子。東京トップ級。予約難度込みで遠征級。</span></li>
+            <li><b>ダロワイヨ 自由が丘本店</b><span class="ag-meta">自由が丘駅 徒歩4分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">オペラ、マカロン、フランス菓子。パリ発の老舗フランス菓子ブランドの日本本店。自由が丘パティスリー巡りに厚みを足す一店。</span></li>
+            <li><b>パティスリー・パリセヴェイユ</b><span class="ag-meta">自由が丘駅 徒歩3分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">フランス菓子、ムース、タルト。自由が丘を代表する名店。東京全体でも上位級。</span></li>
+            <li><b>モンサンクレール</b><span class="ag-meta">自由が丘駅 徒歩10分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">セラヴィ、ショコラ、季節ケーキ。辻口博啓シェフの有名店。自由が丘パティスリー巡りの中心。</span></li>
+            <li><b>茶亭 羽當</b><span class="ag-meta">渋谷駅 徒歩7分前後／名店・遠征級・イートイン/サロン</span><span class="ag-desc">ネルドリップ、シフォンケーキ、喫茶。東京喫茶の代表格。ケーキより空間と珈琲の名店枠。</span></li>
+            <li><b>しろたえ 赤坂</b><span class="ag-meta">赤坂見附駅 徒歩3分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">レアチーズケーキ、シュークリーム、喫茶。クラシックなチーズケーキ名店。城南・都心南側の老舗枠。</span></li>
+            <li><b>Cafe Facon 中目黒本店</b><span class="ag-meta">中目黒駅 徒歩2分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">自家焙煎コーヒー、ケーキ。中目黒のコーヒー名店。ケーキ巡りの休憩地点としても強い。</span></li>
+            <li><b>ONIBUS COFFEE 中目黒店</b><span class="ag-meta">中目黒駅 徒歩2分前後／名店・遠征級・散歩向き・手土産</span><span class="ag-desc">スペシャルティコーヒー、豆。中目黒のコーヒー定番。カカオエット・パリと近い。</span></li>
+            <li><b>パティスリー カカオエット・パリ</b><span class="ag-meta">中目黒駅 徒歩6分前後／名店・遠征級・手土産・散歩向き</span><span class="ag-desc">シューキューブ、ムース、フランス菓子。中目黒散歩に入れやすい人気パティスリー。</span></li>
+            <li><b>アディクト オ シュクル</b><span class="ag-meta">都立大学駅 徒歩5分前後／名店・遠征級・手土産</span><span class="ag-desc">ミルフィーユ、タルト、焼き菓子。猫モチーフも印象的な人気パティスリー。</span></li>
+            <li><b>パティスリー ジュンウジタ</b><span class="ag-meta">都立大学駅/学芸大学駅 徒歩15分前後／名店・遠征級・手土産</span><span class="ag-desc">フランス菓子、タルト、焼き菓子。碑文谷の人気パティスリー。都立大学・学芸大学エリアの重要候補。</span></li>
+            <li><b>PÂTISSERIE ASAKO IWAYANAGI</b><span class="ag-meta">等々力駅 徒歩3分／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">パフェ、季節の生菓子、焼き菓子。サロン体験込みで東京トップ級。</span></li>
+            <li><b>メゾン・ダーニ 白金</b><span class="ag-meta">白金高輪駅 徒歩6分前後／名店・遠征級・手土産</span><span class="ag-desc">ガトーバスク、焼き菓子、ケーキ。焼き菓子名店。生ケーキ軸だけだと漏れやすい白金候補。</span></li>
+            <li><b>ショコラティエ・エリカ</b><span class="ag-meta">白金台駅 徒歩8分前後／名店・遠征級・手土産</span><span class="ag-desc">マ・ボンヌ、チョコレート。白金の老舗ショコラ。ケーキ店ではないが手土産・甘味地図では重要。</span></li>
+            <li><b>オーボンヴュータン 尾山台店</b><span class="ag-meta">尾山台駅 徒歩5分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">クラシックなフランス菓子、焼き菓子。日本のフランス菓子史を語るうえで外せない老舗名店。</span></li>
+            <li><b>UN GRAIN</b><span class="ag-meta">表参道駅 徒歩12分前後／名店・遠征級・手土産・イートイン/サロン</span><span class="ag-desc">ミニャルディーズ、焼き菓子、ケーキ。小さな菓子のコース感がある南青山の個性派。手土産にも強い。</span></li>
+            <li><b>ピエール・エルメ・パリ 青山</b><span class="ag-meta">表参道駅 徒歩3分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">イスパハン、マカロン、ケーキ。華やかさと手土産力の強い世界的パティスリー。</span></li>
+            <li><b>équilibre</b><span class="ag-meta">不動前駅 徒歩2分前後／名店・遠征級・手土産</span><span class="ag-desc">現代的な生菓子、焼き菓子、ショコラ。城南で必ず拾いたい徳永純司シェフの人気店。見た目と香りの完成度が高い。</span></li>
+            <li><b>パティスリィ ドゥ・ボン・クーフゥ 武蔵小山本店</b><span class="ag-meta">武蔵小山駅 徒歩5分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">ケーキ、焼き菓子、予約制パフェ。武蔵小山の隠れ家的パティスリー。イートインとパフェ文脈でも強い。</span></li>
+            <li><b>Ryoura</b><span class="ag-meta">用賀駅 徒歩3分／名店・遠征級・手土産</span><span class="ag-desc">正統派フランス菓子、季節ケーキ。世田谷方面の実力派。華やかで完成度が高い。</span></li>
+            <li><b>アトレ恵比寿 スイーツ</b><span class="ag-meta">恵比寿駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">駅ビルスイーツ、手土産、カフェ。デパ地下ではないが恵比寿駅直結の実用スイーツハブとして追加。</span></li>
+            <li><b>渋谷 東急フードショー</b><span class="ag-meta">渋谷駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">渋谷駅直結スイーツ、惣菜、手土産。渋谷のデパ地下・駅近スイーツ拠点。乗り換え前の手土産に強い。</span></li>
+            <li><b>渋谷スクランブルスクエア ショップ&amp;レストラン</b><span class="ag-meta">渋谷駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">駅直結スイーツ、限定手土産、カフェ。渋谷駅直結の新しめ手土産ハブ。東急フードショーと合わせて確認したい。</span></li>
+            <li><b>二子玉川高島屋 デパ地下スイーツ</b><span class="ag-meta">二子玉川駅 徒歩2分／デパ地下・手土産・散歩向き</span><span class="ag-desc">城南手土産、洋菓子、和菓子、フードフロア。世田谷南側の百貨店スイーツ拠点。二子玉川散歩や帰省手土産に使いやすい。</span></li>
+            <li><b>A WORKS</b><span class="ag-meta">学芸大学駅 徒歩8分前後／イートイン/サロン・散歩向き</span><span class="ag-desc">チーズケーキ、カフェ。学芸大学の個性派チーズケーキカフェ。ケーキ店以外の人気甘味枠。</span></li>
+            <li><b>Little Toy Box</b><span class="ag-meta">駒沢大学駅 徒歩6分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">コーヒー、焼き菓子、ミニマルカフェ。駒沢・世田谷散歩に向く小さな人気カフェ。</span></li>
+            <li><b>カフェ マメヒコ 三軒茶屋店</b><span class="ag-meta">三軒茶屋駅 徒歩3分前後／イートイン/サロン・散歩向き</span><span class="ag-desc">珈琲、豆、喫茶、食事。三軒茶屋でゆっくり過ごすカフェ候補。</span></li>
+            <li><b>パティスリー・シュシュクリエ 三軒茶屋店</b><span class="ag-meta">三軒茶屋駅 徒歩7分前後／手土産・イートイン/サロン</span><span class="ag-desc">シュークリーム、季節ケーキ。世田谷散歩で使いやすいパティスリー。</span></li>
+            <li><b>Cafe Lisette 二子玉川店</b><span class="ag-meta">二子玉川駅 徒歩4分前後／イートイン/サロン・散歩向き</span><span class="ag-desc">プリンアラモード、ケーキ、カフェ。二子玉川でスイーツ休憩に使いやすい人気カフェ。</span></li>
+            <li><b>パティスリー ナオキ 深沢店</b><span class="ag-meta">駒沢大学駅 徒歩15分前後／手土産・散歩向き</span><span class="ag-desc">生ケーキ、焼き菓子、季節菓子。駒沢・深沢の街パティスリー候補。世田谷南側の穴埋めに。</span></li>
+            <li><b>パティスリー1904 ディズヌフソンキャトル</b><span class="ag-meta">池尻大橋駅 徒歩7分前後／手土産・散歩向き</span><span class="ag-desc">生ケーキ、焼き菓子、シュークリーム。目黒川・池尻大橋方面の街歩きで使いやすいパティスリー。</span></li>
+            <li><b>パティスリー アブルーム</b><span class="ag-meta">都立大学駅 徒歩3分前後／手土産・散歩向き</span><span class="ag-desc">ショートケーキ、季節菓子、焼き菓子。都立大学周辺でアディクト オ シュクルと合わせて見たい候補。</span></li>
+            <li><b>SunnyHills at Minami-Aoyama</b><span class="ag-meta">表参道駅 徒歩7分前後／手土産・散歩向き</span><span class="ag-desc">パイナップルケーキ、建築体験、台湾菓子。ケーキではないが、南青山の甘味・建築体験として地図に残したい候補。</span></li>
+            <li><b>巴裡 小川軒 目黒店</b><span class="ag-meta">不動前駅/武蔵小山駅 徒歩8分前後／手土産</span><span class="ag-desc">レイズンウィッチ、焼き菓子。生ケーキだけでなく手土産菓子として城南に入れたい老舗候補。</span></li>
+          </ul>
+        </details>
+
+        <h3>東京 西側・多摩（38店）</h3>
+        <p class="ag-intro">新宿から吉祥寺・西荻窪、さらに国立・立川・八王子・多摩地区までの38店です。<strong>吉祥寺（7店）</strong>と<strong>西荻窪（4店）</strong>を核とする中央線沿線が中心で、西荻窪には東京を代表するパティスリーのひとつアテスウェイ、老舗のこけし屋、花と菓子のcotitoが並びます。吉祥寺はレピキュリアンやA.K Laboに加え、LIGHT UP COFFEEなどカフェも選べるエリア。<strong>国立（3店）</strong>のレ・アントルメ国立とドゥ シェフ フジウ、高幡不動・多摩センター・八王子みなみ野まで足を伸ばす遠征級の店も多く、24店が「名店・遠征級」に該当します。新宿は伊勢丹・高島屋・京王百貨店のデパ地下が揃い、手土産探しの拠点になります。</p>
+        <details class="ag-details">
+          <summary>東京 西側・多摩の掲載店38件を見る</summary>
+          <ul class="ag-list">
+            <li><b>パティスリー ノリエット</b><span class="ag-meta">下高井戸駅 徒歩3分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">クラシックフランス菓子、焼き菓子。下高井戸の老舗実力派。喫茶利用も可能。</span></li>
+            <li><b>LIGHT UP COFFEE 吉祥寺</b><span class="ag-meta">吉祥寺駅 徒歩8分前後／名店・遠征級・散歩向き・イートイン/サロン・手土産</span><span class="ag-desc">スペシャルティコーヒー、豆。吉祥寺のコーヒー目的地。ケーキ巡りの休憩にも。</span></li>
+            <li><b>レピキュリアン</b><span class="ag-meta">吉祥寺駅 徒歩4分前後／名店・遠征級・手土産</span><span class="ag-desc">フランス菓子、ミルフィーユ、焼き菓子。吉祥寺を代表するパティスリー候補。営業日確認推奨。</span></li>
+            <li><b>A.K Labo</b><span class="ag-meta">吉祥寺駅/三鷹駅 徒歩15分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">フランス菓子、焼き菓子、カフェ。吉祥寺・三鷹エリアの有名パティスリー。喫茶利用も候補。</span></li>
+            <li><b>パティスリー メゾンドゥース</b><span class="ag-meta">京王堀之内駅 徒歩8分前後／名店・遠征級・手土産</span><span class="ag-desc">フランス菓子、焼き菓子、季節ケーキ。八王子・多摩ニュータウン方面で入れたい実力派。</span></li>
+            <li><b>パティスリー ラブリコチエ</b><span class="ag-meta">高円寺駅 徒歩7分前後／名店・遠征級・手土産</span><span class="ag-desc">モンブラン、フランス菓子、焼き菓子。高円寺・杉並方面でまず入れたい人気パティスリー。</span></li>
+            <li><b>パティスリー ドゥ シェフ フジウ 高幡不動本店</b><span class="ag-meta">高幡不動駅 徒歩2分前後／名店・遠征級・手土産</span><span class="ag-desc">クラシックフランス菓子、焼き菓子。国立店だけでなく本店も西側の重要候補。京王線沿いで寄りやすい。</span></li>
+            <li><b>パティスリー ドゥ シェフ フジウ 国立店</b><span class="ag-meta">国立駅 徒歩5分前後／名店・遠征級・手土産</span><span class="ag-desc">クラシックフランス菓子、焼き菓子。多摩・国立方面の名店候補。中央線西側を厚くする一店。</span></li>
+            <li><b>パティスリー レ・アントルメ国立</b><span class="ag-meta">国立駅 徒歩12分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">フランス菓子、アントルメ、焼き菓子。国立の代表的パティスリー。中央線西側を厚くする一店。</span></li>
+            <li><b>マ・プリエール</b><span class="ag-meta">三鷹駅 徒歩7分前後／名店・遠征級・手土産</span><span class="ag-desc">チョコレート、ケーキ、焼き菓子。ショコラ文脈で西側の重要店。ケーキ専用ランキングだけだと漏れやすい。</span></li>
+            <li><b>ロートンヌ 秋津本店</b><span class="ag-meta">秋津駅/新秋津駅 徒歩1〜3分／名店・遠征級・手土産</span><span class="ag-desc">フランス菓子、ショコラ、焼き菓子。多摩北側まで見るなら外しにくい有名店。秋津駅近で遠征しやすい。</span></li>
+            <li><b>パティスリー ル・ジャルダン・ブルー</b><span class="ag-meta">小田急多摩センター駅 徒歩15分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">生ケーキ、焼き菓子、カフェ。多摩センター方面の代表的パティスリー。車利用でも候補。</span></li>
+            <li><b>伊勢丹新宿店 デパ地下スイーツ</b><span class="ag-meta">新宿三丁目駅 徒歩1分／デパ地下・名店・遠征級・手土産</span><span class="ag-desc">名店級スイーツ、チョコレート、季節催事、手土産。東京デパ地下スイーツの中心格。限定・催事・ギフトの強さが突出する。</span></li>
+            <li><b>成城アルプス</b><span class="ag-meta">成城学園前駅 徒歩1分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">モカロール、クラシック洋菓子、喫茶。成城の老舗名店。小田急線西側の甘味地図では重要。</span></li>
+            <li><b>ル・ププラン</b><span class="ag-meta">聖蹟桜ヶ丘駅 徒歩4分前後／名店・遠征級・手土産</span><span class="ag-desc">フランス菓子、焼き菓子。多摩方面まで含めるなら入れたい名店候補。</span></li>
+            <li><b>Tea&amp;Cake Grace</b><span class="ag-meta">西荻窪駅 徒歩3分前後／名店・遠征級・イートイン/サロン</span><span class="ag-desc">紅茶、ケーキ、喫茶。西荻窪のケーキ喫茶名店。カフェ枠だがケーキ目的でも強い。</span></li>
+            <li><b>こけし屋 本館</b><span class="ag-meta">西荻窪駅 徒歩1分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">クラシック洋菓子、フランス料理、喫茶。西荻窪の老舗。アテスウェイ方面の散歩に歴史ある選択肢を足せる。</span></li>
+            <li><b>アテスウェイ</b><span class="ag-meta">西荻窪駅/吉祥寺駅 徒歩15〜18分／名店・遠征級・手土産</span><span class="ag-desc">モンブラン、ショコラ、フランス菓子。東京を代表するパティスリー。駅から歩くが行く価値あり。</span></li>
+            <li><b>Patisserie Yu Sasage</b><span class="ag-meta">千歳烏山駅 徒歩4分前後／名店・遠征級・手土産</span><span class="ag-desc">フランス菓子、ショコラ、焼き菓子。世田谷西側の実力派。繊細なケーキが強い。</span></li>
+            <li><b>パティスリー ラ・ヴィエイユ・フランス 本店</b><span class="ag-meta">千歳烏山駅 徒歩7分前後／名店・遠征級・手土産</span><span class="ag-desc">クラシックフランス菓子、焼き菓子。京王線沿線の名店。Yu Sasageと合わせて西側候補に入れたい。</span></li>
+            <li><b>アステリスク</b><span class="ag-meta">代々木上原駅 徒歩2分前後／名店・遠征級・手土産</span><span class="ag-desc">フランス菓子、ショコラ、焼き菓子。代々木上原の代表的パティスリー。駅近で寄りやすい。</span></li>
+            <li><b>ビヤンネートル</b><span class="ag-meta">代々木上原駅 徒歩4分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">季節パフェ、焼き菓子、ケーキ。パフェ・焼き菓子文脈で強い。アステリスクと近い。</span></li>
+            <li><b>フキアージュ</b><span class="ag-meta">調布駅 徒歩7分前後／名店・遠征級・手土産</span><span class="ag-desc">チョコレート、焼き菓子、ケーキ。調布の注目ショコラ/パティスリー枠。甘味横断で拾いたい店。</span></li>
+            <li><b>菓子工房ヴェールの丘 八王子みなみ野本店</b><span class="ag-meta">八王子みなみ野駅 徒歩5分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">生ケーキ、焼き菓子、カフェ。八王子・多摩南側の代表候補。カフェ併設で目的地にしやすい。</span></li>
+            <li><b>アトレ吉祥寺 スイーツ</b><span class="ag-meta">吉祥寺駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">駅直結スイーツ、手土産、カフェ。デパ地下ではないが吉祥寺駅直結の手土産ハブとして便利。</span></li>
+            <li><b>東急百貨店 吉祥寺店 デパ地下スイーツ</b><span class="ag-meta">吉祥寺駅 徒歩5分前後／デパ地下・手土産・散歩向き</span><span class="ag-desc">吉祥寺手土産、和洋菓子、フードフロア。吉祥寺の百貨店スイーツ拠点。街パティスリー巡りと合わせやすい。</span></li>
+            <li><b>京王百貨店 新宿店 デパ地下スイーツ</b><span class="ag-meta">新宿駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">駅直結手土産、洋菓子、和菓子。京王線・小田急線利用時に便利な新宿西口側のデパ地下。</span></li>
+            <li><b>新宿高島屋 デパ地下スイーツ</b><span class="ag-meta">新宿駅/新宿三丁目駅 徒歩2〜5分／デパ地下・手土産・散歩向き</span><span class="ag-desc">洋菓子、和菓子、駅近手土産。新宿駅南口側のデパ地下ハブ。伊勢丹と比較して選びやすい。</span></li>
+            <li><b>HATTIFNATT 吉祥寺のおうち</b><span class="ag-meta">吉祥寺駅 徒歩8分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">絵本のような空間、ケーキ、カフェ。奇抜すぎないが体験性のある吉祥寺カフェ。</span></li>
+            <li><b>カフェ・ルミエール</b><span class="ag-meta">吉祥寺駅 徒歩4分前後／イートイン/サロン・散歩向き</span><span class="ag-desc">焼き氷、カフェ、スイーツ。吉祥寺の体験型スイーツカフェ。カフェ側の西側候補として追加。</span></li>
+            <li><b>サロン・ド・テ・スリジェ</b><span class="ag-meta">国立駅 徒歩5分前後／イートイン/サロン・手土産・散歩向き</span><span class="ag-desc">タルト、ケーキ、喫茶。国立散歩で組み込みやすいケーキ喫茶候補。</span></li>
+            <li><b>cotito ハナトオカシト</b><span class="ag-meta">西荻窪駅 徒歩10分前後／散歩向き・イートイン/サロン・手土産</span><span class="ag-desc">花の焼き菓子、喫茶、ギフト。西荻窪の花と菓子の個性派。ケーキランキングでは漏れやすい。</span></li>
+            <li><b>武蔵野茶房 田無本店</b><span class="ag-meta">田無駅 徒歩1分前後／イートイン/サロン・手土産</span><span class="ag-desc">和スイーツ、喫茶、焼き菓子。西東京市側の甘味・喫茶候補。中央線以北も拾うために追加。</span></li>
+            <li><b>モナムール清風堂本店</b><span class="ag-meta">府中駅 徒歩3分前後／イートイン/サロン・手土産・散歩向き</span><span class="ag-desc">クラシック洋菓子、喫茶、レストラン。府中の老舗洋菓子。駅近で休憩にも手土産にも使いやすい。</span></li>
+            <li><b>エミリーフローゲ 本店</b><span class="ag-meta">立川駅 徒歩2分前後／イートイン/サロン・手土産・散歩向き</span><span class="ag-desc">ケーキ、焼き菓子、カフェ。立川駅近で使いやすい老舗カフェ・洋菓子候補。</span></li>
+            <li><b>パティスリー イチリン</b><span class="ag-meta">国分寺駅 徒歩8分前後／手土産・散歩向き</span><span class="ag-desc">生ケーキ、焼き菓子、季節菓子。国分寺周辺の街パティスリー候補。中央線西側の穴埋めに。</span></li>
+            <li><b>パティスリー アノー 狛江店</b><span class="ag-meta">狛江駅 徒歩3分前後／手土産・散歩向き</span><span class="ag-desc">生ケーキ、焼き菓子、アントルメ。小田急線西側の使いやすい人気店候補。</span></li>
+            <li><b>MOKA CHOCOLATE &amp; Factory</b><span class="ag-meta">三鷹台駅/吉祥寺駅 徒歩15分前後／手土産・散歩向き</span><span class="ag-desc">チョコレート、焼き菓子。三鷹・吉祥寺南側のショコラ系候補。ケーキ以外の甘味として拾いたい。</span></li>
+          </ul>
+        </details>
+
+        <h3>東京 北側（27店）</h3>
+        <p class="ag-intro">池袋・巣鴨・神楽坂から板橋・練馬までの27店。<strong>池袋（7店）</strong>は西武・東武のデパ地下に加え、老舗洋菓子のタカセ、クラシック喫茶の皇琲亭、コーヒー専門のCOFFEE VALLEYと、性格の違う店が同じ駅に集まります。<strong>巣鴨</strong>にはパティスリー ヨシノリアサミとフレンチ パウンド ハウス、<strong>神楽坂</strong>にはアトリエコータとK.ViNCENTがあり、いずれも駅を降りてすぐ複数店を回れます。板橋・練馬方面はマテリエル、パティスリー キャロリーヌ、西洋菓子 おだふじといった街の実力店が中心で、目白のエーグルドゥース、小竹向原のクリオロなど、単独で目的地になる名店も含みます。</p>
+        <details class="ag-details">
+          <summary>東京 北側の掲載店27件を見る</summary>
+          <ul class="ag-list">
+            <li><b>クリオロ本店</b><span class="ag-meta">小竹向原駅 徒歩3分／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">幻のチーズケーキ、チョコレート。買いやすさと知名度のバランスが良い。</span></li>
+            <li><b>K.ViNCENT</b><span class="ag-meta">神楽坂駅 徒歩3分前後／名店・遠征級・手土産</span><span class="ag-desc">ショコラ、フランス菓子、焼き菓子。神楽坂の高評価ショコラ/パティスリー枠。営業確認をして行きたい名店。</span></li>
+            <li><b>アトリエコータ 神楽坂店</b><span class="ag-meta">神楽坂駅 徒歩1分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">カウンターデザート、パフェ、ケーキ。神楽坂のデザート体験系名店。ケーキ店とカフェの中間として重要。</span></li>
+            <li><b>トレカルム</b><span class="ag-meta">千石駅 徒歩2分前後／名店・遠征級・手土産</span><span class="ag-desc">モンブラン、フランス菓子、焼き菓子。文京区北側の実力派。六義園・小石川方面と組みやすい。</span></li>
+            <li><b>パティスリー ヨシノリアサミ</b><span class="ag-meta">巣鴨駅 徒歩5分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">ケーキ、焼き菓子、アイスクリーム。巣鴨の有名パティスリー。北側の初期候補として重要。</span></li>
+            <li><b>フレンチ パウンド ハウス 大和郷本店</b><span class="ag-meta">巣鴨駅 徒歩5分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">ショートケーキ、紅茶、喫茶。ショートケーキ好きに強い老舗候補。巣鴨で合わせやすい。</span></li>
+            <li><b>マテリエル</b><span class="ag-meta">大山駅 徒歩5分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">生ケーキ、焼き菓子、カフェ。板橋・東武沿線の百名店級。北側を語るなら必須候補。</span></li>
+            <li><b>COFFEE VALLEY</b><span class="ag-meta">池袋駅 徒歩4分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">スペシャルティコーヒー、3PEAKS。池袋のコーヒー名店。北側カフェの軸になる。</span></li>
+            <li><b>タカセ 池袋本店</b><span class="ag-meta">池袋駅 徒歩2分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">クラシック洋菓子、パン、喫茶。池袋の老舗洋菓子・喫茶。名店感はクラシック寄りだが北側地図では外しにくい。</span></li>
+            <li><b>皇琲亭</b><span class="ag-meta">池袋駅 徒歩4分前後／名店・遠征級・イートイン/サロン</span><span class="ag-desc">炭火焙煎珈琲、アンブル・ドゥ・レーヌ。池袋のクラシック喫茶。コーヒー体験として強い。</span></li>
+            <li><b>パティスリー ラヴィアンレーヴ</b><span class="ag-meta">梅島駅 徒歩5分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">ショートケーキ、季節菓子、焼き菓子。足立区方面の人気パティスリー。カフェ併設。</span></li>
+            <li><b>TIES</b><span class="ag-meta">本郷三丁目駅 徒歩5分前後／名店・遠征級・イートイン/サロン</span><span class="ag-desc">コーヒー、自家製ケーキ、喫茶。本郷のコーヒーとケーキの名店。北側カフェとして外しにくい。</span></li>
+            <li><b>エーグルドゥース</b><span class="ag-meta">目白駅 徒歩8〜10分／名店・遠征級・手土産</span><span class="ag-desc">フランス菓子、焼き菓子、ガトー。クラシックな強さ。手土産にも遠征にも。</span></li>
+            <li><b>アルカション 練馬店</b><span class="ag-meta">練馬駅 徒歩5分前後／名店・遠征級・手土産</span><span class="ag-desc">フランス菓子、焼き菓子、コンフィズリー。練馬方面を代表する候補。保谷本店とあわせて知られる名店。</span></li>
+            <li><b>パティスリー キャロリーヌ</b><span class="ag-meta">練馬春日町駅 徒歩5分前後／名店・遠征級・手土産</span><span class="ag-desc">生ケーキ、焼き菓子、季節菓子。練馬春日町の有名パティスリー。練馬側の初期候補として重要。</span></li>
+            <li><b>パティスリー レセンシエル</b><span class="ag-meta">茗荷谷駅 徒歩6分前後／名店・遠征級・手土産</span><span class="ag-desc">フランス菓子、季節ケーキ、焼き菓子。文京区の良質パティスリー。東側/北側の穴埋めに強い。</span></li>
+            <li><b>西武池袋本店 デパ地下スイーツ</b><span class="ag-meta">池袋駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">池袋駅直結スイーツ、和洋菓子、ギフト。池袋東口側の大きなデパ地下ハブ。北側の手土産拠点として重要。</span></li>
+            <li><b>東武百貨店 池袋店 デパ地下スイーツ</b><span class="ag-meta">池袋駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">池袋西口スイーツ、和洋菓子、手土産。池袋西口側のデパ地下ハブ。西武池袋と合わせて比較しやすい。</span></li>
+            <li><b>SLOW JET COFFEE</b><span class="ag-meta">牛田駅/京成関屋駅 徒歩8分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">焙煎コーヒー、広めカフェ。北千住・千住周辺で休みやすいカフェ候補。</span></li>
+            <li><b>Cafe SOROR</b><span class="ag-meta">新大塚駅 徒歩4分前後／イートイン/サロン・散歩向き</span><span class="ag-desc">季節のケーキ、ランチ、カフェ。新大塚の人気カフェ。ケーキ目的の北側候補として追加。</span></li>
+            <li><b>ぽんでCOFFEE</b><span class="ag-meta">池袋駅 徒歩5分前後／イートイン/サロン・散歩向き</span><span class="ag-desc">ポンデケージョ、コーヒー、カフェ。池袋で軽く休める個性派カフェ。COFFEE VALLEYと合わせて候補に。</span></li>
+            <li><b>パティスリー・ラ・ノブティック</b><span class="ag-meta">ときわ台駅/中板橋駅 徒歩6分前後／手土産・散歩向き</span><span class="ag-desc">生ケーキ、焼き菓子。板橋・東武沿線ランキングで拾いたい街の実力派候補。</span></li>
+            <li><b>西洋菓子 おだふじ 大泉学園店</b><span class="ag-meta">大泉学園駅 徒歩15分前後／手土産・散歩向き</span><span class="ag-desc">大泉クリーム、ケーキ、焼き菓子。大泉学園の人気店。行列・売り切れも含めて北西側の代表候補。</span></li>
+            <li><b>ラ・ファミーユ</b><span class="ag-meta">池袋駅/要町駅 徒歩8分前後／手土産・散歩向き</span><span class="ag-desc">シフォンケーキ、焼き菓子。池袋西側のシフォンケーキ専門候補。ケーキ百名店系とは別軸で拾いたい。</span></li>
+            <li><b>欧風菓子 白鳥</b><span class="ag-meta">中板橋駅 徒歩3分前後／手土産・散歩向き</span><span class="ag-desc">クラシック洋菓子、ケーキ、焼き菓子。板橋・中板橋の老舗候補。マテリエル周辺の比較先としても良い。</span></li>
+            <li><b>パティスリー ルポンデザミ</b><span class="ag-meta">東武練馬駅 徒歩8分前後／手土産・散歩向き</span><span class="ag-desc">ケーキ、焼き菓子、ショコラ。板橋・練馬境界の候補。北側のローカル実力店として追加。</span></li>
+            <li><b>ル コワンヴェール 神楽坂</b><span class="ag-meta">飯田橋駅/神楽坂駅 徒歩5分前後／手土産・散歩向き</span><span class="ag-desc">フランス菓子、焼き菓子。神楽坂散歩で入れたいパティスリー候補。飯田橋側からも寄りやすい。</span></li>
+          </ul>
+        </details>
+
+        <h3>神奈川（14店）</h3>
+        <p class="ag-intro">横浜・鎌倉・川崎北部を中心とした13店です。<strong>新百合ヶ丘（2店）</strong>には神奈川を代表する名店リリエンベルグとPatisserie Etienneがあり、港北ニュータウン方面には北山田のSWEETS garden YUJI AJIKI、センター北のパクタージュ。<strong>鎌倉（3店）</strong>は駅近のPâtisserie Kouglapin、老舗喫茶のcafe vivement dimancheとミルクホールが揃い、街歩きと組み合わせやすいエリアです。<strong>横浜駅（3店）</strong>は高島屋・そごう・NEWoManのスイーツ売場が集中する手土産拠点。大船のCALVA、葉山のラ・マーレ・ド・チャヤなど、海側へ出るコースもあります。</p>
+        <details class="ag-details">
+          <summary>神奈川の掲載店14件を見る</summary>
+          <ul class="ag-list">
+            <li><b>パティスリー パクタージュ</b><span class="ag-meta">センター北駅 徒歩4分前後／名店・遠征級・手土産</span><span class="ag-desc">フランス菓子、タルト、焼き菓子。港北ニュータウン方面の実力派。</span></li>
+            <li><b>cafe vivement dimanche</b><span class="ag-meta">鎌倉駅 徒歩3分前後／名店・遠征級・散歩向き・イートイン/サロン</span><span class="ag-desc">コーヒー、オムライス、鎌倉カフェ。鎌倉カフェ文化の代表格。散歩目的地として強い。</span></li>
+            <li><b>Patisserie Etienne</b><span class="ag-meta">新百合ヶ丘駅 徒歩7分前後／名店・遠征級・手土産</span><span class="ag-desc">モンブラン、季節菓子、焼き菓子。新百合ヶ丘でリリエンベルグと合わせて考えたい。</span></li>
+            <li><b>リリエンベルグ</b><span class="ag-meta">新百合ヶ丘駅 徒歩15分前後／名店・遠征級・手土産</span><span class="ag-desc">ザッハトルテ、季節菓子、焼き菓子。神奈川を代表する名店。建物の雰囲気も良い。</span></li>
+            <li><b>湘南クリエイティブ・ガトー葦 平塚西口本店</b><span class="ag-meta">平塚駅 西口 徒歩3分前後／名店・遠征級・手土産・イートイン/サロン</span><span class="ag-desc">フランス菓子全般、生ケーキ、焼き菓子。湘南に10店以上を展開する老舗の本店。カフェ併設でイートイン可。神奈川西側・湘南方面の手土産拠点。</span></li>
+            <li><b>SWEETS garden YUJI AJIKI</b><span class="ag-meta">北山田駅 徒歩1分／名店・遠征級・手土産</span><span class="ag-desc">生ケーキ、焼き菓子、アントルメ。横浜北部の超有名店。駅近なのも強い。</span></li>
+            <li><b>NEWoMan横浜 スイーツ</b><span class="ag-meta">横浜駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">駅直結スイーツ、カフェ、ギフト。百貨店ではないが、横浜駅の新しめスイーツ・カフェ拠点として追加。</span></li>
+            <li><b>そごう横浜店 デパ地下スイーツ</b><span class="ag-meta">横浜駅 徒歩3分前後／デパ地下・手土産・散歩向き</span><span class="ag-desc">横浜東口スイーツ、ギフト、食品売場。横浜東口側のデパ地下ハブ。横浜高島屋と比較して選びやすい。</span></li>
+            <li><b>横浜高島屋 デパ地下スイーツ</b><span class="ag-meta">横浜駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">横浜駅直結スイーツ、和洋菓子、手土産。神奈川最大級のデパ地下スイーツ拠点。横浜駅利用ならまず確認したい。</span></li>
+            <li><b>ミルクホール</b><span class="ag-meta">鎌倉駅 徒歩5分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">レトロ喫茶、プリン、軽食。鎌倉の古い喫茶空間を楽しむ候補。</span></li>
+            <li><b>UNDER BLUFF COFFEE</b><span class="ag-meta">元町・中華街駅 徒歩8分前後／散歩向き・イートイン/サロン</span><span class="ag-desc">コーヒー、焼き菓子。山手・元町散歩に合うコーヒー店。</span></li>
+            <li><b>パティスリー ラ・マーレ・ド・チャヤ 葉山本店</b><span class="ag-meta">逗子・葉山駅 バス/車推奨／手土産・イートイン/サロン・散歩向き</span><span class="ag-desc">フレッシュケーキ、焼き菓子、葉山土産。葉山散歩・ドライブと合わせる老舗候補。</span></li>
+            <li><b>Pâtisserie Kouglapin</b><span class="ag-meta">鎌倉駅 徒歩3分／散歩向き・手土産</span><span class="ag-desc">クグロフ、ケーキ、焼き菓子。鎌倉散歩と相性の良い駅近パティスリー。</span></li>
+            <li><b>CALVA</b><span class="ag-meta">大船駅 徒歩3分／手土産・散歩向き</span><span class="ag-desc">ケーキ、ショコラ、パン。大船の人気店。パンとケーキをまとめて買える。</span></li>
+          </ul>
+        </details>
+
+        <h3>埼玉（9店）</h3>
+        <p class="ag-intro">浦和・大宮を中心とした8店です。<strong>浦和（2店）</strong>には埼玉を代表する名店アカシエと伊勢丹浦和店のデパ地下があり、武蔵浦和のPatisserie APLANOS、与野のポルトボヌールと、さいたま市内で複数店を回れます。川口のシャンドワゾー、春日部の菓子工房オークウッド、さいたま新都心のアングランパなど、県内各地の実力店も掲載。大宮はそごうのデパ地下が新幹線利用時の手土産に使えます。</p>
+        <details class="ag-details">
+          <summary>埼玉の掲載店9件を見る</summary>
+          <ul class="ag-list">
+            <li><b>アングランパ</b><span class="ag-meta">さいたま新都心駅 徒歩7分前後／名店・遠征級・手土産</span><span class="ag-desc">ミルフィーユ、フランス菓子。さいたま新都心の有名パティスリー。百名店常連級。</span></li>
+            <li><b>アカシエ 浦和店</b><span class="ag-meta">浦和駅 徒歩15分前後／名店・遠征級・手土産</span><span class="ag-desc">アントワネット、フランス菓子。埼玉を代表する名店。遠征価値あり。</span></li>
+            <li><b>菓子工房オークウッド</b><span class="ag-meta">春日部駅 徒歩20分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">季節ケーキ、焼き菓子、カフェ。埼玉東部の有名店。車でも行きやすい。</span></li>
+            <li><b>シャンドワゾー 本店</b><span class="ag-meta">川口駅 徒歩6分前後／名店・遠征級・手土産</span><span class="ag-desc">ショコラ、フランス菓子、ケーキ。川口の名店。ショコラティエとしても有名。</span></li>
+            <li><b>Patisserie APLANOS</b><span class="ag-meta">武蔵浦和駅 徒歩8分前後／名店・遠征級・手土産</span><span class="ag-desc">生ケーキ、焼き菓子、季節菓子。埼玉南部で外しにくい実力派。</span></li>
+            <li><b>シマノコーヒー大正館</b><span class="ag-meta">本川越駅 徒歩5分前後／名店・遠征級・散歩向き・イートイン/サロン</span><span class="ag-desc">自家焙煎コーヒー（サイフォン抽出）、トースト。大正浪漫夢通りの純喫茶。川越の街歩きに組み込みやすく、埼玉側で数少ないイートイン目的地。不定休のため訪問前確認推奨。</span></li>
+            <li><b>伊勢丹浦和店 デパ地下スイーツ</b><span class="ag-meta">浦和駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">浦和駅前スイーツ、和洋菓子、手土産。埼玉南部の百貨店スイーツ拠点。浦和駅前で使いやすい。</span></li>
+            <li><b>そごう大宮店 デパ地下スイーツ</b><span class="ag-meta">大宮駅 徒歩3分前後／デパ地下・手土産・散歩向き</span><span class="ag-desc">大宮駅前スイーツ、ギフト、食品売場。大宮駅西口側の手土産ハブ。新幹線利用時にも使いやすい。</span></li>
+            <li><b>パティスリー ポルトボヌール</b><span class="ag-meta">与野駅 徒歩7分前後／手土産</span><span class="ag-desc">季節ケーキ、焼き菓子。さいたま市周辺で候補に入る良店。</span></li>
+          </ul>
+        </details>
+
+        <h3>千葉（7店）</h3>
+        <p class="ag-intro">千葉市周辺を中心とした7店です。検見川浜のRêve、京成大久保のル・パティシエ ヨコヤマ、海浜幕張のホテルニューオータニ内パティスリー SATSUKIなど、駅から歩ける距離の店が中心。船橋のパティスリー ル・ラピュタ、千葉のGrandirも掲載しています。そごう千葉店と柏高島屋ステーションモールのスイーツ売場は、県内での手土産探しに使えます。</p>
+        <details class="ag-details">
+          <summary>千葉の掲載店7件を見る</summary>
+          <ul class="ag-list">
+            <li><b>ル・パティシエ ヨコヤマ 京成大久保店</b><span class="ag-meta">京成大久保駅 徒歩5分前後／名店・遠征級・手土産</span><span class="ag-desc">岩シュー、ロールケーキ、生菓子。千葉の有名店。売り切れ注意。</span></li>
+            <li><b>Rêve</b><span class="ag-meta">検見川浜駅 徒歩2分前後／名店・遠征級・手土産</span><span class="ag-desc">生菓子、焼き菓子、アントルメ。千葉側の有名候補。駅近で行きやすい。※2026年8月時点で公式サイト reve1972.co.jp がDNS解決できず（NXDOMAIN）。閉店は未確認のため掲載を維持。訪問前に営業確認を推奨。</span></li>
+            <li><b>そごう千葉店 デパ地下スイーツ</b><span class="ag-meta">千葉駅 徒歩3分前後／デパ地下・手土産・散歩向き</span><span class="ag-desc">千葉駅前スイーツ、和洋菓子、手土産。千葉駅周辺のデパ地下スイーツ拠点。県内手土産の確認に便利。</span></li>
+            <li><b>柏高島屋ステーションモール デパ地下スイーツ</b><span class="ag-meta">柏駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">柏駅直結スイーツ、手土産、食品売場。千葉北西部の駅直結スイーツ拠点。柏方面を補完するハブ。</span></li>
+            <li><b>パティスリー SATSUKI</b><span class="ag-meta">海浜幕張駅 徒歩5分前後／イートイン/サロン・手土産</span><span class="ag-desc">スーパーメロンショートケーキ。ホテルニューオータニ幕張内。ホテルケーキ枠。</span></li>
+            <li><b>Grandir</b><span class="ag-meta">新松戸駅 徒歩8分前後／手土産</span><span class="ag-desc">季節ケーキ、焼き菓子。松戸方面で押さえたい街の実力派候補。</span></li>
+            <li><b>パティスリー ル・ラピュタ</b><span class="ag-meta">津田沼駅 徒歩10分前後／手土産</span><span class="ag-desc">生ケーキ、焼き菓子。津田沼周辺で候補になるパティスリー。</span></li>
+          </ul>
+        </details>
+
+        <h3>北関東（6店）</h3>
+        <p class="ag-intro">茨城・栃木・群馬の4店で、いずれも各地を代表する老舗・名店です。土浦駅前の高月堂（1954年創業、名物モンブラン）、前橋の白井屋ホテル併設SHIROIYA the PÂTISSERIE、宇都宮のコボリ洋菓子店（1969年創業、レアチーズタルト）、水戸のシュール洋菓子店（名物アーモンドケーキ）。いずれも遠征する価値のある店として選んでいますが、駅からの距離は店によって差があるため、アクセス方法は各店の情報をご確認ください。</p>
+        <details class="ag-details">
+          <summary>北関東の掲載店6件を見る</summary>
+          <ul class="ag-list">
+            <li><b>PATISSERIE FLAGS</b><span class="ag-meta">宇都宮駅 東口から車10分前後／名店・遠征級・手土産</span><span class="ag-desc">レアチーズ、ガトーショコラ、パナシェ。1946年創業の宇都宮の老舗。焼き菓子ギフトとオンラインショップが充実し手土産向き。駅からは車移動向き。</span></li>
+            <li><b>L'atelier it。</b><span class="ag-meta">高崎駅 東口 徒歩4分前後／名店・遠征級・散歩向き・手土産</span><span class="ag-desc">造形的なプチガトー、季節のケーキ、焼き菓子。高崎駅東口すぐ、栄町の路地裏にあるパティスリー。北関東では珍しい駅近の目的地型。公式サイト未確認のため食べログを暫定リンク。</span></li>
+            <li><b>シュール洋菓子店</b><span class="ag-meta">水戸駅 車・バス推奨／名店・遠征級・手土産</span><span class="ag-desc">アーモンドケーキ、アップルパイ、マドレーヌ。50年以上続く水戸の名店。名物アーモンドケーキは予約必至の手土産定番。駅からは車・バス向き。</span></li>
+            <li><b>SHIROIYA the PÂTISSERIE</b><span class="ag-meta">中央前橋駅/前橋駅 中央前橋駅 徒歩6分前後／名店・遠征級・イートイン/サロン・手土産</span><span class="ag-desc">季節のタルト、生ショコラ、焼き菓子。藤本壮介設計の白井屋ホテル併設。デザインホテルと前橋の街歩きに組み込める名店。</span></li>
+            <li><b>高月堂</b><span class="ag-meta">土浦駅 西口 徒歩1〜2分／名店・遠征級・手土産・散歩向き</span><span class="ag-desc">特製モンブラン、栗菓子、和洋菓子。1954年創業、土浦駅前の老舗。名物モンブランは手土産にも散歩途中にも寄りやすい。</span></li>
+            <li><b>コボリ洋菓子店</b><span class="ag-meta">東武宇都宮駅/南宇都宮駅 徒歩12分前後／名店・遠征級・手土産</span><span class="ag-desc">レアチーズタルト、生デコレーション、焼き菓子。1969年創業の宇都宮の老舗。売切続出のチーズタルト。ギフト箱対応で手土産向き。</span></li>
+          </ul>
+        </details>
+      </section>
+
+      <footer class="panel-footer">
+        <p>駅徒歩は実用目安です。営業時間・定休日・売り切れ・予約可否は訪問前に公式または店舗SNSで確認してください。「行った」の記録はこの端末のブラウザにのみ保存されます。</p>
+        <nav class="panel-footer-links" aria-label="サイト情報">
+          <a href="./privacy.html">プライバシーポリシー</a>
+          <a href="./contact.html">お問い合わせ</a>
+          <a href="./about.html">運営者情報</a>
+          <a href="https://avansare.com/">運営: Avansare</a>
+        </nav>
+      </footer>
+      </div><!-- /.sheet-scroll-body -->
     </aside>
 
     <main>
@@ -632,7 +1410,8 @@
         type: ["top", "gift"],
         signature: "ミルフィーユ・ヴァニーユ、フランス菓子",
         note: "東側広義なら最上位候補。百貨店内で買いやすい。",
-        url: "https://www.frederic-cassel.jp/boutique/"
+        url: "https://www.frederic-cassel.jp/boutique/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1301/A130101/13116839/",
       },
       {
         name: "ザ マンダリン オリエンタル グルメショップ",
@@ -645,7 +1424,8 @@
         type: ["top", "gift", "salon"],
         signature: "KUMO、ホテルメイドのケーキ",
         note: "日本橋でホテルメイドの華やかさを狙うなら強い。",
-        url: "https://www.mandarinoriental.com/ja/tokyo/nihonbashi/dine/the-mandarin-oriental-gourmet-shop"
+        url: "https://www.mandarinoriental.com/ja/tokyo/nihonbashi/dine/the-mandarin-oriental-gourmet-shop",
+        tabelogUrl: "https://tabelog.com/tokyo/A1302/A130202/13022977/",
       },
       {
         name: "PAYSAGE 日本橋三越本店",
@@ -659,6 +1439,7 @@
         signature: "季節の生菓子、焼き菓子",
         note: "2026年6月オープンの注目店。江藤英樹シェフ系。",
         url: "https://paysage-he.com/shop",
+        tabelogUrl: "https://tabelog.com/tokyo/A1302/A130202/13323404/",
         image: {
           src: "https://storage.googleapis.com/production-os-assets/assets/a3b40814-e41b-4af4-8738-164d4db70659",
           alt: "PAYSAGEの公式イメージ",
@@ -678,6 +1459,7 @@
         signature: "チョコレート、アイスクリーム、ケーキ",
         note: "兜町・日証館のチョコレート&アイスクリーム店。ケーキランキングだけだと漏れやすい重要候補。",
         url: "https://teal-chocolate-and-icecream.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1302/A130202/13264147/",
         image: {
           src: "https://storage.googleapis.com/production-os-assets/assets/b022d094-896b-4eaa-a8a7-23c70cb6198c",
           alt: "tealの公式イメージ",
@@ -696,7 +1478,8 @@
         type: ["top", "salon", "gift"],
         signature: "生ケーキ、カウンターデザート",
         note: "買うだけでなく、その場で食べる体験込みで強い。",
-        url: "https://www.grand-patissier.info/ToshiYoroizuka/"
+        url: "https://www.grand-patissier.info/ToshiYoroizuka/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1302/A130202/13202758/",
       },
       {
         name: "patisserie ease",
@@ -710,6 +1493,7 @@
         signature: "現代的な生菓子、焼き菓子",
         note: "日本橋兜町の現代的パティスリー。東側散歩にも足しやすい。",
         url: "https://patisserie-ease.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1302/A130202/13246269/",
         image: {
           src: "https://storage.googleapis.com/production-os-assets/assets/9f408403-7012-4099-aa61-83538f90033c",
           alt: "patisserie easeの公式イメージ",
@@ -728,7 +1512,8 @@
         type: ["top", "walk", "gift"],
         signature: "華やかなフランス菓子、ショコラ",
         note: "清澄白河散歩と相性抜群。見た目も手土産感も強い。",
-        url: "https://envedette.jp/"
+        url: "https://envedette.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1313/A131303/13201342/",
       },
       {
         name: "Patisserie FOBS",
@@ -741,7 +1526,8 @@
         type: ["walk", "gift"],
         signature: "ゴーフレット、ミルフィーユ、サバラン",
         note: "両国・蔵前散歩に組み込みやすい実力派。",
-        url: "https://patisserie-fobs.jp/"
+        url: "https://patisserie-fobs.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131103/13200705/",
       },
       {
         name: "ル・グッテ",
@@ -754,7 +1540,8 @@
         type: ["walk", "gift"],
         signature: "シュー、カヌレ、プリン",
         note: "営業日が限られる小さな人気店。訪問前確認必須。",
-        url: "https://www.facebook.com/legouter.yuriko.k/?locale=ja_JP"
+        url: "https://www.facebook.com/legouter.yuriko.k/?locale=ja_JP",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131103/13094048/",
       },
       {
         name: "CONFECT-CONCEPT",
@@ -767,7 +1554,8 @@
         type: ["walk", "gift"],
         signature: "フィナンシェ、タルト、焼き菓子",
         note: "焼き菓子好きなら入れておきたい稲荷町の候補。",
-        url: "https://confect-concept.square.site/"
+        url: "https://confect-concept.square.site/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131101/13258304/",
       },
       {
         name: "イナムラショウゾウ",
@@ -781,6 +1569,7 @@
         signature: "モンブラン、ショコラ、ムース",
         note: "東側の名店感が強い。日暮里・谷根千散歩にも。",
         url: "https://www.inamura.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131105/13047298/",
         image: {
           src: "https://storage.googleapis.com/production-os-assets/assets/15128c50-b6b7-455e-9395-78f23668dab2",
           alt: "イナムラショウゾウの公式イメージ",
@@ -799,7 +1588,8 @@
         type: ["top", "gift"],
         signature: "本格フランス菓子、ムース、タルト",
         note: "東京全体でも上位級。後楽園・小石川散歩に。",
-        url: "https://avranches-guesnay.com/"
+        url: "https://avranches-guesnay.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1310/A131004/13186450/",
       },
       {
         name: "パティシエ・ヒロ ヤマモト",
@@ -812,7 +1602,8 @@
         type: ["top", "gift"],
         signature: "モンブラン、ミルフィーユ、季節ケーキ",
         note: "江戸川区方面まで広げるなら有力。",
-        url: "http://hiro-yamamoto.com/"
+        url: "http://hiro-yamamoto.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1312/A131205/13121679/",
       },
       {
         name: "ラ・ローズ・ジャポネ",
@@ -825,7 +1616,8 @@
         type: ["top", "salon", "gift"],
         signature: "ピクシー、ピスタチオ×苺",
         note: "亀有香取神社境内の有名店。カフェ利用も可。",
-        url: "https://www.kameari-katori.or.jp/la-rose-japonais/"
+        url: "https://www.kameari-katori.or.jp/la-rose-japonais/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1324/A132403/13218730/",
       },
       {
         name: "パティスリー リョーコ",
@@ -838,7 +1630,8 @@
         type: ["top", "gift"],
         signature: "予約制ケーキ、ショコラ、焼き菓子",
         note: "東京トップ級。予約難度込みで遠征級。",
-        url: "https://www.ryoco.jp/"
+        url: "https://www.ryoco.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1316/A131603/13137010/",
       },
       {
         name: "アテスウェイ",
@@ -851,7 +1644,8 @@
         type: ["top", "gift"],
         signature: "モンブラン、ショコラ、フランス菓子",
         note: "東京を代表するパティスリー。駅から歩くが行く価値あり。",
-        url: "https://www.atessouhaits.co.jp/"
+        url: "https://www.atessouhaits.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1320/A132001/13005853/",
       },
       {
         name: "エーグルドゥース",
@@ -864,7 +1658,8 @@
         type: ["top", "gift"],
         signature: "フランス菓子、焼き菓子、ガトー",
         note: "クラシックな強さ。手土産にも遠征にも。",
-        url: "https://www.aigredouce.jp/"
+        url: "https://www.aigredouce.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1305/A130502/13005641/",
       },
       {
         name: "クリオロ本店",
@@ -877,7 +1672,8 @@
         type: ["top", "salon", "gift"],
         signature: "幻のチーズケーキ、チョコレート",
         note: "買いやすさと知名度のバランスが良い。",
-        url: "https://ecolecriollo.com/"
+        url: "https://ecolecriollo.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1322/A132202/13194959/",
       },
       {
         name: "PÂTISSERIE ASAKO IWAYANAGI",
@@ -890,7 +1686,8 @@
         type: ["top", "salon", "gift"],
         signature: "パフェ、季節の生菓子、焼き菓子",
         note: "サロン体験込みで東京トップ級。",
-        url: "https://patisserie.asakoiwayanagi.net/"
+        url: "https://patisserie.asakoiwayanagi.net/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131715/13189509/",
       },
       {
         name: "Ryoura",
@@ -904,6 +1701,7 @@
         signature: "正統派フランス菓子、季節ケーキ",
         note: "世田谷方面の実力派。華やかで完成度が高い。",
         url: "https://www.ryoura.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131707/13188208/",
         image: {
           src: "https://www.ryoura.com/wp-content/themes/annie/images/og-image.jpg",
           alt: "Ryouraの公式イメージ",
@@ -922,7 +1720,8 @@
         type: ["top", "gift"],
         signature: "ザッハトルテ、季節菓子、焼き菓子",
         note: "神奈川を代表する名店。建物の雰囲気も良い。",
-        url: "https://www.lilienberg.jp/"
+        url: "https://www.lilienberg.jp/",
+        tabelogUrl: "https://tabelog.com/kanagawa/A1405/A140508/14000034/",
       },
       {
         name: "SWEETS garden YUJI AJIKI",
@@ -935,7 +1734,8 @@
         type: ["top", "gift"],
         signature: "生ケーキ、焼き菓子、アントルメ",
         note: "横浜北部の超有名店。駅近なのも強い。",
-        url: "https://sweets-garden-yuji-ajiki.com/"
+        url: "https://sweets-garden-yuji-ajiki.com/",
+        tabelogUrl: "https://tabelog.com/kanagawa/A1401/A140203/14035784/",
       },
       {
         name: "Patisserie Etienne",
@@ -948,7 +1748,8 @@
         type: ["top", "gift"],
         signature: "モンブラン、季節菓子、焼き菓子",
         note: "新百合ヶ丘でリリエンベルグと合わせて考えたい。",
-        url: "https://patisserie-etienne.com/"
+        url: "https://patisserie-etienne.com/",
+        tabelogUrl: "https://tabelog.com/kanagawa/A1405/A140508/14042063/",
       },
       {
         name: "パティスリー パクタージュ",
@@ -974,7 +1775,8 @@
         type: ["walk", "gift"],
         signature: "クグロフ、ケーキ、焼き菓子",
         note: "鎌倉散歩と相性の良い駅近パティスリー。",
-        url: "https://www.kouglapin.com/"
+        url: "https://www.kouglapin.com/",
+        tabelogUrl: "https://tabelog.com/kanagawa/A1404/A140402/14064579/",
       },
       {
         name: "CALVA",
@@ -987,7 +1789,8 @@
         type: ["gift", "walk"],
         signature: "ケーキ、ショコラ、パン",
         note: "大船の人気店。パンとケーキをまとめて買える。",
-        url: "https://calva.jp/"
+        url: "https://calva.jp/",
+        tabelogUrl: "https://tabelog.com/kanagawa/A1404/A140401/14030857/",
       },
       {
         name: "アカシエ 浦和店",
@@ -1000,7 +1803,8 @@
         type: ["top", "gift"],
         signature: "アントワネット、フランス菓子",
         note: "埼玉を代表する名店。遠征価値あり。",
-        url: "https://acacier.co.jp/"
+        url: "https://acacier.co.jp/",
+        tabelogUrl: "https://tabelog.com/saitama/A1101/A110102/11003500/",
       },
       {
         name: "Patisserie APLANOS",
@@ -1013,7 +1817,8 @@
         type: ["top", "gift"],
         signature: "生ケーキ、焼き菓子、季節菓子",
         note: "埼玉南部で外しにくい実力派。",
-        url: "https://www.aplanos.jp/"
+        url: "https://www.aplanos.jp/",
+        tabelogUrl: "https://tabelog.com/saitama/A1101/A110102/11027913/",
       },
       {
         name: "パティスリー ポルトボヌール",
@@ -1038,8 +1843,8 @@
         walk: "徒歩2分前後",
         type: ["top", "gift"],
         signature: "生菓子、焼き菓子、アントルメ",
-        note: "千葉側の有名候補。駅近で行きやすい。",
-        url: "https://reve1972.co.jp/"
+        note: "千葉側の有名候補。駅近で行きやすい。※2026年8月時点で公式サイト reve1972.co.jp がDNS解決できず（NXDOMAIN）。閉店は未確認のため掲載を維持。訪問前に営業確認を推奨。",
+        url: "https://www.google.com/search?q=%E3%83%91%E3%83%86%E3%82%A3%E3%82%B9%E3%83%AA%E3%83%BC+R%C3%AAve+%E6%A4%9C%E8%A6%8B%E5%B7%9D%E6%B5%9C+%E5%96%B6%E6%A5%AD"
       },
       {
         name: "ル・パティシエ ヨコヤマ 京成大久保店",
@@ -1052,7 +1857,8 @@
         type: ["top", "gift"],
         signature: "岩シュー、ロールケーキ、生菓子",
         note: "千葉の有名店。売り切れ注意。",
-        url: "https://www.l-p-yokoyama.com/"
+        url: "https://www.l-p-yokoyama.com/",
+        tabelogUrl: "https://tabelog.com/chiba/A1202/A120204/12000513/",
       },
       {
         name: "パティスリー SATSUKI",
@@ -1065,7 +1871,8 @@
         type: ["salon", "gift"],
         signature: "スーパーメロンショートケーキ",
         note: "ホテルニューオータニ幕張内。ホテルケーキ枠。",
-        url: "https://www.newotani.co.jp/makuhari/restaurant/satsuki/"
+        url: "https://www.newotani.co.jp/makuhari/restaurant/satsuki/",
+        tabelogUrl: "https://tabelog.com/chiba/A1201/A120102/12005210/",
       },
       {
         name: "パティスリー ラ・マーレ・ド・チャヤ 葉山本店",
@@ -1078,7 +1885,8 @@
         type: ["gift", "salon", "walk"],
         signature: "フレッシュケーキ、焼き菓子、葉山土産",
         note: "葉山散歩・ドライブと合わせる老舗候補。",
-        url: "https://patisseries.chaya.co.jp/"
+        url: "https://patisseries.chaya.co.jp/",
+        tabelogUrl: "https://tabelog.com/kanagawa/A1406/A140602/14002453/",
       }
     ];
 
@@ -1095,7 +1903,8 @@
         type: ["walk", "salon", "gift"],
         signature: "Bean to Barチョコレート、ホットチョコレート",
         note: "蔵前散歩の定番休憩地点。チョコ好きなら目的地になる。",
-        url: "https://dandelionchocolate.jp/pages/factory-cafe-kuramae"
+        url: "https://dandelionchocolate.jp/pages/factory-cafe-kuramae",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131103/13191976/",
       },
       {
         name: "喫茶 半月",
@@ -1109,7 +1918,8 @@
         type: ["walk", "salon"],
         signature: "季節菓子、シュー、喫茶",
         note: "大人っぽい空気感の喫茶。蔵前の目的地カフェ枠。",
-        url: "https://www.instagram.com/kissa_hangetsu/"
+        url: "https://www.instagram.com/kissa_hangetsu/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131103/13281905/",
       },
       {
         name: "Nui. HOSTEL & BAR LOUNGE",
@@ -1123,7 +1933,8 @@
         type: ["walk", "salon"],
         signature: "コーヒー、軽食、ラウンジ",
         note: "広めで散歩途中に休みやすい。夜の雰囲気も良い。",
-        url: "https://backpackersjapan.co.jp/nuihostel/"
+        url: "https://backpackersjapan.co.jp/nuihostel/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131103/13146889/",
       },
       {
         name: "COFFEE WRIGHTS 蔵前",
@@ -1137,7 +1948,8 @@
         type: ["walk", "salon"],
         signature: "スペシャルティコーヒー",
         note: "豆・抽出寄り。蔵前でコーヒーを主役にするなら候補。",
-        url: "https://coffee-wrights.jp/"
+        url: "https://coffee-wrights.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131103/13215459/",
       },
       {
         name: "WESTSIDE COFFEE",
@@ -1151,7 +1963,8 @@
         type: ["walk", "salon"],
         signature: "コーヒー、プリン、チーズケーキ",
         note: "浅草橋側まで抜ける散歩に合うカフェ。",
-        url: "https://www.instagram.com/westsidecoffee_tokyo/"
+        url: "https://www.instagram.com/westsidecoffee_tokyo/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131103/13250948/",
       },
       {
         name: "北斎茶房",
@@ -1179,7 +1992,8 @@
         type: ["walk", "salon"],
         signature: "カフェ、ランチ、テラス",
         note: "旧安田庭園・国技館近くで休憩しやすい。",
-        url: "https://ryogokuterrace.jp/"
+        url: "https://ryogokuterrace.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1312/A131201/13179089/",
       },
       {
         name: "CHILL OUT COFFEE&...RECORDS",
@@ -1193,7 +2007,8 @@
         type: ["walk", "salon"],
         signature: "コーヒー、レコード",
         note: "両国で小さく雰囲気のあるコーヒー休憩ならここ。",
-        url: "https://www.instagram.com/chill_out_coffeeandrecords/"
+        url: "https://www.instagram.com/chill_out_coffeeandrecords/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1312/A131201/13207746/",
       },
       {
         name: "fukadaso CAFE",
@@ -1207,7 +2022,8 @@
         type: ["walk", "salon"],
         signature: "リノベカフェ、焼き菓子、ランチ",
         note: "古建築リノベの雰囲気が良い。清澄庭園散歩と相性が良い。",
-        url: "https://fukadaso.com/"
+        url: "https://fukadaso.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1313/A131303/13168638/",
       },
       {
         name: "Blue Bottle Coffee 清澄白河フラッグシップカフェ",
@@ -1221,7 +2037,8 @@
         type: ["walk", "salon", "gift"],
         signature: "スペシャルティコーヒー、ワッフル、グッズ",
         note: "清澄白河コーヒー散歩の定番。広めで使いやすい。",
-        url: "https://store.bluebottlecoffee.jp/pages/kiyosumi"
+        url: "https://store.bluebottlecoffee.jp/pages/kiyosumi",
+        tabelogUrl: "https://tabelog.com/tokyo/A1313/A131303/13177218/",
       },
       {
         name: "iki ESPRESSO",
@@ -1235,7 +2052,8 @@
         type: ["walk", "salon"],
         signature: "エスプレッソ、ブランチ、パンケーキ",
         note: "軽食までしっかり。深川・清澄白河散歩に組みやすい。",
-        url: "https://www.instagram.com/iki_espresso/"
+        url: "https://www.instagram.com/iki_espresso/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1312/A131201/13190426/",
       },
       {
         name: "ARiSE COFFEE ROASTERS",
@@ -1249,7 +2067,8 @@
         type: ["walk", "salon", "gift"],
         signature: "自家焙煎コーヒー",
         note: "清澄白河のコーヒー文化を感じる小さな名店。",
-        url: "https://www.instagram.com/arisecoffeeroasters/"
+        url: "https://www.instagram.com/arisecoffeeroasters/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1313/A131303/13160545/",
       },
       {
         name: "茶亭 羽當",
@@ -1277,7 +2096,8 @@
         type: ["top", "salon", "gift"],
         signature: "自家焙煎コーヒー、ケーキ",
         note: "東京のコーヒー名店。浅草北側まで歩けるなら候補。",
-        url: "https://www.bach-kaffee.co.jp/"
+        url: "https://www.bach-kaffee.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1324/A132401/13003759/",
       },
       {
         name: "猿田彦珈琲 恵比寿本店",
@@ -1291,7 +2111,8 @@
         type: ["top", "salon", "gift"],
         signature: "スペシャルティコーヒー",
         note: "有名カフェ枠として入れておきたい本店。",
-        url: "https://sarutahiko.co/"
+        url: "https://sarutahiko.co/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1303/A130302/13127577/",
       },
       {
         name: "喫茶 you",
@@ -1336,7 +2157,8 @@
         type: ["top", "salon", "gift"],
         signature: "セラヴィ、ショコラ、季節ケーキ",
         note: "辻口博啓シェフの有名店。自由が丘パティスリー巡りの中心。",
-        url: "https://www.ms-clair.co.jp/"
+        url: "https://www.ms-clair.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131703/13003221/",
       },
       {
         name: "オーボンヴュータン 尾山台店",
@@ -1350,7 +2172,8 @@
         type: ["top", "salon", "gift"],
         signature: "クラシックなフランス菓子、焼き菓子",
         note: "日本のフランス菓子史を語るうえで外せない老舗名店。",
-        url: "https://www.aubonvieuxtemps.jp/"
+        url: "https://www.aubonvieuxtemps.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131715/13181654/",
       },
       {
         name: "PÂTISSERIE SATSUKI",
@@ -1364,7 +2187,8 @@
         type: ["top", "salon", "gift"],
         signature: "スーパーメロンショートケーキ",
         note: "ホテルニューオータニ東京内。ホテルケーキの代表格。",
-        url: "https://www.newotani.co.jp/tokyo/restaurant/p-satsuki/"
+        url: "https://www.newotani.co.jp/tokyo/restaurant/p-satsuki/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1308/A130803/13000178/",
       },
       {
         name: "ピエール・エルメ・パリ 青山",
@@ -1378,7 +2202,8 @@
         type: ["top", "salon", "gift"],
         signature: "イスパハン、マカロン、ケーキ",
         note: "華やかさと手土産力の強い世界的パティスリー。",
-        url: "https://www.pierreherme.co.jp/boutique/aoyama/"
+        url: "https://www.pierreherme.co.jp/boutique/aoyama/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1306/A130602/13014316/",
       },
       {
         name: "パティスリー・サダハル・アオキ・パリ 丸の内店",
@@ -1392,7 +2217,8 @@
         type: ["top", "salon", "gift"],
         signature: "マカロン、抹茶系、フランス菓子",
         note: "東京駅・丸の内で買いやすい有名店。",
-        url: "https://www.sadaharuaoki.jp/boutique/marunouchi.html"
+        url: "https://www.sadaharuaoki.jp/marunouchi/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1301/A130102/13018800/",
       },
       {
         name: "銀座ウエスト 銀座本店",
@@ -1406,7 +2232,8 @@
         type: ["top", "salon", "gift"],
         signature: "リーフパイ、ショートケーキ、喫茶",
         note: "クラシックな銀座の洋菓子・喫茶枠。",
-        url: "https://www.ginza-west.co.jp/"
+        url: "https://www.ginza-west.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1301/A130101/13002565/",
       },
       {
         name: "資生堂パーラー 銀座本店ショップ",
@@ -1420,7 +2247,8 @@
         type: ["top", "salon", "gift"],
         signature: "チーズケーキ、季節ケーキ、パフェ",
         note: "銀座の老舗洋菓子。喫茶・レストラン利用も強い。",
-        url: "https://parlour.shiseido.co.jp/"
+        url: "https://parlour.shiseido.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1301/A130103/13007802/",
       },
       {
         name: "HIGASHIYA GINZA",
@@ -1434,7 +2262,8 @@
         type: ["top", "salon", "gift"],
         signature: "和菓子、棗バター、茶房",
         note: "ケーキではないが、甘味マップとして外しにくい銀座の上質枠。",
-        url: "https://www.higashiya.com/shop/ginza/"
+        url: "https://www.higashiya.com/shop/ginza/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1301/A130101/13099859/",
       },
       {
         name: "アディクト オ シュクル",
@@ -1448,7 +2277,8 @@
         type: ["top", "gift"],
         signature: "ミルフィーユ、タルト、焼き菓子",
         note: "猫モチーフも印象的な人気パティスリー。",
-        url: "https://www.addict-au-sucre.com/"
+        url: "https://www.addict-au-sucre.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131702/13171753/",
       },
       {
         name: "Patisserie Yu Sasage",
@@ -1462,7 +2292,8 @@
         type: ["top", "gift"],
         signature: "フランス菓子、ショコラ、焼き菓子",
         note: "世田谷西側の実力派。繊細なケーキが強い。",
-        url: "https://www.yusasage.com/"
+        url: "https://www.yusasage.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1318/A131809/13155662/",
       },
       {
         name: "パティスリー ノリエット",
@@ -1476,7 +2307,8 @@
         type: ["top", "salon", "gift"],
         signature: "クラシックフランス菓子、焼き菓子",
         note: "下高井戸の老舗実力派。喫茶利用も可能。",
-        url: "https://www.noliette.jp/"
+        url: "https://www.noliette.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1318/A131809/13000687/",
       },
       {
         name: "リベルターブル 赤坂店",
@@ -1490,21 +2322,8 @@
         type: ["top", "gift"],
         signature: "ラグジュアリー系ケーキ、焼き菓子",
         note: "香りや素材の組み合わせが独創的。大人向き。",
-        url: "https://libertable.jp/"
-      },
-      {
-        name: "オクシタニアル 東京本店",
-        category: "cake",
-        area: "tokyo-east",
-        areaLabel: "東京 東側・都心東",
-        lat: 35.68343,
-        lng: 139.78622,
-        station: "水天宮前駅",
-        walk: "徒歩1分",
-        type: ["gift", "salon"],
-        signature: "マカロン、ムース、焼き菓子",
-        note: "水天宮前の使いやすいパティスリー。日本橋散歩にも。",
-        url: "https://occitanial.jp/"
+        url: "https://libertable.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1308/A130801/13160987/",
       },
       {
         name: "パティスリー ラヴィアンレーヴ",
@@ -1518,7 +2337,8 @@
         type: ["top", "salon", "gift"],
         signature: "ショートケーキ、季節菓子、焼き菓子",
         note: "足立区方面の人気パティスリー。カフェ併設。",
-        url: "https://lavieunreve.com/"
+        url: "https://lavieunreve.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1324/A132404/13173833/",
       },
       {
         name: "アングランパ",
@@ -1532,7 +2352,8 @@
         type: ["top", "gift"],
         signature: "ミルフィーユ、フランス菓子",
         note: "さいたま新都心の有名パティスリー。百名店常連級。",
-        url: "https://www.ungrandpas.jp/"
+        url: "https://www.ungrandpas.jp/",
+        tabelogUrl: "https://tabelog.com/saitama/A1101/A110101/11035130/",
       },
       {
         name: "シャンドワゾー 本店",
@@ -1546,7 +2367,8 @@
         type: ["top", "gift"],
         signature: "ショコラ、フランス菓子、ケーキ",
         note: "川口の名店。ショコラティエとしても有名。",
-        url: "https://chant-doiseau.com/"
+        url: "https://chant-doiseau.com/",
+        tabelogUrl: "https://tabelog.com/saitama/A1102/A110201/11025121/",
       },
       {
         name: "菓子工房オークウッド",
@@ -1560,7 +2382,8 @@
         type: ["top", "salon", "gift"],
         signature: "季節ケーキ、焼き菓子、カフェ",
         note: "埼玉東部の有名店。車でも行きやすい。",
-        url: "https://www.oakwood.co.jp/"
+        url: "https://www.oakwood.co.jp/",
+        tabelogUrl: "https://tabelog.com/saitama/A1102/A110204/11000265/",
       },
       {
         name: "パティスリー ル・ラピュタ",
@@ -1602,7 +2425,8 @@
         type: ["gift", "salon"],
         signature: "シュークリーム、季節ケーキ",
         note: "世田谷散歩で使いやすいパティスリー。",
-        url: "https://www.susucrier.com/"
+        url: "https://www.susucrier.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131706/13132570/",
       },
       {
         name: "ル・ププラン",
@@ -1630,7 +2454,8 @@
         type: ["salon", "walk"],
         signature: "ハヤシライス、カフェ、丸善併設",
         note: "東京駅近くで本屋と組み合わせやすいカフェ。",
-        url: "https://www.marunouchi.com/tenants/1003/"
+        url: "https://clea.co.jp/shop/mc-cafe",
+        tabelogUrl: "https://tabelog.com/tokyo/A1302/A130201/13010996/",
       },
       {
         name: "文明堂カフェ",
@@ -1644,7 +2469,8 @@
         type: ["salon", "gift"],
         signature: "カステラ、パンケーキ、喫茶",
         note: "日本橋で休憩と手土産を兼ねられる老舗カフェ。",
-        url: "https://www.bunmeido.co.jp/"
+        url: "https://www.bunmeido.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1302/A130202/13152670/",
       },
       {
         name: "Cafe 1894",
@@ -1658,35 +2484,8 @@
         type: ["top", "salon", "walk"],
         signature: "クラシック建築カフェ、ランチ、デザート",
         note: "三菱一号館美術館隣。建築込みで雰囲気が強い。",
-        url: "https://mimt.jp/cafe1894/"
-      },
-      {
-        name: "BONGEN COFFEE",
-        category: "cafe",
-        area: "tokyo-east",
-        areaLabel: "東京 東側・都心東",
-        lat: 35.66961,
-        lng: 139.77056,
-        station: "東銀座駅",
-        walk: "徒歩4分前後",
-        type: ["walk", "gift"],
-        signature: "コーヒー、和モダン、豆",
-        note: "銀座東側の小さなコーヒースタンド。散歩途中に。",
-        url: "https://www.bongen.jp/"
-      },
-      {
-        name: "丸福珈琲店 銀座喫茶室",
-        category: "cafe",
-        area: "tokyo-east",
-        areaLabel: "東京 東側・都心東",
-        lat: 35.67179,
-        lng: 139.76511,
-        station: "銀座駅",
-        walk: "徒歩1分",
-        type: ["salon"],
-        signature: "濃いめの珈琲、ホットケーキ、喫茶",
-        note: "銀座三越内でケーキ買い物と合わせやすい。",
-        url: "https://www.marufukucoffeeten.com/"
+        url: "https://mimt.jp/cafe1894/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1302/A130201/13096426/",
       },
       {
         name: "トリコロール本店",
@@ -1700,7 +2499,8 @@
         type: ["top", "salon"],
         signature: "老舗喫茶、エクレア、珈琲",
         note: "銀座のクラシック喫茶。ケーキ散歩の休憩に。",
-        url: "https://tricolore.co.jp/"
+        url: "https://tricolore.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1301/A130101/13007761/",
       },
       {
         name: "カヤバ珈琲",
@@ -1714,7 +2514,8 @@
         type: ["top", "walk", "salon"],
         signature: "たまごサンド、喫茶、古民家",
         note: "谷根千散歩の代表的カフェ。イナムラショウゾウと組みやすい。",
-        url: "https://kayaba-coffee.com/"
+        url: "https://kayaba-coffee.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131104/13019585/",
       },
       {
         name: "HAGI CAFE",
@@ -1728,7 +2529,8 @@
         type: ["walk", "salon"],
         signature: "リノベカフェ、ランチ、スイーツ",
         note: "谷中の宿泊施設HAGISO内。谷根千散歩向き。",
-        url: "https://hagiso.jp/hagicafe/"
+        url: "https://hagiso.com/hagiso/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131106/13153660/",
       },
       {
         name: "from afar",
@@ -1742,7 +2544,8 @@
         type: ["walk", "salon"],
         signature: "コーヒー、季節タルト、花",
         note: "浅草・蔵前散歩に合う雰囲気カフェ。",
-        url: "https://www.instagram.com/fromafar_tokyo/"
+        url: "https://www.instagram.com/fromafar_tokyo/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131102/13242054/",
       },
       {
         name: "FEBRUARY CAFE",
@@ -1756,7 +2559,8 @@
         type: ["walk", "salon"],
         signature: "トースト、プリン、コーヒー",
         note: "浅草散歩で使いやすい人気カフェ。",
-        url: "https://www.instagram.com/february_cafe/"
+        url: "https://www.instagram.com/february_cafe/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1311/A131102/13143292/",
       },
       {
         name: "cafe vivement dimanche",
@@ -1770,7 +2574,8 @@
         type: ["top", "walk", "salon"],
         signature: "コーヒー、オムライス、鎌倉カフェ",
         note: "鎌倉カフェ文化の代表格。散歩目的地として強い。",
-        url: "https://dimanche.shopinfo.jp/"
+        url: "https://www.instagram.com/cvdimanche/",
+        tabelogUrl: "https://tabelog.com/kanagawa/A1404/A140402/14002141/",
       },
       {
         name: "ミルクホール",
@@ -1826,7 +2631,8 @@
         type: ["top", "gift"],
         signature: "クラシックフランス菓子、焼き菓子",
         note: "京王線沿線の名店。Yu Sasageと合わせて西側候補に入れたい。",
-        url: "https://www.lavieillefrance.jp/"
+        url: "https://www.lavieillefrance.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1318/A131809/13043939/",
       },
       {
         name: "パティスリー レザネフォール 恵比寿本店",
@@ -1840,7 +2646,8 @@
         type: ["top", "salon", "gift"],
         signature: "フランス菓子、ショコラ、焼き菓子",
         note: "恵比寿の実力派。華やかさと買いやすさのバランスが良い。",
-        url: "https://lesanneesfolles.jp/"
+        url: "https://lesanneesfolles.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1303/A130302/13149501/",
       },
       {
         name: "LESS",
@@ -1854,7 +2661,8 @@
         type: ["top", "gift", "salon"],
         signature: "パネトーネ、焼き菓子、ケーキ",
         note: "ケーキ店ランキングだけでは漏れやすい、恵比寿の個性派スイーツ店。",
-        url: "https://less-tokyo.com/"
+        url: "https://less-tokyo.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1303/A130302/13274859/",
       },
       {
         name: "アステリスク",
@@ -1868,7 +2676,8 @@
         type: ["top", "gift"],
         signature: "フランス菓子、ショコラ、焼き菓子",
         note: "代々木上原の代表的パティスリー。駅近で寄りやすい。",
-        url: "https://www.asterisque-izumi.com/"
+        url: "https://www.asterisque-izumi.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1318/A131811/13140735/",
       },
       {
         name: "ビヤンネートル",
@@ -1882,7 +2691,8 @@
         type: ["top", "salon", "gift"],
         signature: "季節パフェ、焼き菓子、ケーキ",
         note: "パフェ・焼き菓子文脈で強い。アステリスクと近い。",
-        url: "https://bien-etre-patisserie.com/"
+        url: "https://bien-etre-patisserie.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1318/A131811/13113676/",
       },
       {
         name: "パティスリー アブルーム",
@@ -1910,7 +2720,8 @@
         type: ["gift", "walk"],
         signature: "生ケーキ、焼き菓子、シュークリーム",
         note: "目黒川・池尻大橋方面の街歩きで使いやすいパティスリー。",
-        url: "https://www.1904.jp/"
+        url: "https://www.1904.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131705/13018913/",
       },
       {
         name: "レ・カカオ",
@@ -1924,7 +2735,8 @@
         type: ["top", "gift"],
         signature: "チョコレート、ケーキ、焼き菓子",
         note: "ショコラ文脈で拾うべき城南の重要候補。",
-        url: "https://lescacaos.jp/"
+        url: "https://lescacaos.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1316/A131603/13203619/",
       },
       {
         name: "メゾン・ダーニ 白金",
@@ -1938,7 +2750,8 @@
         type: ["top", "gift"],
         signature: "ガトーバスク、焼き菓子、ケーキ",
         note: "焼き菓子名店。生ケーキ軸だけだと漏れやすい白金候補。",
-        url: "https://maisondahni.com/"
+        url: "https://maisondahni.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1316/A131602/13183428/",
       },
       {
         name: "ショコラティエ・エリカ",
@@ -1952,7 +2765,8 @@
         type: ["top", "gift"],
         signature: "マ・ボンヌ、チョコレート",
         note: "白金の老舗ショコラ。ケーキ店ではないが手土産・甘味地図では重要。",
-        url: "https://www.erica.co.jp/"
+        url: "https://www.erica.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1316/A131602/13001875/",
       },
       {
         name: "パティスリー カカオエット・パリ",
@@ -1966,7 +2780,8 @@
         type: ["top", "gift", "walk"],
         signature: "シューキューブ、ムース、フランス菓子",
         note: "中目黒散歩に入れやすい人気パティスリー。",
-        url: "https://www.cacahouete-paris.jp/"
+        url: "https://www.cacahouete-paris.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131701/13039525/",
       },
       {
         name: "アルカション 練馬店",
@@ -1980,7 +2795,8 @@
         type: ["top", "gift"],
         signature: "フランス菓子、焼き菓子、コンフィズリー",
         note: "練馬方面を代表する候補。保谷本店とあわせて知られる名店。",
-        url: "https://arcachon.co.jp/"
+        url: "https://arcachon.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1321/A132102/13191018/",
       },
       {
         name: "トレカルム",
@@ -1994,7 +2810,8 @@
         type: ["top", "gift"],
         signature: "モンブラン、フランス菓子、焼き菓子",
         note: "文京区北側の実力派。六義園・小石川方面と組みやすい。",
-        url: "https://trescalme.jp/"
+        url: "https://trescalme.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1323/A132301/13175122/",
       },
       {
         name: "パティスリー レセンシエル",
@@ -2008,7 +2825,8 @@
         type: ["top", "gift"],
         signature: "フランス菓子、季節ケーキ、焼き菓子",
         note: "文京区の良質パティスリー。東側/北側の穴埋めに強い。",
-        url: "https://lessentiel.tokyo/"
+        url: "https://lessentiel.tokyo/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1323/A132302/13174296/",
       },
       {
         name: "パティスリー ヨシノリアサミ",
@@ -2022,7 +2840,8 @@
         type: ["top", "salon", "gift"],
         signature: "ケーキ、焼き菓子、アイスクリーム",
         note: "巣鴨の有名パティスリー。北側の初期候補として重要。",
-        url: "https://yoshinoriasami.com/"
+        url: "https://yoshinoriasami.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1323/A132301/13187756/",
       },
       {
         name: "フレンチ パウンド ハウス 大和郷本店",
@@ -2036,21 +2855,8 @@
         type: ["top", "salon", "gift"],
         signature: "ショートケーキ、紅茶、喫茶",
         note: "ショートケーキ好きに強い老舗候補。巣鴨で合わせやすい。",
-        url: "https://www.frenchpoundhouse.com/"
-      },
-      {
-        name: "ラ・メゾン アンソレイユターブル パティスリー ルミネ池袋店",
-        category: "cake",
-        area: "tokyo-north",
-        areaLabel: "東京 北側",
-        lat: 35.72908,
-        lng: 139.71065,
-        station: "池袋駅",
-        walk: "徒歩1分",
-        type: ["salon", "gift"],
-        signature: "フルーツタルト、カフェ",
-        note: "池袋駅直結で使いやすいタルト・カフェ候補。",
-        url: "https://www.la-maison.jp/"
+        url: "https://www.frenchpoundhouse.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1323/A132301/13003828/",
       },
       {
         name: "こけし屋 本館",
@@ -2064,7 +2870,8 @@
         type: ["top", "salon", "gift"],
         signature: "クラシック洋菓子、フランス料理、喫茶",
         note: "西荻窪の老舗。アテスウェイ方面の散歩に歴史ある選択肢を足せる。",
-        url: "https://www.kokeshiya.com/"
+        url: "https://www.kokeshiya.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1319/A131907/13000721/",
       },
       {
         name: "レピキュリアン",
@@ -2092,7 +2899,8 @@
         type: ["gift", "walk"],
         signature: "生ケーキ、焼き菓子、アントルメ",
         note: "小田急線西側の使いやすい人気店候補。",
-        url: "https://anneau.jp/"
+        url: "https://anneau.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1326/A132603/13145476/",
       },
       {
         name: "パティスリー ドゥ シェフ フジウ 国立店",
@@ -2148,7 +2956,8 @@
         type: ["top", "walk", "salon", "gift"],
         signature: "スペシャルティコーヒー、豆",
         note: "吉祥寺のコーヒー目的地。ケーキ巡りの休憩にも。",
-        url: "https://lightupcoffee.com/"
+        url: "https://lightupcoffee.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1320/A132001/13171388/",
       },
       {
         name: "COFFEE VALLEY",
@@ -2162,7 +2971,8 @@
         type: ["top", "salon", "gift"],
         signature: "スペシャルティコーヒー、3PEAKS",
         note: "池袋のコーヒー名店。北側カフェの軸になる。",
-        url: "https://coffeevalley.jp/"
+        url: "https://coffeevalley.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1305/A130501/13175074/",
       },
       {
         name: "皇琲亭",
@@ -2190,7 +3000,8 @@
         type: ["top", "salon", "gift"],
         signature: "スペシャルティコーヒー、体験型ラボ",
         note: "豆選び・抽出体験寄り。下北沢散歩に組み込みやすい。",
-        url: "https://www.oc-ogawa.co.jp/shop/shimokitazawa/"
+        url: "https://www.oc-ogawa.co.jp/ocl-shimokitazawa/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1318/A131802/13260375/",
       },
       {
         name: "ONIBUS COFFEE 中目黒店",
@@ -2204,7 +3015,8 @@
         type: ["top", "walk", "gift"],
         signature: "スペシャルティコーヒー、豆",
         note: "中目黒のコーヒー定番。カカオエット・パリと近い。",
-        url: "https://onibuscoffee.com/"
+        url: "https://onibuscoffee.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131701/13191293/",
       },
       {
         name: "Little Toy Box",
@@ -2232,7 +3044,8 @@
         type: ["salon", "walk"],
         signature: "珈琲、豆、喫茶、食事",
         note: "三軒茶屋でゆっくり過ごすカフェ候補。",
-        url: "https://www.mamehico.com/"
+        url: "https://www.mamehico.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131706/13021745/",
       },
       {
         name: "HATTIFNATT 吉祥寺のおうち",
@@ -2246,7 +3059,8 @@
         type: ["walk", "salon"],
         signature: "絵本のような空間、ケーキ、カフェ",
         note: "奇抜すぎないが体験性のある吉祥寺カフェ。",
-        url: "https://www.hattifnatt.jp/"
+        url: "https://www.hattifnatt.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1320/A132001/13090486/",
       },
       {
         name: "cotito ハナトオカシト",
@@ -2260,7 +3074,8 @@
         type: ["walk", "salon", "gift"],
         signature: "花の焼き菓子、喫茶、ギフト",
         note: "西荻窪の花と菓子の個性派。ケーキランキングでは漏れやすい。",
-        url: "https://cotito.jp/"
+        url: "https://cotito.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1319/A131907/13172467/",
       },
       {
         name: "ロートンヌ 秋津本店",
@@ -2274,7 +3089,8 @@
         type: ["top", "gift"],
         signature: "フランス菓子、ショコラ、焼き菓子",
         note: "多摩北側まで見るなら外しにくい有名店。秋津駅近で遠征しやすい。",
-        url: "https://www.lautomne.jp/"
+        url: "https://www.lautomne.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1328/A132806/13005967/",
       },
       {
         name: "菓子工房ヴェールの丘 八王子みなみ野本店",
@@ -2288,7 +3104,8 @@
         type: ["top", "salon", "gift"],
         signature: "生ケーキ、焼き菓子、カフェ",
         note: "八王子・多摩南側の代表候補。カフェ併設で目的地にしやすい。",
-        url: "https://www.vert-no-oka.com/"
+        url: "https://www.vert-no-oka.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1329/A132904/13040211/",
       },
       {
         name: "成城アルプス",
@@ -2302,7 +3119,8 @@
         type: ["top", "salon", "gift"],
         signature: "モカロール、クラシック洋菓子、喫茶",
         note: "成城の老舗名店。小田急線西側の甘味地図では重要。",
-        url: "https://seijo-alpes.com/"
+        url: "https://seijo-alpes.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1318/A131814/13002002/",
       },
       {
         name: "A.K Labo",
@@ -2316,7 +3134,8 @@
         type: ["top", "salon", "gift"],
         signature: "フランス菓子、焼き菓子、カフェ",
         note: "吉祥寺・三鷹エリアの有名パティスリー。喫茶利用も候補。",
-        url: "https://www.instagram.com/a.k_labo/"
+        url: "https://www.instagram.com/a.k_labo/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1320/A132002/13161208/",
       },
       {
         name: "マ・プリエール",
@@ -2330,7 +3149,8 @@
         type: ["top", "gift"],
         signature: "チョコレート、ケーキ、焼き菓子",
         note: "ショコラ文脈で西側の重要店。ケーキ専用ランキングだけだと漏れやすい。",
-        url: "https://ma-priere.com/"
+        url: "https://ma-priere.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1320/A132002/13030751/",
       },
       {
         name: "Tea&Cake Grace",
@@ -2372,7 +3192,8 @@
         type: ["top", "salon", "gift"],
         signature: "フランス菓子、アントルメ、焼き菓子",
         note: "国立の代表的パティスリー。中央線西側を厚くする一店。",
-        url: "https://www.l-entremets.jp/"
+        url: "https://www.l-entremets.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1325/A132503/13006001/",
       },
       {
         name: "エミリーフローゲ 本店",
@@ -2386,7 +3207,8 @@
         type: ["salon", "gift", "walk"],
         signature: "ケーキ、焼き菓子、カフェ",
         note: "立川駅近で使いやすい老舗カフェ・洋菓子候補。",
-        url: "https://emilie-floge.co.jp/"
+        url: "https://emilie-floge.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1329/A132901/13016256/",
       },
       {
         name: "パティスリー ドゥ シェフ フジウ 高幡不動本店",
@@ -2400,7 +3222,8 @@
         type: ["top", "gift"],
         signature: "クラシックフランス菓子、焼き菓子",
         note: "国立店だけでなく本店も西側の重要候補。京王線沿いで寄りやすい。",
-        url: "https://chef-fujiu.com/"
+        url: "https://chef-fujiu.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1329/A132903/13006009/",
       },
       {
         name: "フキアージュ",
@@ -2414,7 +3237,8 @@
         type: ["top", "gift"],
         signature: "チョコレート、焼き菓子、ケーキ",
         note: "調布の注目ショコラ/パティスリー枠。甘味横断で拾いたい店。",
-        url: "https://www.instagram.com/fuquiage_chocolat/"
+        url: "https://www.instagram.com/fuquiage_chocolat/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1326/A132601/13264560/",
       },
       {
         name: "サロン・ド・テ・スリジェ",
@@ -2456,7 +3280,8 @@
         type: ["salon", "gift", "walk"],
         signature: "クラシック洋菓子、喫茶、レストラン",
         note: "府中の老舗洋菓子。駅近で休憩にも手土産にも使いやすい。",
-        url: "https://monamour.jp/"
+        url: "https://monamour.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1326/A132602/13020051/",
       },
       {
         name: "MOKA CHOCOLATE & Factory",
@@ -2470,21 +3295,8 @@
         type: ["gift", "walk"],
         signature: "チョコレート、焼き菓子",
         note: "三鷹・吉祥寺南側のショコラ系候補。ケーキ以外の甘味として拾いたい。",
-        url: "https://www.instagram.com/mokachocolate_factory/"
-      },
-      {
-        name: "ラ・メゾン アンソレイユターブル ルミネ立川店",
-        category: "cake",
-        area: "tokyo-west",
-        areaLabel: "東京 西側・多摩",
-        lat: 35.69877,
-        lng: 139.41375,
-        station: "立川駅",
-        walk: "徒歩1分",
-        type: ["salon", "walk"],
-        signature: "フルーツタルト、カフェ",
-        note: "立川駅直結で使いやすいタルト/カフェ候補。",
-        url: "https://www.la-maison.jp/"
+        url: "https://www.instagram.com/mokachocolate_factory/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1318/A131806/13268442/",
       },
       {
         name: "カフェ・ルミエール",
@@ -2512,7 +3324,8 @@
         type: ["salon", "gift"],
         signature: "和スイーツ、喫茶、焼き菓子",
         note: "西東京市側の甘味・喫茶候補。中央線以北も拾うために追加。",
-        url: "https://musashinosabo.com/"
+        url: "https://musashinosabo.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1328/A132801/13005971/",
       },
       {
         name: "équilibre",
@@ -2526,7 +3339,8 @@
         type: ["top", "gift"],
         signature: "現代的な生菓子、焼き菓子、ショコラ",
         note: "城南で必ず拾いたい徳永純司シェフの人気店。見た目と香りの完成度が高い。",
-        url: "https://www.equilibre.tokyo/"
+        url: "https://www.equilibre.tokyo/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131710/13269549/",
       },
       {
         name: "パティスリィ ドゥ・ボン・クーフゥ 武蔵小山本店",
@@ -2540,7 +3354,8 @@
         type: ["top", "salon", "gift"],
         signature: "ケーキ、焼き菓子、予約制パフェ",
         note: "武蔵小山の隠れ家的パティスリー。イートインとパフェ文脈でも強い。",
-        url: "https://deboncoeur.com/"
+        url: "https://deboncoeur.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131710/13032289/",
       },
       {
         name: "MATTERHORN",
@@ -2554,7 +3369,8 @@
         type: ["top", "salon", "gift"],
         signature: "ダミエ、バウムクーヘン、クラシック洋菓子",
         note: "学芸大学の老舗名店。城南の洋菓子史としても外せない。",
-        url: "https://matterhorn-tokyo.com/"
+        url: "https://matterhorn-tokyo.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131702/13003197/",
       },
       {
         name: "パティスリー ジュンウジタ",
@@ -2569,20 +3385,6 @@
         signature: "フランス菓子、タルト、焼き菓子",
         note: "碑文谷の人気パティスリー。都立大学・学芸大学エリアの重要候補。",
         url: "https://tabelog.com/tokyo/A1317/A131702/13121042/"
-      },
-      {
-        name: "Maison romi-unie",
-        category: "cake",
-        area: "tokyo-south",
-        areaLabel: "東京 南側・城南",
-        lat: 35.62861,
-        lng: 139.68540,
-        station: "学芸大学駅",
-        walk: "徒歩3分前後",
-        type: ["gift", "walk"],
-        signature: "ジャム、焼き菓子、スコーン",
-        note: "ケーキ店ランキングでは漏れやすいが、学芸大学の焼き菓子・手土産枠で重要。",
-        url: "https://romi-unie.jp/"
       },
       {
         name: "しろたえ 赤坂",
@@ -2610,7 +3412,8 @@
         type: ["top", "gift", "salon"],
         signature: "ミニャルディーズ、焼き菓子、ケーキ",
         note: "小さな菓子のコース感がある南青山の個性派。手土産にも強い。",
-        url: "https://www.ungrain.tokyo/"
+        url: "https://www.ungrain.tokyo/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1306/A130602/13189012/",
       },
       {
         name: "SunnyHills at Minami-Aoyama",
@@ -2624,7 +3427,8 @@
         type: ["gift", "walk"],
         signature: "パイナップルケーキ、建築体験、台湾菓子",
         note: "ケーキではないが、南青山の甘味・建築体験として地図に残したい候補。",
-        url: "https://www.sunnyhills.co.jp/"
+        url: "https://www.sunnyhills.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1306/A130602/13163569/",
       },
       {
         name: "パティスリー ナオキ 深沢店",
@@ -2638,7 +3442,8 @@
         type: ["gift", "walk"],
         signature: "生ケーキ、焼き菓子、季節菓子",
         note: "駒沢・深沢の街パティスリー候補。世田谷南側の穴埋めに。",
-        url: "https://patisserie-naoki.jp/"
+        url: "https://patisserie-naoki.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131707/13008134/",
       },
       {
         name: "Cafe Lisette 二子玉川店",
@@ -2652,7 +3457,8 @@
         type: ["salon", "walk"],
         signature: "プリンアラモード、ケーキ、カフェ",
         note: "二子玉川でスイーツ休憩に使いやすい人気カフェ。",
-        url: "https://cafe.lisette.jp/"
+        url: "https://cafe.lisette.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131708/13058141/",
       },
       {
         name: "Cafe Facon 中目黒本店",
@@ -2666,7 +3472,8 @@
         type: ["top", "salon", "gift"],
         signature: "自家焙煎コーヒー、ケーキ",
         note: "中目黒のコーヒー名店。ケーキ巡りの休憩地点としても強い。",
-        url: "https://cafe-facon.com/"
+        url: "https://cafe-facon.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131701/13056736/",
       },
       {
         name: "A WORKS",
@@ -2680,7 +3487,8 @@
         type: ["salon", "walk"],
         signature: "チーズケーキ、カフェ",
         note: "学芸大学の個性派チーズケーキカフェ。ケーキ店以外の人気甘味枠。",
-        url: "https://www.instagram.com/gakudai.aworks/"
+        url: "https://www.instagram.com/gakudai.aworks/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131702/13168995/",
       },
       {
         name: "巴裡 小川軒 目黒店",
@@ -2694,7 +3502,8 @@
         type: ["gift"],
         signature: "レイズンウィッチ、焼き菓子",
         note: "生ケーキだけでなく手土産菓子として城南に入れたい老舗候補。",
-        url: "https://www.ogawaken.co.jp/"
+        url: "https://www.ogawaken.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131702/13008192/",
       },
       {
         name: "マテリエル",
@@ -2708,7 +3517,8 @@
         type: ["top", "salon", "gift"],
         signature: "生ケーキ、焼き菓子、カフェ",
         note: "板橋・東武沿線の百名店級。北側を語るなら必須候補。",
-        url: "https://patisserie-materiel.com/"
+        url: "https://patisserie-materiel.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1322/A132203/13110008/",
       },
       {
         name: "パティスリー キャロリーヌ",
@@ -2722,7 +3532,8 @@
         type: ["top", "gift"],
         signature: "生ケーキ、焼き菓子、季節菓子",
         note: "練馬春日町の有名パティスリー。練馬側の初期候補として重要。",
-        url: "https://www.patisseriecaroline.net/home"
+        url: "https://www.patisseriecaroline.net/home",
+        tabelogUrl: "https://tabelog.com/tokyo/A1321/A132102/13003803/",
       },
       {
         name: "西洋菓子 おだふじ 大泉学園店",
@@ -2736,7 +3547,8 @@
         type: ["gift", "walk"],
         signature: "大泉クリーム、ケーキ、焼き菓子",
         note: "大泉学園の人気店。行列・売り切れも含めて北西側の代表候補。",
-        url: "https://odafuji.jp/"
+        url: "https://odafuji.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1321/A132103/13264488/",
       },
       {
         name: "欧風菓子 白鳥",
@@ -2792,7 +3604,8 @@
         type: ["top", "salon", "gift"],
         signature: "カウンターデザート、パフェ、ケーキ",
         note: "神楽坂のデザート体験系名店。ケーキ店とカフェの中間として重要。",
-        url: "https://www.atelierkohta.com/"
+        url: "https://www.atelierkohta.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1309/A130905/13136823/",
       },
       {
         name: "ル コワンヴェール 神楽坂",
@@ -2848,7 +3661,8 @@
         type: ["salon", "walk"],
         signature: "季節のケーキ、ランチ、カフェ",
         note: "新大塚の人気カフェ。ケーキ目的の北側候補として追加。",
-        url: "https://www.instagram.com/cafe_soror/"
+        url: "https://www.instagram.com/cafe_soror/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1323/A132302/13196568/",
       },
       {
         name: "ぽんでCOFFEE",
@@ -2862,21 +3676,8 @@
         type: ["salon", "walk"],
         signature: "ポンデケージョ、コーヒー、カフェ",
         note: "池袋で軽く休める個性派カフェ。COFFEE VALLEYと合わせて候補に。",
-        url: "https://pondecoffee.com/"
-      },
-      {
-        name: "RACINES DONUT & ICE CREAM",
-        category: "cafe",
-        area: "tokyo-north",
-        areaLabel: "東京 北側",
-        lat: 35.72904,
-        lng: 139.71317,
-        station: "池袋駅",
-        walk: "徒歩5分前後",
-        type: ["walk", "gift"],
-        signature: "ドーナツ、アイスクリーム、コーヒー",
-        note: "ケーキではないが池袋の甘味散歩で拾いたい人気店。",
-        url: "https://racines-park.com/"
+        url: "https://pondecoffee.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1305/A130501/13195754/",
       },
       {
         name: "タカセ 池袋本店",
@@ -2890,7 +3691,8 @@
         type: ["top", "salon", "gift"],
         signature: "クラシック洋菓子、パン、喫茶",
         note: "池袋の老舗洋菓子・喫茶。名店感はクラシック寄りだが北側地図では外しにくい。",
-        url: "https://www.takase-yogashi.com/"
+        url: "https://www.takase-yogashi.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1305/A130501/13003865/",
       },
       {
         name: "ラ・ファミーユ",
@@ -2918,7 +3720,8 @@
         type: ["top", "gift", "walk"],
         signature: "特製モンブラン、栗菓子、和洋菓子",
         note: "1954年創業、土浦駅前の老舗。名物モンブランは手土産にも散歩途中にも寄りやすい。",
-        url: "https://r.10pre.jp/kougetsudou/"
+        url: "https://r.10pre.jp/kougetsudou/",
+        tabelogUrl: "https://tabelog.com/ibaraki/A0802/A080202/8002172/",
       },
       {
         name: "SHIROIYA the PÂTISSERIE",
@@ -2932,7 +3735,8 @@
         type: ["top", "salon", "gift"],
         signature: "季節のタルト、生ショコラ、焼き菓子",
         note: "藤本壮介設計の白井屋ホテル併設。デザインホテルと前橋の街歩きに組み込める名店。",
-        url: "https://www.shiroiya.com/info_category/the-patisserie"
+        url: "https://www.shiroiya.com/info_category/the-patisserie",
+        tabelogUrl: "https://tabelog.com/gunma/A1001/A100101/10022104/",
       },
       {
         name: "コボリ洋菓子店",
@@ -2946,7 +3750,8 @@
         type: ["top", "gift"],
         signature: "レアチーズタルト、生デコレーション、焼き菓子",
         note: "1969年創業の宇都宮の老舗。売切続出のチーズタルト。ギフト箱対応で手土産向き。",
-        url: "https://www.kobori-cake.com/"
+        url: "https://www.kobori-cake.com/",
+        tabelogUrl: "https://tabelog.com/tochigi/A0901/A090101/9000300/",
       },
       {
         name: "シュール洋菓子店",
@@ -2960,7 +3765,68 @@
         type: ["top", "gift"],
         signature: "アーモンドケーキ、アップルパイ、マドレーヌ",
         note: "50年以上続く水戸の名店。名物アーモンドケーキは予約必至の手土産定番。駅からは車・バス向き。",
-        url: "https://www.almondcake.biz/"
+        url: "https://www.almondcake.biz/",
+        tabelogUrl: "https://tabelog.com/ibaraki/A0801/A080101/8001944/",
+      },
+      {
+        name: "PATISSERIE FLAGS",
+        category: "cake",
+        area: "north-kanto",
+        areaLabel: "北関東",
+        lat: 36.52713,
+        lng: 139.90850,
+        station: "宇都宮駅",
+        walk: "東口から車10分前後",
+        type: ["top", "gift"],
+        signature: "レアチーズ、ガトーショコラ、パナシェ",
+        note: "1946年創業の宇都宮の老舗。焼き菓子ギフトとオンラインショップが充実し手土産向き。駅からは車移動向き。",
+        url: "https://flags-cake.jp/",
+        tabelogUrl: "https://tabelog.com/tochigi/A0901/A090101/rank/",
+      },
+      {
+        name: "L'atelier it。",
+        category: "cake",
+        area: "north-kanto",
+        areaLabel: "北関東",
+        lat: 36.32079,
+        lng: 139.01603,
+        station: "高崎駅",
+        walk: "東口 徒歩4分前後",
+        type: ["top", "walk", "gift"],
+        signature: "造形的なプチガトー、季節のケーキ、焼き菓子",
+        note: "高崎駅東口すぐ、栄町の路地裏にあるパティスリー。北関東では珍しい駅近の目的地型。公式サイト未確認のため食べログを暫定リンク。",
+        url: "https://tabelog.com/gunma/A1001/A100102/10024136/",
+        tabelogUrl: "https://tabelog.com/gunma/A1001/A100102/10024136/",
+      },
+      {
+        name: "シマノコーヒー大正館",
+        category: "cafe",
+        area: "saitama",
+        areaLabel: "埼玉",
+        lat: 35.91892,
+        lng: 139.48264,
+        station: "本川越駅",
+        walk: "徒歩5分前後",
+        type: ["top", "walk", "salon"],
+        signature: "自家焙煎コーヒー（サイフォン抽出）、トースト",
+        note: "大正浪漫夢通りの純喫茶。川越の街歩きに組み込みやすく、埼玉側で数少ないイートイン目的地。不定休のため訪問前確認推奨。",
+        url: "https://www.shimanocoffeetaishokan.com/",
+        tabelogUrl: "https://tabelog.com/saitama/A1103/A110303/11002171/",
+      },
+      {
+        name: "湘南クリエイティブ・ガトー葦 平塚西口本店",
+        category: "cake",
+        area: "kanagawa",
+        areaLabel: "神奈川",
+        lat: 35.32614,
+        lng: 139.34913,
+        station: "平塚駅",
+        walk: "西口 徒歩3分前後",
+        type: ["top", "gift", "salon"],
+        signature: "フランス菓子全般、生ケーキ、焼き菓子",
+        note: "湘南に10店以上を展開する老舗の本店。カフェ併設でイートイン可。神奈川西側・湘南方面の手土産拠点。",
+        url: "https://ashi-cake.com/",
+        tabelogUrl: "https://tabelog.com/kanagawa/A1405/A140501/14000392/",
       },
       {
         name: "日本橋三越本店 デパ地下スイーツ",
@@ -3126,7 +3992,7 @@
         type: ["depachika", "gift", "walk"],
         signature: "渋谷駅直結スイーツ、惣菜、手土産",
         note: "渋谷のデパ地下・駅近スイーツ拠点。乗り換え前の手土産に強い。",
-        url: "https://www.tokyu-dept.co.jp/foodshow/"
+        url: "https://www.tokyu-dept.co.jp/shibuya_foodshow/"
       },
       {
         name: "渋谷スクランブルスクエア ショップ&レストラン",
@@ -3197,20 +4063,6 @@
         signature: "池袋西口スイーツ、和洋菓子、手土産",
         note: "池袋西口側のデパ地下ハブ。西武池袋と合わせて比較しやすい。",
         url: "https://www.tobu-dept.jp/ikebukuro/"
-      },
-      {
-        name: "エキュート赤羽 スイーツ",
-        category: "cake",
-        area: "tokyo-north",
-        areaLabel: "東京 北側",
-        lat: 35.77773,
-        lng: 139.72093,
-        station: "赤羽駅",
-        walk: "改札内",
-        type: ["depachika", "gift", "walk"],
-        signature: "駅ナカ手土産、和洋菓子、焼き菓子",
-        note: "百貨店ではないが北側の駅ナカ手土産拠点として実用性が高い。",
-        url: "https://www.ecute.jp/akabane"
       },
       {
         name: "東急百貨店 吉祥寺店 デパ地下スイーツ",
@@ -3337,6 +4189,80 @@
         signature: "柏駅直結スイーツ、手土産、食品売場",
         note: "千葉北西部の駅直結スイーツ拠点。柏方面を補完するハブ。",
         url: "https://www.takashimaya.co.jp/kashiwa/stemo/"
+      },
+      {
+        name: "パティシエ・シマ",
+        category: "cake",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68570,
+        lng: 139.73780,
+        station: "麹町駅",
+        walk: "徒歩1分",
+        type: ["top", "gift"],
+        signature: "フランス菓子、季節のアントルメ",
+        note: "麹町の名店。ケーキランキング常連で東京トップ級の実力。",
+        url: "https://www.patissiershima.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1308/A130803/13000285/",
+      },
+      {
+        name: "ダロワイヨ 自由が丘本店",
+        category: "cake",
+        area: "tokyo-south",
+        areaLabel: "東京 南側・城南",
+        lat: 35.60810,
+        lng: 139.66850,
+        station: "自由が丘駅",
+        walk: "徒歩4分前後",
+        type: ["top", "salon", "gift"],
+        signature: "オペラ、マカロン、フランス菓子",
+        note: "パリ発の老舗フランス菓子ブランドの日本本店。自由が丘パティスリー巡りに厚みを足す一店。",
+        url: "https://www.dalloyau.co.jp/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1317/A131703/13003207/",
+      },
+      {
+        name: "アンジェリーナ 原宿ハラカド店",
+        category: "cake",
+        area: "tokyo-south",
+        areaLabel: "東京 南側・城南",
+        lat: 35.67020,
+        lng: 139.70280,
+        station: "原宿駅",
+        walk: "徒歩1分",
+        type: ["top", "salon", "gift"],
+        signature: "モンブラン、ショコラ・ショー",
+        note: "1903年創業パリの老舗サロン・ド・テ。名物モンブランをその場で味わえる体験価値の高い店。",
+        url: "https://www.angelina-japan.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1306/A130601/13295940/",
+      },
+      {
+        name: "キルフェボン 東京ドームシティ店",
+        category: "cake",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.70570,
+        lng: 139.75180,
+        station: "後楽園駅/春日駅",
+        walk: "徒歩2分前後",
+        type: ["top", "gift", "walk"],
+        signature: "フルーツタルト",
+        note: "フルーツタルト専門店の代表格。手土産力・目的地性ともに強い。後楽園散歩に組み込みやすい。",
+        url: "https://www.quil-fait-bon.com/",
+        tabelogUrl: "https://tabelog.com/tokyo/A1310/A131003/13287788/",
+      },
+      {
+        name: "オクシタニアル 日本橋浜町店",
+        category: "cake",
+        area: "tokyo-east",
+        areaLabel: "東京 東側・都心東",
+        lat: 35.68508,
+        lng: 139.78828,
+        station: "浜町駅/水天宮前駅",
+        walk: "浜町駅 徒歩6分/水天宮前駅 徒歩5分",
+        type: ["top", "gift"],
+        signature: "マカロン、ムース、焼き菓子",
+        note: "2025年6月、水天宮前の旧店舗跡地からトルナーレ日本橋浜町へ移転リニューアルオープン。シェフ中山和大は旧店舗から継続。",
+        url: "https://tabelog.com/tokyo/A1302/A130204/13311036/"
       }
     ];
 
@@ -3357,7 +4283,6 @@
       "アトレ恵比寿 スイーツ": ["ラ・プレシューズ", "成城石井", "ア・ラ・カンパーニュ", "治一郎", "フルーツピークス", "ANTENOR", "東京ミルクチーズ工場", "ゴディバ"],
       "西武池袋本店 デパ地下スイーツ": ["AUDREY", "アンリ・シャルパンティエ", "ヴィタメール", "たねや", "とらや", "新宿高野", "銀座鈴屋", "福砂屋"],
       "東武百貨店 池袋店 デパ地下スイーツ": ["GRAMERCY NEWYORK", "FOUNDRY", "クラブハリエ", "アンテノール", "モロゾフ", "銀座文明堂", "榮太樓總本鋪", "叶 匠壽庵"],
-      "エキュート赤羽 スイーツ": ["赤羽あんこ", "東京ミルクチーズ工場", "ユーハイム", "文明堂", "ゴディバ", "銀座コージーコーナー", "船橋屋", "フロプレステージュ"],
       "東急百貨店 吉祥寺店 デパ地下スイーツ": ["アンリ・シャルパンティエ", "ユーハイム", "モロゾフ", "ゴディバ", "銀座あけぼの", "宗家 源吉兆庵", "叶 匠壽庵", "舟和"],
       "アトレ吉祥寺 スイーツ": ["a la campagne", "治一郎", "成城石井", "フロプレステージュ", "ゴディバ", "船橋屋", "コージーコーナー", "リンツ"],
       "横浜高島屋 デパ地下スイーツ": ["AUDREY", "GRAMERCY NEWYORK", "FOUNDRY", "クラブハリエ", "ヴィタメール", "たねや", "とらや", "鎌倉紅谷"],
@@ -3429,13 +4354,38 @@
       cafe: "カフェ"
     };
 
-    const map = L.map("map", { zoomControl: true }).setView([35.6762, 139.6503], 10);
+    const map = L.map("map", { zoomControl: true }).setView([35.6800, 139.7300], 10);
+    // コンテナサイズ変更(モバイルのレイアウト確定・回転・シート開閉)でLeafletの
+    // サイズ誤認による白地図/世界地図化を防ぐ
+    if (typeof ResizeObserver !== "undefined") {
+      new ResizeObserver(() => map.invalidateSize()).observe(document.getElementById("map"));
+    }
+    window.addEventListener("load", () => map.invalidateSize());
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "&copy; OpenStreetMap contributors"
     }).addTo(map);
 
-    const markerLayer = L.layerGroup().addTo(map);
+    function clusterIcon(cluster) {
+      const count = cluster.getChildCount();
+      const size = count >= 50 ? 54 : count >= 20 ? 48 : 42;
+      const level = count >= 50 ? "large" : count >= 20 ? "medium" : "small";
+      return L.divIcon({
+        html: `<div class="cake-cluster ${level}" style="width:${size}px;height:${size}px"><span>${count}</span></div>`,
+        className: "",
+        iconSize: [size, size]
+      });
+    }
+
+    const markerLayer = L.markerClusterGroup
+      ? L.markerClusterGroup({
+          showCoverageOnHover: false,
+          maxClusterRadius: 44,
+          spiderfyOnMaxZoom: true,
+          disableClusteringAtZoom: 15,
+          iconCreateFunction: clusterIcon
+        }).addTo(map)
+      : L.layerGroup().addTo(map);
     const markers = new Map();
     let activeCategory = "all";
     let activeType = "all";
@@ -3443,7 +4393,10 @@
     let filtered = shops.slice();
     let visitedSet = loadVisited();
     let visibleListLimit = 30;
-    const initialMapLimit = 80;
+    let sortMode = "default";
+    let userLocation = null;
+    let userLocationMarker = null;
+    let initialViewDone = false;
     const listPageSize = 30;
     const searchDebounceMs = 180;
     let searchTimer = 0;
@@ -3473,6 +4426,7 @@
       }
       saveVisited();
       updateVisitedControls(shopName);
+      updateSummary();
     }
 
     function updateVisitedControls(shopName) {
@@ -3498,21 +4452,6 @@
         return mergeShops([...baseShops, ...cafeShops, ...expandedShops], Array.isArray(extra) ? extra : []);
       } catch {
         return [...baseShops, ...cafeShops, ...expandedShops];
-      }
-    }
-
-    function saveExtraShops(extra) {
-      localStorage.setItem(storageKey, JSON.stringify(extra));
-      shops = loadShops();
-      render();
-    }
-
-    function getExtraShops() {
-      try {
-        const extra = JSON.parse(localStorage.getItem(storageKey) || "[]");
-        return Array.isArray(extra) ? extra : [];
-      } catch {
-        return [];
       }
     }
 
@@ -3667,14 +4606,96 @@
       return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(shop.name + " " + shop.station)}`;
     }
 
+    function formatDistance(km) {
+      if (!Number.isFinite(km)) return "";
+      return km < 1 ? `${Math.round(km * 1000)}m` : `${km.toFixed(km < 10 ? 1 : 0)}km`;
+    }
+
+    function distanceKm(shop) {
+      if (!userLocation) return null;
+      const toRad = value => value * Math.PI / 180;
+      const earthRadiusKm = 6371;
+      const dLat = toRad(shop.lat - userLocation.lat);
+      const dLng = toRad(shop.lng - userLocation.lng);
+      const lat1 = toRad(userLocation.lat);
+      const lat2 = toRad(shop.lat);
+      const a = Math.sin(dLat / 2) ** 2
+        + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+      return earthRadiusKm * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function topPriority(shop) {
+      if (shop.type.includes("top")) return 0;
+      if (isDepachika(shop)) return 1;
+      if (shop.type.includes("salon")) return 2;
+      if (shop.type.includes("gift")) return 3;
+      return 4;
+    }
+
+    function sortShops(items) {
+      const sorted = [...items];
+      if (sortMode === "nearby" && userLocation) {
+        sorted.sort((a, b) => (distanceKm(a) || Infinity) - (distanceKm(b) || Infinity));
+        return sorted;
+      }
+      sorted.sort((a, b) => topPriority(a) - topPriority(b) || a.name.localeCompare(b.name, "ja"));
+      return sorted;
+    }
+
+    function setUserLocationMarker() {
+      if (!userLocation) return;
+      if (userLocationMarker) {
+        userLocationMarker.setLatLng([userLocation.lat, userLocation.lng]);
+        return;
+      }
+      userLocationMarker = L.circleMarker([userLocation.lat, userLocation.lng], {
+        radius: 8,
+        color: "#245b43",
+        weight: 2,
+        fillColor: "#75a98e",
+        fillOpacity: 0.75
+      }).bindPopup("現在地の目安").addTo(map);
+    }
+
+    function setLocationButtonsLoading(loading) {
+      const currentButton = document.getElementById("currentLocationButton");
+      const nearbyButton = document.getElementById("nearbyButton");
+      currentButton.disabled = loading;
+      nearbyButton.disabled = loading;
+      if (loading) {
+        currentButton.textContent = "現在地を取得中";
+        return;
+      }
+      currentButton.textContent = "現在地へ";
+      nearbyButton.textContent = "近い順";
+    }
+
+    function moveToUserLocation() {
+      if (!userLocation) return;
+      setUserLocationMarker();
+      map.setView([userLocation.lat, userLocation.lng], Math.max(map.getZoom(), 14));
+      if (userLocationMarker) userLocationMarker.openPopup();
+    }
+
+    function updateSummary() {
+      const visibleVisitedCount = filtered.filter(isVisited).length;
+      document.getElementById("filteredCount").textContent = `${filtered.length}件`;
+      document.getElementById("visitedCount").textContent = `${visibleVisitedCount}/${filtered.length}件`;
+      document.getElementById("listCount").textContent = filtered.length
+        ? `${Math.min(visibleListLimit, filtered.length)}/${filtered.length}件`
+        : "0件";
+    }
+
     function popupHtml(shop) {
       const tags = shop.type.map(t => typeLabel[t]).join(" / ");
       const visited = isVisited(shop);
+      const distance = formatDistance(distanceKm(shop));
       return `
         <div class="popup">
           <h3>${shop.name}</h3>
           ${imageHtml(shop)}
           <p><strong>${categoryLabel[shop.category || "cake"]}</strong>・${shop.areaLabel}・${shop.station} ${shop.walk}</p>
+          ${distance ? `<p><strong>現在地から約${distance}</strong></p>` : ""}
           <p>${shop.signature}</p>
           ${shop.score ? `<p><strong>${shop.score}</strong></p>` : ""}
           <p>${shop.note}</p>
@@ -3683,12 +4704,19 @@
           <button class="visited-toggle ${visited ? "active" : ""}" type="button" data-visited-toggle="${encodeURIComponent(shop.name)}">${visited ? "行った ✓" : "未訪問"}</button><br>
           <a href="${shop.url}" target="_blank" rel="noreferrer">公式/店舗情報を見る</a><br>
           <a href="${googleMapUrl(shop)}" target="_blank" rel="noreferrer">Googleマップで開く</a>
+          ${shop.tabelogUrl ? `<br><a href="${shop.tabelogUrl}" target="_blank" rel="noreferrer">食べログで見る</a>` : ""}
         </div>
       `;
     }
 
     function setUpdateLog(message) {
       document.getElementById("updateLog").textContent = message;
+    }
+
+    function showLocationStatus(message) {
+      const status = document.getElementById("locationStatus");
+      status.textContent = message;
+      status.hidden = !message;
     }
 
     function normalize(text) {
@@ -3721,26 +4749,33 @@
 
     function render() {
       shops = loadShops();
-      filtered = shops.filter(matches);
+      filtered = sortShops(shops.filter(matches));
       markerLayer.clearLayers();
       markers.clear();
+      setUserLocationMarker();
 
-      const markerShops = filtered.length > initialMapLimit && activeType === "all"
-        ? filtered.filter(shop => shop.type.includes("top") || isDepachika(shop)).slice(0, initialMapLimit)
-        : filtered;
+      // クラスタ表示があるため全件をそのまま地図に載せる
+      const markerShops = filtered;
 
       markerShops.forEach((shop, index) => {
         const marker = L.marker([shop.lat, shop.lng], { icon: markerIcon(shop) })
           .bindPopup(popupHtml(shop));
+        marker.on("click", () => highlightCard(shop.name));
         marker.addTo(markerLayer);
         markers.set(shop.name, marker);
       });
 
       renderList();
-      if (markerShops.length) {
-        const bounds = L.latLngBounds(markerShops.map(s => [s.lat, s.lng]));
+      updateSummary();
+      // 初回は固定の東京中心ビュー(init時のsetView)のまま。北関東の外れ値に
+      // 引っ張られて広域になりすぎるのを避け、絞り込み操作時のみ範囲を合わせる。
+      if (initialViewDone && markerShops.length) {
+        const boundPoints = markerShops.map(s => [s.lat, s.lng]);
+        if (userLocation) boundPoints.push([userLocation.lat, userLocation.lng]);
+        const bounds = L.latLngBounds(boundPoints);
         map.fitBounds(bounds.pad(0.18), { maxZoom: 12, animate: false });
       }
+      initialViewDone = true;
     }
 
     function renderList() {
@@ -3748,12 +4783,23 @@
       list.innerHTML = "";
       const shown = filtered.slice(0, visibleListLimit);
 
+      if (!shown.length) {
+        list.innerHTML = `
+          <div class="empty-state">
+            <strong>条件に合う候補がありません</strong>
+            <p>検索語を短くするか、エリア・タイプ・訪問状況を戻してみてください。</p>
+          </div>
+        `;
+      }
+
       shown.forEach((shop, index) => {
         const article = document.createElement("article");
         const visited = isVisited(shop);
         const shouldShowInside = activeType === "depachika" && isDepachika(shop);
+        const distance = formatDistance(distanceKm(shop));
         article.className = `shop-card${visited ? " visited" : ""}`;
         article.tabIndex = 0;
+        article.dataset.shopName = shop.name;
         article.innerHTML = `
           ${imageHtml(shop)}
           <div class="shop-title">
@@ -3764,13 +4810,18 @@
             <span class="tag ${areaClass[shop.area]}">${shop.areaLabel}</span>
             <span class="tag">${categoryLabel[shop.category || "cake"]}</span>
             <span class="tag">${shop.station} ${shop.walk}</span>
+            ${distance ? `<span class="tag">現在地から約${distance}</span>` : ""}
             ${shop.score ? `<span class="tag">${shop.score}</span>` : ""}
             ${shop.type.map(t => `<span class="tag">${typeLabel[t]}</span>`).join("")}
           </div>
           <p class="note">${shop.signature}。${shop.note}</p>
+          ${shop.tabelogUrl ? `<a class="card-tabelog-link" href="${shop.tabelogUrl}" target="_blank" rel="noreferrer">食べログで見る</a>` : ""}
           ${shouldShowInside ? insideListHtml(shop) : ""}
         `;
-        article.addEventListener("click", () => focusShop(shop, article));
+        article.addEventListener("click", (event) => {
+          if (event.target.closest(".card-tabelog-link")) return;
+          focusShop(shop, article);
+        });
         article.addEventListener("keydown", (event) => {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
@@ -3787,6 +4838,35 @@
       if (hasMore) {
         moreButton.textContent = `さらに表示 (${Math.min(listPageSize, filtered.length - visibleListLimit)}件)`;
       }
+      updateSummary();
+    }
+
+    // Bottom sheet state (mobile)
+    let sheetState = 'peek';
+    function setSheetState(s) {
+      sheetState = s;
+      const el = document.getElementById('bottomSheet');
+      if (!el) return;
+      el.classList.remove('sheet-open', 'sheet-collapsed');
+      if (s === 'open') el.classList.add('sheet-open');
+      if (s === 'collapsed') el.classList.add('sheet-collapsed');
+    }
+
+    function highlightCard(shopName) {
+      document.querySelectorAll(".shop-card.active").forEach(el => el.classList.remove("active"));
+      const card = document.querySelector(`.shop-card[data-shop-name="${CSS.escape(shopName)}"]`);
+      if (card) {
+        card.classList.add("active");
+        card.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        if (window.matchMedia('(max-width: 900px)').matches) setSheetState('peek');
+        return;
+      }
+      const index = filtered.findIndex(shop => shop.name === shopName);
+      if (index !== -1 && index >= visibleListLimit) {
+        visibleListLimit = Math.ceil((index + 1) / listPageSize) * listPageSize;
+        renderList();
+        highlightCard(shopName);
+      }
     }
 
     function focusShop(shop, card) {
@@ -3800,7 +4880,14 @@
         markers.set(shop.name, marker);
       }
       map.setView([shop.lat, shop.lng], 15);
-      if (marker) marker.openPopup();
+      if (marker && markerLayer.zoomToShowLayer) {
+        markerLayer.zoomToShowLayer(marker, () => marker.openPopup());
+      } else if (marker) {
+        marker.openPopup();
+      }
+      if (window.matchMedia('(max-width: 900px)').matches) {
+        setSheetState('collapsed');
+      }
     }
 
     document.addEventListener("click", (event) => {
@@ -3824,6 +4911,79 @@
       render();
     }
 
+    function setActiveChip(groupSelector, dataName, value) {
+      document.querySelectorAll(`${groupSelector} .chip`).forEach(chip => {
+        chip.classList.toggle("active", chip.dataset[dataName] === value);
+      });
+    }
+
+    function resetFilters() {
+      activeCategory = "all";
+      activeType = "all";
+      activeVisited = "all";
+      sortMode = "default";
+      userLocation = null;
+      if (userLocationMarker) {
+        map.removeLayer(userLocationMarker);
+        userLocationMarker = null;
+      }
+      document.getElementById("searchInput").value = "";
+      document.getElementById("areaSelect").value = "all";
+      document.getElementById("currentLocationButton").classList.remove("active");
+      document.getElementById("nearbyButton").classList.remove("active");
+      document.getElementById("nearbySalonButton").classList.remove("active");
+      setActiveChip("#categoryChips", "category", "all");
+      setActiveChip("#typeChips", "type", "all");
+      setActiveChip("#visitedChips", "visited", "all");
+      resetAndRender();
+    }
+
+    function locateUser(options = {}) {
+      const { moveMap = true, sortNearby = false } = options;
+      const currentButton = document.getElementById("currentLocationButton");
+      const nearbyButton = document.getElementById("nearbyButton");
+      if (userLocation) {
+        if (sortNearby) {
+          sortMode = "nearby";
+          nearbyButton.classList.add("active");
+          resetAndRender();
+        }
+        currentButton.classList.add("active");
+        if (moveMap) moveToUserLocation();
+        return;
+      }
+      if (!navigator.geolocation) {
+        showLocationStatus("このブラウザでは現在地を取得できません。");
+        return;
+      }
+      setLocationButtonsLoading(true);
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          userLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          setUserLocationMarker();
+          currentButton.classList.add("active");
+          if (sortNearby) {
+            sortMode = "nearby";
+            nearbyButton.classList.add("active");
+          }
+          setLocationButtonsLoading(false);
+          showLocationStatus(sortNearby
+            ? "現在地を取得しました。一覧を近い順に並べ替えています。"
+            : "現在地を取得しました。地図を現在地へ移動しました。");
+          if (sortNearby) resetAndRender();
+          if (moveMap) moveToUserLocation();
+        },
+        () => {
+          setLocationButtonsLoading(false);
+          showLocationStatus("現在地を取得できませんでした。ブラウザの位置情報許可を確認してください。");
+        },
+        { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 }
+      );
+    }
+
     document.getElementById("showMoreShops").addEventListener("click", () => {
       visibleListLimit += listPageSize;
       renderList();
@@ -3834,6 +4994,15 @@
       searchTimer = setTimeout(resetAndRender, searchDebounceMs);
     });
     document.getElementById("areaSelect").addEventListener("change", resetAndRender);
+    document.getElementById("resetFilters").addEventListener("click", resetFilters);
+    document.getElementById("currentLocationButton").addEventListener("click", () => locateUser({ moveMap: true, sortNearby: false }));
+    document.getElementById("nearbyButton").addEventListener("click", () => locateUser({ moveMap: false, sortNearby: true }));
+    document.getElementById("nearbySalonButton").addEventListener("click", () => {
+      activeType = "salon";
+      setActiveChip("#typeChips", "type", "salon");
+      document.getElementById("nearbySalonButton").classList.add("active");
+      locateUser({ moveMap: false, sortNearby: true });
+    });
     document.getElementById("categoryChips").addEventListener("click", (event) => {
       const button = event.target.closest("[data-category]");
       if (!button) return;
@@ -3879,44 +5048,65 @@
       setUpdateLog(`${sourceLinks.length}件の候補探索リンクと${closureLinks.length}件の掲載店確認リンクを生成しました。ブラウザのポップアップ制限がある場合は、下のリンク一覧から開いてください。`);
     });
 
-    function parseUpdates(raw) {
-      if (raw.startsWith("[") || raw.startsWith("{")) {
-        const parsed = JSON.parse(raw);
-        return (Array.isArray(parsed) ? parsed : [parsed]).map(normalizeShopOrClosed);
-      }
-      return raw.split(/\n+/)
-        .map(line => line.trim())
-        .filter(line => line && !line.startsWith("店名,カテゴリ,"))
-        .map(parseCsvLine)
-        .map(normalizeShopOrClosed);
-    }
-
-    function normalizeShopOrClosed(row) {
-      if (row.status === "closed") return { name: row.name, status: "closed" };
-      return normalizeShop(row);
-    }
-
-    function parseCsvLine(line) {
-      const cols = line.split(",").map(col => col.trim());
-      if (cols.length < 11) throw new Error("CSVは 店名,カテゴリ,エリア,緯度,経度,最寄駅,徒歩,タイプ,代表菓子,メモ,URL,スコア任意 の形式で入力してください。");
-      return {
-        name: cols[0],
-        category: cols[1] === "カフェ" || cols[1] === "cafe" ? "cafe" : "cake",
-        areaLabel: cols[2],
-        area: areaFromLabel(cols[2]),
-        lat: cols[3],
-        lng: cols[4],
-        station: cols[5],
-        walk: cols[6],
-        type: cols[7].split("|").map(s => s.trim()).filter(Boolean),
-        signature: cols[8],
-        note: cols[9],
-        url: cols[10],
-        score: cols[11] || ""
-      };
+    // データ更新は運営者向け。?admin=1 のときだけ表示する
+    if (new URLSearchParams(location.search).has("admin")) {
+      document.getElementById("maintenancePanel").hidden = false;
     }
 
     render();
+
+    // Mobile bottom sheet drag & tap
+    (function() {
+      const mql = window.matchMedia('(max-width: 900px)');
+      const sheet = document.getElementById('bottomSheet');
+      const handle = document.getElementById('sheetHandle');
+      if (!sheet || !handle) return;
+
+      let dragStartY = 0, dragStartTY = 0, wasDrag = false;
+
+      function getTY() {
+        return new DOMMatrix(getComputedStyle(sheet).transform).m42;
+      }
+
+      handle.addEventListener('touchstart', e => {
+        if (!mql.matches) return;
+        dragStartY = e.touches[0].clientY;
+        dragStartTY = getTY();
+        wasDrag = false;
+        sheet.style.transition = 'none';
+      }, { passive: true });
+
+      handle.addEventListener('touchmove', e => {
+        if (!mql.matches) return;
+        const dy = e.touches[0].clientY - dragStartY;
+        if (Math.abs(dy) > 4) wasDrag = true;
+        sheet.style.transform = `translateY(${Math.max(0, dragStartTY + dy)}px)`;
+      }, { passive: true });
+
+      handle.addEventListener('touchend', () => {
+        if (!mql.matches) return;
+        const currentTY = getTY();
+        const h = sheet.offsetHeight;
+        sheet.style.transform = '';
+        sheet.style.transition = '';
+        if (currentTY < h * 0.12) setSheetState('open');
+        else if (currentTY > h * 0.72) setSheetState('collapsed');
+        else setSheetState('peek');
+      }, { passive: true });
+
+      handle.addEventListener('click', () => {
+        if (!mql.matches || wasDrag) return;
+        setSheetState(sheetState === 'open' ? 'peek' : 'open');
+      });
+
+      handle.addEventListener('keydown', e => {
+        if (!mql.matches) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setSheetState(sheetState === 'open' ? 'peek' : 'open');
+        }
+      });
+    })();
   </script>
 </body>
 </html>
