@@ -1,10 +1,22 @@
 <!doctype html>
 <html lang="ja">
 <head>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2515880566682877"
+    crossorigin="anonymous"></script>
+  <!-- ValueCommerce LinkSwitch (Auto MyLink) -->
+  <script type="text/javascript" language="javascript">
+      var vc_pid = "892734443";
+  </script><script type="text/javascript" src="//aml.valuecommerce.com/vcdal.js" async></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>関東有名ケーキ店・カフェマップ｜198店を地図で探す</title>
   <meta name="description" content="関東の有名パティスリー・カフェ198店を地図で探せる無料マップ。東京・神奈川・埼玉・千葉・北関東のエリアや、名店・散歩向き・手土産・デパ地下などの目的から絞り込み。現在地から近い順の並べ替えも。登録不要。">
+  <link rel="alternate" hreflang="ja" href="https://avansare.com/kanto-cake-cafe-map/">
+  <link rel="alternate" hreflang="en" href="https://avansare.com/kanto-cake-cafe-map/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://avansare.com/kanto-cake-cafe-map/zh/">
+  <link rel="alternate" hreflang="ko" href="https://avansare.com/kanto-cake-cafe-map/ko/">
+  <link rel="alternate" hreflang="x-default" href="https://avansare.com/kanto-cake-cafe-map/">
   <link rel="canonical" href="https://avansare.com/kanto-cake-cafe-map/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="関東有名ケーキ店・カフェマップ">
@@ -18,12 +30,13 @@
   <meta name="twitter:description" content="関東の有名パティスリー・カフェ198店を地図で。登録不要ですぐ使えます。">
   <meta name="twitter:image" content="https://avansare.com/kanto-cake-cafe-map/og-image.png">
   <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23b23a48"/><path d="M15 37h34l-4 12H19l-4-12z" fill="white"/><path d="M18 28h28l3 8H15l3-8z" fill="%23ffe5e8"/><path d="M23 21h18l4 6H19l4-6z" fill="white"/></svg>'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2515880566682877"
-    crossorigin="anonymous"></script>
 
   <script type="application/ld+json">
   {
@@ -109,17 +122,32 @@
   </script>
   <style>
     :root {
-      --ink: #1f2528;
-      --muted: #6b7378;
-      --line: #d8ded9;
-      --paper: #fbfaf6;
+      --font-serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+      --font-sans: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", -apple-system, sans-serif;
+      --font-display: "Cormorant Garamond", "Shippori Mincho", Georgia, serif;
+
+      --ink: #2b211b;          /* rich patisserie cocoa */
+      --ink-soft: #52433b;     /* warm chocolate */
+      --muted: #847469;        /* cafe mocha */
+      --line: #ecdcd0;         /* linen line */
+      --line-subtle: #f6efe8;
+      --paper: #fbf8f5;        /* cream patisserie background */
       --panel: #ffffff;
-      --accent: #b23a48;
-      --accent-dark: #832734;
-      --green: #2d6a4f;
-      --blue: #35628b;
-      --gold: #9a6b1f;
-      --shadow: 0 10px 28px rgba(31, 37, 40, 0.12);
+      --accent: #9e2a3b;       /* framboise rouge */
+      --accent-dark: #781926;
+      --accent-light: #fdf2f4;
+      --caramel: #b8782a;      /* caramel gold */
+      --caramel-light: #fef7ee;
+      --green: #2a6349;
+      --green-light: #eef8f1;
+      --blue: #2f567a;
+      --blue-light: #edf4fa;
+      --gold: #9e6b20;
+      --gold-light: #fef8ee;
+      --shadow: 0 4px 16px rgba(43, 33, 27, 0.06);
+      --shadow-hover: 0 8px 24px rgba(43, 33, 27, 0.12);
+      --radius: 12px;
+      --radius-sm: 8px;
     }
 
     * { box-sizing: border-box; }
@@ -128,147 +156,597 @@
       margin: 0;
       color: var(--ink);
       background: var(--paper);
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", "Noto Sans JP", sans-serif;
-      line-height: 1.55;
+      font-family: var(--font-sans);
+      letter-spacing: 0.015em;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .shop-name, .conquest-modal h2 {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      letter-spacing: 0.03em;
     }
 
     .app {
       display: grid;
-      grid-template-columns: minmax(360px, 430px) 1fr;
+      grid-template-columns: minmax(360px, 440px) 1fr;
       min-height: 100vh;
     }
 
     aside {
       background: var(--panel);
       border-right: 1px solid var(--line);
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       max-height: 100vh;
     }
 
-    header {
-      padding: 22px 22px 16px;
+    header.hero-header {
+      padding: 16px 18px 14px;
       border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fffcf9 0%, #fff 100%);
+    }
+
+    .hero-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .lang-switch-box {
+      margin-left: auto;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .lang-switch a,
+    .lang-switch span,
+    .lang-switch .lang-link {
+      padding: 3px 8px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: #6a5a4e;
+      border: 1px solid #ebdacf;
+      line-height: 1.25;
+      background: #faf6f0;
+      font-size: 11px;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .lang-switch a:hover,
+    .lang-switch .lang-link:hover {
+      background: #f0e6dc;
+      color: var(--accent);
+      border-color: #d8c2b2;
+    }
+
+    .lang-switch .is-on {
+      background: var(--accent);
+      color: #fff !important;
+      border-color: transparent !important;
+      box-shadow: 0 1px 3px rgba(158, 42, 59, 0.25);
+    }
+
+    .data-note {
+      margin: 8px 0 0;
+      padding: 6px 10px;
+      background: #fff8f0;
+      border: 1px solid #f9dfb6;
+      border-radius: 6px;
+      color: #8c5300;
+      font-size: 11.5px;
+      line-height: 1.5;
+    }
+
+    .brand-sub {
+      font-family: var(--font-sans);
+      font-size: 11.5px;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: var(--caramel);
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+
+    .brand-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 6px;
+    }
+
+    .brand-icon {
+      font-size: 24px;
+      line-height: 1;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.08));
     }
 
     h1 {
-      margin: 0 0 8px;
-      font-size: 25px;
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: clamp(21px, 4.4vw, 25px);
+      font-weight: 800;
       line-height: 1.25;
-      letter-spacing: 0;
+      letter-spacing: 0.02em;
+      color: var(--accent-dark);
     }
 
     .lead {
       margin: 0;
-      color: var(--muted);
-      font-size: 13px;
+      color: var(--ink-soft);
+      font-size: 12.5px;
+      font-weight: 500;
+      line-height: 1.6;
     }
 
     .controls {
-      padding: 14px 22px;
+      padding: 14px 18px 12px;
       display: grid;
-      gap: 12px;
-      border-bottom: 1px solid var(--line);
+      gap: 11px;
+      background: #fff;
     }
 
-    .control-label {
-      display: block;
-      font-weight: 700;
-      font-size: 12px;
-      margin-bottom: 6px;
+    /* 検索バー */
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
     }
 
-    input[type="search"],
-    select {
+    .search-input-wrap {
+      position: relative;
+      flex: 1;
+    }
+
+    .search-box .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    .search-box input[type="search"] {
       width: 100%;
       min-height: 38px;
       border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 8px 10px;
-      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 7px 10px 7px 32px;
+      background: #faf8f5;
       color: var(--ink);
       font: inherit;
-      font-size: 14px;
+      font-size: 13px;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .search-box input[type="search"]:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: #fff;
+    }
+
+    .locate-btn {
+      flex-shrink: 0;
+      min-height: 38px;
+      padding: 0 11px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: #faf8f5;
+      color: var(--ink-soft);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .locate-btn:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      color: var(--accent-dark);
+    }
+
+    .locate-btn.active {
+      border-color: var(--green);
+      background: var(--green-light);
+      color: var(--green);
+    }
+
+    /* カテゴリタブ（船旅ナビの方面タブ風） */
+    .category-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      background: #f4ece3;
+      padding: 3px;
+      border-radius: 10px;
+    }
+
+    .cat-tab {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      padding: 6px 4px;
+      font: inherit;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .cat-tab:hover {
+      color: var(--ink);
+    }
+
+    .cat-tab.active {
+      background: #ffffff;
+      color: var(--accent-dark);
+      box-shadow: 0 1px 4px rgba(43, 33, 27, 0.08);
+    }
+
+    .cat-tab .tab-count {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      background: #ede3d7;
+      padding: 1px 6px;
+      border-radius: 999px;
+      line-height: 1.3;
+    }
+
+    .cat-tab.active .tab-count {
+      background: var(--accent-light);
+      color: var(--accent-dark);
+    }
+
+    /* こだわりクイックフィルター（船旅ナビの quick-filters 風） */
+    .quick-filters-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .filter-header-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    .quick-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .quick-chip {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font: inherit;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px rgba(43, 33, 27, 0.03);
+      white-space: nowrap;
+    }
+
+    .quick-chip:hover {
+      border-color: var(--accent);
+      background: #fffafb;
+    }
+
+    .quick-chip.is-active {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(122, 27, 41, 0.22);
+    }
+
+    /* 詳細フィルター（アコーディオン） */
+    .more-filters {
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #fffdfb;
+      overflow: hidden;
+      transition: border-color 0.15s ease;
+    }
+
+    .more-filters-summary {
+      cursor: pointer;
+      padding: 8px 11px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      user-select: none;
+      transition: background 0.15s ease;
+    }
+
+    .more-filters-summary::-webkit-details-marker { display: none; }
+
+    .more-filters-summary:hover {
+      background: #fbf5ee;
+    }
+
+    .more-filters[open] .more-filters-summary {
+      border-bottom: 1px solid var(--line);
+      background: #fbf5ee;
+    }
+
+    .summary-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .summary-badge {
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--accent);
+      padding: 1px 6px;
+      border-radius: 999px;
+    }
+
+    .more-filters-content {
+      padding: 11px;
+      display: grid;
+      gap: 10px;
+      background: #fff;
+    }
+
+    .filter-section {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .filter-sec-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    .more-filters-content select {
+      width: 100%;
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      background: #faf8f5;
+      color: var(--ink);
+      font: inherit;
+      font-size: 12.5px;
     }
 
     .chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 5px;
     }
 
     .chip {
-      min-height: 34px;
+      min-height: 28px;
       border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      color: var(--ink);
-      padding: 7px 10px;
+      border-radius: 999px;
+      background: #faf8f5;
+      color: var(--ink-soft);
+      padding: 3px 9px;
       cursor: pointer;
-      font-size: 13px;
+      font-size: 11.5px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
     }
 
-    .tool-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 8px;
-      align-items: end;
-    }
-
-    .summary-strip {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .summary-item {
-      min-height: 52px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 8px 9px;
-      background: #fffdf9;
-    }
-
-    .summary-value {
-      display: block;
-      color: var(--ink);
-      font-weight: 800;
-      font-size: 16px;
-      line-height: 1.15;
-    }
-
-    .summary-label {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.25;
-    }
-
-    .utility-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    .chip:hover {
+      border-color: #c9bfb5;
+      background: #f4eee6;
     }
 
     .chip.active {
       border-color: var(--accent);
-      background: #fff2f3;
+      background: var(--accent-light);
       color: var(--accent-dark);
       font-weight: 700;
     }
 
-    .list-head {
+    .filter-action-row {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 4px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .action-button.reset-btn {
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 4px 9px;
+      min-height: 26px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .action-button.reset-btn:hover {
+      color: var(--accent-dark);
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    /* コントロールバー（船旅ナビの result-bar） */
+    .result-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      padding: 14px 22px 8px;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      padding: 10px 18px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #fdfbf9;
+      font-size: 12px;
     }
 
-    .list-head h2 {
-      margin: 0;
-      font-size: 15px;
-      letter-spacing: 0;
+    .result-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .result-bar-count {
+      color: var(--muted);
+      font-size: 11.5px;
+      margin-right: 2px;
+      white-space: nowrap;
+    }
+
+    .result-bar-count b {
+      font-size: 14px;
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .result-quick-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 3px 9px;
+      font: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      cursor: pointer;
+      line-height: 1.25;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .result-quick-btn:hover {
+      border-color: #c4b4a5;
+      transform: translateY(-1px);
+    }
+
+    .wishlist-quick-btn.active {
+      background: #fff9e6;
+      border-color: #f0c454;
+      color: #8a5d0b;
+    }
+
+    .visited-quick-btn.active {
+      background: #eff8f2;
+      border-color: #8bc39e;
+      color: #20633b;
+    }
+
+    .conquest-quick-btn {
+      background: linear-gradient(135deg, #fffef7 0%, #fff6d9 100%);
+      border-color: #f2d480;
+      color: #8c5200;
+    }
+
+    .conquest-quick-btn:hover {
+      border-color: #dca820;
+    }
+
+    .result-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .sort-field {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .sort-field select {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      padding: 4px 6px;
+      font: inherit;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink);
+      min-height: 28px;
+      cursor: pointer;
+    }
+
+    .sort-field select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .view-switch {
+      display: inline-flex;
+      background: #f4eee6;
+      border-radius: 7px;
+      padding: 2px;
+      border: 1px solid var(--line);
+    }
+
+    .view-btn {
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 24px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 5px;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.12s ease;
+    }
+
+    .view-btn.active {
+      background: #fff;
+      color: var(--accent-dark);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     .count {
@@ -279,8 +757,148 @@
 
     .shop-list {
       display: grid;
-      gap: 10px;
+      gap: 12px;
       padding: 0 14px 22px;
+      min-width: 0;
+      width: 100%;
+    }
+
+    /* グリッドビュー（写真・タイル重視で文字情報を厳選してすっきり表示） */
+    .shop-list.grid-view {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 0 12px 22px;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .shop-list.grid-view .shop-card {
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .shop-list.grid-view .shop-photo {
+      aspect-ratio: 4 / 3;
+      margin-bottom: 8px;
+    }
+
+    .shop-list.grid-view .shop-card-badge-header {
+      margin-bottom: 8px;
+      padding: 6px 8px;
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .shop-list.grid-view .shop-title {
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 6px;
+      min-width: 0;
+    }
+
+    .shop-list.grid-view .shop-name {
+      font-size: 13px;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.7em;
+      min-width: 0;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .shop-list.grid-view .shop-card-actions {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .shop-list.grid-view .visited-toggle,
+    .shop-list.grid-view .wishlist-toggle {
+      width: 100%;
+      min-width: 0;
+      text-align: center;
+      padding: 3px 2px;
+      font-size: 9.5px;
+      min-height: 24px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .shop-list.grid-view .meta {
+      gap: 3px;
+      margin: 4px 0 6px;
+      min-width: 0;
+    }
+
+    .shop-list.grid-view .tag {
+      font-size: 9.5px;
+      padding: 1px 5px;
+      min-height: 18px;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+
+    .shop-list.grid-view .card-highlight {
+      margin: 4px 0 0;
+      padding: 4px 6px;
+      font-size: 10.5px;
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .shop-list.grid-view .card-highlight-text {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .shop-list.grid-view .shop-card-desc {
+      display: none; /* グリッドタイルでは長文説明を隠して写真と店名を主役に */
+    }
+
+    .shop-list.grid-view .shop-card-footer {
+      margin-top: auto;
+      padding-top: 5px;
+      flex-wrap: nowrap;
+      min-width: 0;
+    }
+
+    .shop-list.grid-view .card-hours-hint,
+    .shop-list.grid-view .card-footer-links .card-mini-link {
+      display: none; /* グリッドタイルでは余計なボタンを隠しすっきりさせる */
+    }
+
+    .shop-list.grid-view .card-footer-links {
+      width: 100%;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    .shop-list.grid-view .card-map-action {
+      font-size: 10px;
+      color: var(--accent);
+      font-weight: 600;
+      white-space: nowrap;
     }
 
     .empty-state {
@@ -564,23 +1182,61 @@
 
     .shop-card {
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: var(--radius);
       background: #fff;
-      padding: 12px;
+      padding: 14px;
       cursor: pointer;
-      transition: border-color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease;
+      position: relative;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+      box-shadow: var(--shadow);
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
     }
 
     .shop-card:hover,
     .shop-card.active {
       border-color: var(--accent);
-      box-shadow: var(--shadow);
-      transform: translateY(-1px);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
     }
 
     .shop-card.visited {
-      border-color: #9fc7b2;
-      background: #fbfffc;
+      border-color: #b5d8c4;
+      background: linear-gradient(180deg, #fbfffc 0%, #fff 100%);
+    }
+
+    /* 写真がない店舗用のスリムなビジュアルヘッダー */
+    .shop-card-badge-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      background: linear-gradient(135deg, #fdf8f5 0%, #f7f0e8 100%);
+      border: 1px solid #ebdacf;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .shop-cat-icon {
+      font-size: 16px;
+      line-height: 1;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+    }
+
+    .shop-signature-lead {
+      font-size: 12px;
+      font-weight: 700;
+      color: #63361e;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+      min-width: 0;
     }
 
     .shop-photo {
@@ -609,15 +1265,24 @@
     .shop-title {
       display: flex;
       justify-content: space-between;
-      align-items: start;
-      gap: 10px;
+      align-items: flex-start;
+      gap: 8px;
       margin-bottom: 6px;
+      min-width: 0;
     }
 
     .shop-name {
       margin: 0;
       font-size: 15px;
       line-height: 1.35;
+      color: var(--ink);
+      font-family: var(--font-serif);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      min-width: 0;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      flex: 1 1 auto;
     }
 
     .rank {
@@ -633,15 +1298,20 @@
     }
 
     .visited-toggle {
-      min-height: 30px;
+      min-height: 28px;
       border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
+      border-radius: 999px;
+      background: #faf8f5;
       color: var(--muted);
-      padding: 5px 8px;
+      padding: 4px 10px;
       cursor: pointer;
       font-size: 12px;
       white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .visited-toggle:hover {
+      border-color: #c0b5a8;
     }
 
     .visited-toggle.active {
@@ -654,31 +1324,624 @@
     .meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin: 8px 0;
+      gap: 5px;
+      margin: 6px 0;
+      min-width: 0;
     }
 
     .tag {
       display: inline-flex;
       align-items: center;
-      min-height: 24px;
-      border-radius: 6px;
-      padding: 3px 7px;
-      background: #f4f6f4;
-      color: var(--muted);
-      font-size: 12px;
+      min-height: 22px;
+      border-radius: 999px;
+      padding: 2px 7px;
+      background: #f5efe8;
+      color: #61554c;
+      font-size: 11px;
+      border: 1px solid transparent;
+      line-height: 1.3;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
     }
 
-    .tag.area-tokyo { color: #7a2430; background: #fff0f1; }
-    .tag.area-kanagawa { color: #1d5d7c; background: #edf7fb; }
-    .tag.area-saitama { color: #2f654d; background: #eef8f1; }
-    .tag.area-chiba { color: #7a4c12; background: #fff5df; }
-    .tag.area-north { color: #4e4c88; background: #f1f0ff; }
+    .tag.area-tokyo { color: #7a2430; background: #fff0f1; border-color: #f7d2d6; }
+    .tag.area-kanagawa { color: #1d5d7c; background: #edf7fb; border-color: #d1eaf5; }
+    .tag.area-saitama { color: #2f654d; background: #eef8f1; border-color: #cee8d9; }
+    .tag.area-chiba { color: #7a4c12; background: #fff5df; border-color: #fbe6ba; }
+    .tag.area-north { color: #4e4c88; background: #f1f0ff; border-color: #dfdcff; }
+
+    .tag.station-tag {
+      background: #fdfbf7;
+      border-color: #ebdcd0;
+      color: #554433;
+    }
+
+    .tag.tag-status.status-open {
+      background: #eef8f1;
+      color: #245b43;
+      border-color: #bce2ca;
+      font-weight: 600;
+    }
+
+    .tag.tag-status.status-closed {
+      background: #f4f4f6;
+      color: #71717a;
+      border-color: #e4e4e7;
+    }
+
+    .tag.tag-score {
+      background: #fff8f0;
+      color: #b45309;
+      border-color: #fde68a;
+      font-weight: 700;
+    }
+
+    /* 実用情報バッジ */
+    .tag.badge-alert {
+      background: #fff4e5;
+      color: #9c5400;
+      border-color: #fed8a6;
+      font-weight: 600;
+    }
+
+    .tag.badge-reserve {
+      background: #f3e8ff;
+      color: #6b21a8;
+      border-color: #e2c5fd;
+      font-weight: 600;
+    }
+
+    .tag.badge-salon {
+      background: #e6f4ea;
+      color: #137333;
+      border-color: #ceead6;
+      font-weight: 600;
+    }
+
+    /* 必食・看板ハイライト（1行ですっきり見せる） */
+    .card-highlight {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin: 6px 0 4px;
+      padding: 5px 8px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, #fffaf3 0%, #fff4e5 100%);
+      border: 1px solid #fed8a6;
+      font-size: 11.5px;
+      line-height: 1.45;
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .card-highlight-label {
+      font-weight: 800;
+      color: #9c5400;
+      font-size: 10.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
+    }
+
+    .card-highlight-text {
+      color: #4a3419;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      min-width: 0;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* リストビューでの簡潔な説明（2行に収める） */
+    .shop-card-desc {
+      margin: 5px 0 0;
+      color: #63584e;
+      font-size: 11.5px;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-width: 0;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* タイル・カード下部の情報・ミニリンクフッター */
+    .shop-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px dashed var(--line);
+      font-size: 11px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .card-hours-hint {
+      color: #7c7267;
+      font-size: 10.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1 1 120px;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .card-footer-links {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    .card-mini-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      line-height: 1.3;
+      background: #f5f1eb;
+      color: #554433;
+      border: 1px solid #e2d8cd;
+      transition: all 0.12s ease;
+    }
+
+    .card-mini-link:hover {
+      background: #e9e2d8;
+      color: #222;
+    }
+
+    .card-mini-tabelog {
+      background: #fff8f0;
+      color: #d15600;
+      border-color: #fcd9b0;
+    }
+
+    .card-mini-tabelog:hover {
+      background: #fdecd8;
+    }
+
+    .card-mini-x {
+      background: #f0f3f5;
+      color: #111;
+      border-color: #d4dadf;
+      padding: 2px 5px;
+    }
+
+    .card-map-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 10.5px;
+      margin-left: 2px;
+    }
 
     .note {
       margin: 0;
       color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+
+    .must-eat-box {
+      margin: 9px 0 7px;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, #fffaf2 0%, #fff4e5 100%);
+      border: 1px solid #fed8a6;
       font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .must-eat-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 800;
+      color: #9c5400;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      margin-bottom: 2px;
+    }
+
+    .must-eat-text {
+      margin: 0;
+      color: #4a3419;
+      font-weight: 600;
+    }
+
+    .shop-external-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .ext-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.12s ease;
+      line-height: 1.2;
+    }
+
+    .ext-link-x {
+      background: #f0f3f5;
+      color: #0f1419;
+      border: 1px solid #d0d7de;
+    }
+    .ext-link-x:hover {
+      background: #e2e8ec;
+      color: #000;
+    }
+
+    .ext-link-blog {
+      background: #fdf5e6;
+      color: #8c5300;
+      border: 1px solid #f9dfb6;
+    }
+    .ext-link-blog:hover {
+      background: #faecd0;
+    }
+
+    .ext-link-tabelog {
+      background: #fff8f0;
+      color: #d15600;
+      border: 1px solid #fed8a6;
+    }
+    .ext-link-tabelog:hover {
+      background: #fde8cf;
+    }
+
+    .ext-link-map {
+      background: #edf7ed;
+      color: #1e4620;
+      border: 1px solid #c8e6c9;
+    }
+    .ext-link-map:hover {
+      background: #dff0df;
+    }
+
+    .ext-link-official {
+      background: #f5f5f7;
+      color: #333;
+      border: 1px solid #d2d2d7;
+    }
+    .ext-link-official:hover {
+      background: #e5e5ea;
+    }
+
+    /* Business strip (hours, closed days, eatin) */
+    .business-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px 8px;
+      margin: 6px 0 8px;
+      padding: 6px 8px;
+      background: #faf7f2;
+      border-radius: var(--radius-sm);
+      border: 1px solid #ebd9c7;
+      font-size: 11.5px;
+      line-height: 1.4;
+    }
+
+    .badge-today-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+    }
+    .badge-today-open {
+      background: #eef8f1;
+      color: #245b43;
+      border: 1px solid #bce2ca;
+    }
+    .badge-today-closed {
+      background: #f4f4f6;
+      color: #71717a;
+      border: 1px solid #e4e4e7;
+    }
+
+    .biz-detail {
+      color: #554433;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .biz-eatin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: #fff;
+      color: #6c4711;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #e0d0bf;
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+
+    /* Wishlist and actions */
+    .shop-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .wishlist-toggle {
+      min-height: 28px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #faf8f5;
+      color: var(--muted);
+      padding: 4px 10px;
+      cursor: pointer;
+      font-size: 12px;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .wishlist-toggle:hover {
+      border-color: #f5c065;
+      color: #b45309;
+    }
+    .wishlist-toggle.active {
+      border-color: #f59e0b;
+      background: #fffbeb;
+      color: #b45309;
+      font-weight: 700;
+      box-shadow: 0 1px 3px rgba(245, 158, 11, 0.15);
+    }
+
+    .chip-today.active {
+      border-color: #10b981;
+      background: #ecfdf5;
+      color: #047857;
+      font-weight: 700;
+    }
+
+    .chip-wishlist.active {
+      border-color: #f59e0b;
+      background: #fffbeb;
+      color: #b45309;
+      font-weight: 700;
+    }
+
+    /* Conquest Modal */
+    .conquest-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 15, 12, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .conquest-modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .conquest-modal {
+      background: #fffdfa;
+      border-radius: 16px;
+      max-width: 480px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px 20px 20px;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+      border: 1px solid #ebd9c7;
+      position: relative;
+    }
+    .conquest-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: #f4ede4;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      display: grid;
+      place-items: center;
+      color: #554433;
+      transition: background 0.12s ease;
+    }
+    .conquest-close-btn:hover {
+      background: #e5dacd;
+    }
+    .conquest-header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .conquest-icon {
+      font-size: 38px;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .conquest-header h2 {
+      margin: 0;
+      font-size: 19px;
+      color: var(--ink);
+      font-weight: 800;
+    }
+    .conquest-subtitle {
+      margin: 4px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .conquest-score-card {
+      background: linear-gradient(135deg, #fffcf0 0%, #fff6d6 100%);
+      border: 1px solid #f6d88c;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .conquest-score-main {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .conquest-score-number {
+      font-size: 36px;
+      font-weight: 900;
+      color: #925400;
+      line-height: 1;
+    }
+    .conquest-score-total {
+      font-size: 14px;
+      font-weight: 700;
+      color: #a8722b;
+    }
+    .conquest-score-pct {
+      font-size: 14px;
+      font-weight: 800;
+      color: #b45309;
+      background: #fff0c7;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-left: 4px;
+    }
+    .conquest-progress-bg {
+      height: 10px;
+      background: #e8d9c0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0 12px;
+    }
+    .conquest-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+    .conquest-badge-unlocked {
+      background: #fff;
+      border: 1px solid #f6d88c;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 13px;
+      color: #78350f;
+    }
+    .conquest-section {
+      margin-bottom: 18px;
+    }
+    .conquest-section h3 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .conquest-area-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .conquest-area-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+    .conquest-area-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      margin-bottom: 5px;
+    }
+    .conquest-area-name {
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .conquest-area-ratio {
+      color: var(--muted);
+      font-size: 10.5px;
+    }
+    .conquest-area-bar-bg {
+      height: 6px;
+      background: #f0ebe2;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .conquest-area-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+    .conquest-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .conquest-share-btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f1419;
+      border-color: #0f1419;
+      color: #fff;
+    }
+    .conquest-share-btn:hover {
+      background: #272c30;
+    }
+    .conquest-copy-btn {
+      width: 100%;
+      padding: 9px;
+      font-size: 13px;
+      text-align: center;
+    }
+    .conquest-toast {
+      margin: 8px 0 0;
+      text-align: center;
+      font-size: 12px;
+      color: #15803d;
+      font-weight: 700;
     }
 
     .card-tabelog-link {
@@ -902,6 +2165,7 @@
 
       .sheet-scroll-body {
         overflow-y: auto;
+        overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
         flex: 1 1 auto;
         min-height: 0;
@@ -944,6 +2208,12 @@
         padding-right: 10px;
       }
 
+      .shop-list.grid-view {
+        gap: 8px;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
       .tool-row {
         grid-template-columns: 1fr;
       }
@@ -957,105 +2227,463 @@
         margin-right: 10px;
       }
     }
+
+    /* 予約推奨セクション（アフィリエイト・提携ボックス） */
+    .booking-section {
+      margin: 28px 0 16px;
+      padding: 20px;
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      box-shadow: var(--shadow-sm);
+    }
+    .booking-header {
+      margin-bottom: 14px;
+    }
+    .booking-title {
+      margin: 0 0 4px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mincho);
+    }
+    .booking-subtitle {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .booking-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .booking-card {
+      background: #faf6f0;
+      border: 1px solid #ebd9c8;
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .booking-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .booking-badge {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #92400e;
+      background: #fef3c7;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+    .booking-card h4 {
+      margin: 0 0 5px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .booking-card p {
+      margin: 0 0 12px;
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--muted);
+      flex-grow: 1;
+    }
+    .booking-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--burgundy);
+      color: #ffffff !important;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.15s ease;
+      min-height: 36px;
+      text-align: center;
+    }
+    .booking-btn:hover {
+      background: #87232e;
+    }
+    .booking-disclosure {
+      font-size: 11px;
+      color: var(--muted-light);
+      text-align: right;
+      line-height: 1.4;
+    }
+    .header-pr-tag {
+      font-size: 10.5px;
+      color: var(--muted);
+      background: #f1ebd9;
+      padding: 2px 7px;
+      border-radius: 999px;
+      margin-left: 6px;
+      font-weight: 500;
+      letter-spacing: 0;
+      display: inline-block;
+    }
+
+    /* アフタヌーンティー・カフェ即時予約クイックバー */
+    .booking-quick-bar {
+      background: linear-gradient(135deg, #fffdfa 0%, #fcf5eb 100%);
+      border: 1px solid #e8d5be;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 10px 0 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: 0 1px 4px rgba(146, 64, 14, 0.06);
+    }
+    .b-quick-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+    .b-quick-badge {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #92400e;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      padding: 2px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .b-quick-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #451a03;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .b-quick-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      background: #92400e;
+      color: #ffffff !important;
+      font-size: 11.5px;
+      font-weight: 700;
+      border-radius: 6px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, transform 0.1s ease;
+      flex-shrink: 0;
+    }
+    .b-quick-btn:hover {
+      background: #78350f;
+      transform: translateY(-1px);
+    }
+
+    /* ショップカード内の予約ボタン */
+    .card-reserve-row {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed #e8d5be;
+    }
+    .card-reserve-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      width: 100%;
+      padding: 6px 10px;
+      background: #fffbf5;
+      border: 1px solid #d4a373;
+      border-radius: 6px;
+      color: #8c531b !important;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .card-reserve-btn:hover {
+      background: #8c531b;
+      color: #ffffff !important;
+      border-color: #8c531b;
+    }
+
+    /* 地図ポップアップ内の予約ボタン */
+    .popup-reserve-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 8px;
+      padding: 6px 10px;
+      background: #8c531b;
+      color: #ffffff !important;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .popup-reserve-btn:hover {
+      background: #704214;
+    }
   </style>
+  <script src="/tracker.js" defer></script>
 </head>
 <body>
   <div class="app">
     <aside id="bottomSheet">
       <div class="sheet-handle" id="sheetHandle" role="button" aria-label="リストを開閉" tabindex="0">
         <div class="sheet-handle-bar"></div>
-        <span class="sheet-handle-hint">フィルター・一覧</span>
+        <span class="sheet-handle-hint" data-i18n="sheetHandleHint">フィルター・一覧</span>
       </div>
       <div class="sheet-scroll-body">
-      <header>
-        <h1>関東有名ケーキ店・カフェマップ</h1>
-        <p class="lead">名店感、駅からの行きやすさ、散歩との組み合わせで選ぶための地図。ケーキ店とカフェを切り替えて表示できます。</p>
+      <header class="hero-header">
+        <div class="hero-top-row">
+          <div class="brand-sub" data-i18n="brandSub">KANTO PÂTISSERIE &amp; SALON DE THÉ GUIDE <span class="header-pr-tag">※提携リンクを含む</span></div>
+          <div class="lang-switch-box">
+            <nav class="lang-switch" aria-label="Language"><span class="lang-link is-on" data-lang="ja" lang="ja">日本語</span><a class="lang-link" data-lang="en" href="./en/" hreflang="en" lang="en">English</a><a class="lang-link" data-lang="zh" href="./zh/" hreflang="zh-Hans" lang="zh">简体中文</a><a class="lang-link" data-lang="ko" href="./ko/" hreflang="ko" lang="ko">한국어</a></nav>
+          </div>
+        </div>
+        <div class="brand-title-wrap">
+          <span class="brand-icon">🍰</span>
+          <h1 data-i18n="heroTitle">関東ケーキ・カフェ巡りマップ</h1>
+        </div>
+        <p class="lead" data-i18n="lead">東京・神奈川・埼玉・千葉・北関東の名店パティスリーから厳選喫茶・サロンまで198店。今日営業中の店や現在地から探せます。</p>
+        <p class="data-note" id="dataNoteJa" hidden data-i18n="dataNote"></p>
       </header>
 
       <section class="controls" aria-label="絞り込み">
-        <label>
-          <span class="control-label">店名・駅・おすすめで検索</span>
-          <input id="searchInput" type="search" placeholder="例: ミルフィーユ、清澄白河、モンブラン">
-        </label>
+        <!-- 検索バー -->
+        <div class="search-box">
+          <div class="search-input-wrap">
+            <span class="search-icon">🔍</span>
+            <input id="searchInput" type="search" placeholder="店名・最寄駅・代表菓子（モンブラン等）で検索" data-i18n-attr="placeholder:searchPlaceholder" autocomplete="off">
+          </div>
+          <button class="locate-btn" id="currentLocationButton" type="button" title="現在地を表示" data-i18n="locateBtn">📍 現在地</button>
+        </div>
+        <p class="location-status" id="locationStatus" hidden></p>
 
-        <div class="tool-row">
-          <label>
-            <span class="control-label">エリア</span>
-            <select id="areaSelect">
-              <option value="all">すべて</option>
-              <option value="tokyo-east">東京 東側・都心東</option>
-              <option value="tokyo-west">東京 西側・多摩</option>
-              <option value="tokyo-south">東京 南側・城南</option>
-              <option value="tokyo-north">東京 北側</option>
-              <option value="kanagawa">神奈川</option>
-              <option value="saitama">埼玉</option>
-              <option value="chiba">千葉</option>
-              <option value="north-kanto">北関東</option>
-            </select>
-          </label>
-          <button class="action-button" id="resetFilters" type="button">絞り込みクリア</button>
+        <!-- カテゴリタブ（船旅ナビの方面タブ風） -->
+        <div class="category-tabs" id="categoryChips">
+          <button class="cat-tab active" type="button" data-category="all">
+            <span class="tab-emoji">🍰</span>
+            <span class="tab-name" data-i18n="catAll">すべて</span>
+            <span class="tab-count" id="catCountAll">198</span>
+          </button>
+          <button class="cat-tab" type="button" data-category="cake">
+            <span class="tab-emoji">🍓</span>
+            <span class="tab-name" data-i18n="catCake">ケーキ店</span>
+            <span class="tab-count" id="catCountCake">151</span>
+          </button>
+          <button class="cat-tab" type="button" data-category="cafe">
+            <span class="tab-emoji">☕</span>
+            <span class="tab-name" data-i18n="catCafe">カフェ</span>
+            <span class="tab-count" id="catCountCafe">47</span>
+          </button>
         </div>
 
-        <div>
-          <span class="control-label">表示</span>
-          <div class="chips" id="categoryChips">
-            <button class="chip active" data-category="all">すべて</button>
-            <button class="chip" data-category="cake">ケーキ</button>
-            <button class="chip" data-category="cafe">カフェ</button>
+        <!-- アフタヌーンティー・カフェ即時予約バー (一休.com提携) -->
+        <div class="booking-quick-bar">
+          <div class="b-quick-left">
+            <span class="b-quick-badge" data-i18n="bookingBarBadge">🫖 一休.com提携</span>
+            <span class="b-quick-title" data-i18n="bookingBarTitle">憧れホテルのアフタヌーンティー＆極上カフェ予約</span>
+          </div>
+          <a href="https://restaurant.ikyu.com/area/tokyo/t-scene2981/" target="_blank" rel="noopener sponsored" class="b-quick-btn" data-i18n="bookingBarBtn">
+            プラン一覧・空席確認 ›
+          </a>
+        </div>
+
+        <!-- こだわりクイックフィルター（船旅ナビの quick-filters 風） -->
+        <div class="quick-filters-wrap">
+          <span class="filter-header-label" data-i18n="quickHeader">クイック絞り込み:</span>
+          <div class="quick-chips" id="quickChipsBar">
+            <button class="quick-chip" type="button" data-quick="today" data-i18n="quickToday">🟢 今日営業中</button>
+            <button class="quick-chip" type="button" data-quick="top" data-i18n="quickTop">👑 名店・百名店級</button>
+            <button class="quick-chip" type="button" data-quick="salon" data-i18n="quickSalon">🪑 イートイン可</button>
+            <button class="quick-chip" type="button" data-quick="shortcake" data-i18n="quickShortcake">🍓 ショートケーキ</button>
+            <button class="quick-chip" type="button" data-quick="montblanc" data-i18n="quickMontblanc">🌰 モンブラン</button>
+            <button class="quick-chip" type="button" data-quick="chocolat" data-i18n="quickChocolat">🍫 ショコラ</button>
+            <button class="quick-chip" type="button" data-quick="gift" data-i18n="quickGift">🎁 焼き菓子・手土産</button>
+            <button class="quick-chip" type="button" data-quick="depachika" data-i18n="quickDepachika">🏬 デパ地下</button>
           </div>
         </div>
 
-        <div>
-          <span class="control-label">タイプ</span>
-          <div class="chips" id="typeChips">
-            <button class="chip active" data-type="all">すべて</button>
-            <button class="chip" data-type="top">名店・遠征級</button>
-            <button class="chip" data-type="walk">散歩向き</button>
-            <button class="chip" data-type="gift">手土産</button>
-            <button class="chip" data-type="salon">イートイン/サロン</button>
-            <button class="chip" data-type="depachika">デパ地下</button>
-          </div>
-        </div>
+        <!-- 詳細フィルター（アコーディオン） -->
+        <details class="more-filters" id="moreFiltersDetails">
+          <summary class="more-filters-summary">
+            <span class="summary-left">
+              <span class="summary-icon">⚙️</span>
+              <span class="summary-title" data-i18n="filterSummaryTitle">エリア・曜日・詳細条件で絞り込む</span>
+            </span>
+            <span class="summary-badge" id="activeFilterBadge" hidden data-i18n="filterBadgeActive">条件適用中</span>
+          </summary>
+          <div class="more-filters-content">
+            <!-- エリア選択 -->
+            <div class="filter-section">
+              <label class="filter-sec-label" for="areaSelect" data-i18n="secArea">エリア選択:</label>
+              <select id="areaSelect">
+                <option value="all" data-i18n="areaAll">関東全域（すべて）</option>
+                <option value="tokyo-east" data-i18n="areaTokyoEast">東京 東側・都心東（銀座・日本橋・浅草・清澄白河など）</option>
+                <option value="tokyo-west" data-i18n="areaTokyoWest">東京 西側・多摩（吉祥寺・西荻窪・八王子など）</option>
+                <option value="tokyo-south" data-i18n="areaTokyoSouth">東京 南側・城南（自由が丘・目黒・世田谷など）</option>
+                <option value="tokyo-north" data-i18n="areaTokyoNorth">東京 北側（目白・文京・巣鴨・池袋など）</option>
+                <option value="kanagawa" data-i18n="areaKanagawa">神奈川（横浜・川崎・鎌倉など）</option>
+                <option value="saitama" data-i18n="areaSaitama">埼玉（さいたま・川口・春日部など）</option>
+                <option value="chiba" data-i18n="areaChiba">千葉（船橋・津田沼・松戸・流山など）</option>
+                <option value="north-kanto" data-i18n="areaNorthKanto">北関東（茨城・栃木・群馬）</option>
+              </select>
+            </div>
 
-        <div>
-          <span class="control-label">訪問状況</span>
-          <div class="chips" id="visitedChips">
-            <button class="chip active" data-visited="all">すべて</button>
-            <button class="chip" data-visited="visited">行った</button>
-            <button class="chip" data-visited="unvisited">未訪問</button>
-          </div>
-        </div>
+            <!-- 営業曜日 -->
+            <div class="filter-section">
+              <span class="filter-sec-label" data-i18n="secDay">曜日で探す:</span>
+              <div class="chips" id="dayChips">
+                <button class="chip active" data-day="all" data-i18n="dayAll">全日</button>
+                <button class="chip chip-today" data-day="today" data-i18n="dayToday">🟢 今日営業</button>
+                <button class="chip" data-day="1">月</button>
+                <button class="chip" data-day="2">火</button>
+                <button class="chip" data-day="3">水</button>
+                <button class="chip" data-day="4">木</button>
+                <button class="chip" data-day="5">金</button>
+                <button class="chip" data-day="6">土</button>
+                <button class="chip" data-day="0">日</button>
+              </div>
+            </div>
 
-        <div>
-          <span class="control-label">探し方</span>
-          <div class="utility-row">
-            <button class="action-button" id="currentLocationButton" type="button">現在地へ</button>
-            <button class="action-button" id="nearbyButton" type="button">近い順</button>
-            <button class="action-button" id="nearbySalonButton" type="button">イートインが近い順</button>
-          </div>
-          <p class="location-status" id="locationStatus" hidden></p>
-        </div>
+            <!-- 気分・スイーツ -->
+            <div class="filter-section">
+              <span class="filter-sec-label" data-i18n="secMood">気分・スイーツの種類:</span>
+              <div class="chips mood-chips" id="moodChips">
+                <button class="chip active" data-mood="all" data-i18n="moodAll">すべて</button>
+                <button class="chip" data-mood="montblanc" data-i18n="moodMontblanc">🌰 モンブラン</button>
+                <button class="chip" data-mood="shortcake" data-i18n="moodShortcake">🍓 ショートケーキ</button>
+                <button class="chip" data-mood="chocolat" data-i18n="moodChocolat">🍫 ショコラ</button>
+                <button class="chip" data-mood="millefeuille" data-i18n="moodMillefeuille">🥧 ミルフィーユ・タルト</button>
+                <button class="chip" data-mood="parfait" data-i18n="moodParfait">🍨 パフェ・アイス</button>
+                <button class="chip" data-mood="baked" data-i18n="moodBaked">🍪 焼き菓子・手土産</button>
+                <button class="chip" data-mood="cheesecake" data-i18n="moodCheesecake">🧀 チーズケーキ</button>
+                <button class="chip" data-mood="retro_cafe" data-i18n="moodRetroCafe">☕ 喫茶・珈琲</button>
+              </div>
+            </div>
 
-        <div class="summary-strip" aria-label="表示状況">
-          <div class="summary-item">
-            <span class="summary-value" id="filteredCount">0件</span>
-            <span class="summary-label">表示候補</span>
+            <!-- タイプ -->
+            <div class="filter-section">
+              <span class="filter-sec-label" data-i18n="secType">利用タイプ:</span>
+              <div class="chips" id="typeChips">
+                <button class="chip active" data-type="all" data-i18n="typeAll">すべて</button>
+                <button class="chip" data-type="top" data-i18n="typeTop">👑 名店・遠征級</button>
+                <button class="chip" data-type="walk" data-i18n="typeWalk">🚶 散歩向き</button>
+                <button class="chip" data-type="gift" data-i18n="typeGift">🎁 手土産</button>
+                <button class="chip" data-type="salon" data-i18n="typeSalon">🪑 イートイン/サロン</button>
+                <button class="chip" data-type="depachika" data-i18n="typeDepachika">🏬 デパ地下</button>
+              </div>
+            </div>
+
+            <!-- 保存・訪問状況 -->
+            <div class="filter-section">
+              <span class="filter-sec-label" data-i18n="secVisited">保存・訪問状況:</span>
+              <div class="chips" id="visitedChips">
+                <button class="chip active" data-visited="all" data-i18n="visitedAll">すべて</button>
+                <button class="chip chip-wishlist" data-visited="wishlist">⭐️ <span data-i18n="visitedWishlist">行きたい</span> (<span id="wishlistFilterCount">0</span>)</button>
+                <button class="chip" data-visited="visited">✓ <span data-i18n="visitedVisited">行った</span> (<span id="visitedFilterCount">0</span>)</button>
+                <button class="chip" data-visited="unvisited" data-i18n="visitedUnvisited">未訪問</button>
+              </div>
+            </div>
+
+            <div class="filter-action-row">
+              <button class="action-button reset-btn" id="resetFilters" type="button" data-i18n="btnClearFilters">絞り込みをすべてクリア</button>
+            </div>
           </div>
-          <div class="summary-item">
-            <span class="summary-value" id="visitedCount">0件</span>
-            <span class="summary-label">行った</span>
-          </div>
-        </div>
+        </details>
+
+        <!-- 互換用非表示ボタン -->
+        <button id="nearbyButton" type="button" hidden></button>
+        <button id="nearbySalonButton" type="button" hidden></button>
       </section>
 
-      <div class="list-head">
-        <h2>候補一覧</h2>
-        <span class="count" id="listCount"></span>
-      </div>
+      <!-- コントロールバー（船旅ナビの result-bar） -->
+      <section class="result-bar">
+        <div class="result-bar-left">
+          <span class="result-bar-count"><span data-i18n="showingCount">表示中:</span> <b id="filteredCount">0件</b></span>
+          <button id="summaryWishlistBtn" class="result-quick-btn wishlist-quick-btn" type="button" title="行きたい店のみ表示" aria-pressed="false">
+            <span>⭐️ <span data-i18n="visitedWishlist">行きたい</span></span> <b id="wishlistCount">0件</b>
+          </button>
+          <button id="summaryVisitedBtn" class="result-quick-btn visited-quick-btn" type="button" title="行った店のみ表示" aria-pressed="false">
+            <span>✓ <span data-i18n="visitedVisited">行った</span></span> <b id="visitedCount">0件</b>
+          </button>
+          <button id="openConquestBtn" class="result-quick-btn conquest-quick-btn" type="button" title="制覇マップと称号を見る">
+            <span data-i18n="conquestRateLabel">🏆 制覇率</span> <b id="conquestRate">0%</b>
+          </button>
+        </div>
+        <div class="result-bar-right">
+          <div class="sort-field">
+            <label for="sortSelect" data-i18n="sortLabel">並び順:</label>
+            <select id="sortSelect">
+              <option value="default" data-i18n="sortDefault">おすすめ順</option>
+              <option value="nearby" data-i18n="sortNearby">現在地から近い順</option>
+              <option value="salonNearby" data-i18n="sortSalonNearby">イートインが近い順</option>
+            </select>
+          </div>
+          <div class="view-switch" role="group" aria-label="表示形式の切り替え">
+            <button class="view-btn active" id="viewListBtn" type="button" aria-label="リスト表示" title="リスト表示" data-i18n-attr="title:viewList,aria-label:viewList">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3.5a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1zm0 4.5a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1zm0 4.5a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1z"/></svg>
+            </button>
+            <button class="view-btn" id="viewGridBtn" type="button" aria-label="グリッド表示" title="グリッド表示" data-i18n-attr="title:viewGrid,aria-label:viewGrid">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 2.5A1 1 0 0 1 2.5 1.5h4A1 1 0 0 1 7.5 2.5v4A1 1 0 0 1 6.5 7.5h-4A1 1 0 0 1 1.5 6.5v-4zm7 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4zm-7 7A1 1 0 0 1 2.5 8.5h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4zm7 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4z"/></svg>
+            </button>
+          </div>
+          <span class="count" id="listCount" hidden></span>
+        </div>
+      </section>
       <section class="shop-list" id="shopList" aria-label="ケーキ店・カフェ一覧"></section>
       <div class="button-row list-more-row" id="listMoreRow" hidden>
-        <button class="action-button" id="showMoreShops" type="button">さらに表示</button>
+        <button class="action-button" id="showMoreShops" type="button" data-i18n="btnShowMore">さらに表示</button>
       </div>
+
+      <!-- アフタヌーンティー＆ホテルカフェ 予約セクション (一休.com等提携) -->
+      <section class="booking-section" aria-label="提携予約サービスのご案内">
+        <div class="booking-header">
+          <h3 class="booking-title">
+            <span>🫖</span> <span data-i18n="bookingSectionTitle">アフタヌーンティー・カフェ＆ホテルステイのご予約</span>
+          </h3>
+          <p class="booking-subtitle" data-i18n="bookingSectionSubtitle">名門ホテルのラウンジで優雅なティータイムを過ごしたい日や、人気パティスリー巡りを兼ねた週末ステイにおすすめの公式提携予約サービスです。</p>
+        </div>
+        <div class="booking-grid">
+          <div class="booking-card">
+            <span class="booking-badge" data-i18n="bookingCard1Badge">憧れのホテルラウンジ＆カフェ</span>
+            <h4 data-i18n="bookingCard1Title">一休.com レストラン アフタヌーンティー</h4>
+            <p data-i18n="bookingCard1Desc">東京・横浜などの一流ホテルラウンジやパティスリーカフェのアフタヌーンティーを事前Web予約。乾杯シャンパン付きや窓際確約プランも充実。</p>
+            <a href="https://restaurant.ikyu.com/area/tokyo/t-scene2981/" target="_blank" rel="noopener sponsored" class="booking-btn" data-i18n="bookingCard1Btn">
+              一休.comでアフタヌーンティーを探す →
+            </a>
+          </div>
+          <div class="booking-card">
+            <span class="booking-badge" data-i18n="bookingCard2Badge">スイーツ＆極上カフェ付きステイ</span>
+            <h4 data-i18n="bookingCard2Title">一休.com ホテル・旅館宿泊予約</h4>
+            <p data-i18n="bookingCard2Desc">名門パティスリー併設ホテルやラウンジ利用特典付きプランを厳選。記念日や女子旅、東京・横浜のスイーツ巡り拠点に最適です。</p>
+            <a href="https://www.ikyu.com/" target="_blank" rel="noopener sponsored" class="booking-btn" data-i18n="bookingCard2Btn">
+              一休.comで憧れの宿を探す →
+            </a>
+          </div>
+        </div>
+        <div class="booking-disclosure" data-i18n="bookingDisclosure">
+          ※本ページはプロモーション・提携リンクを含みます。各予約サイトにてプラン詳細をご確認いただけます。
+        </div>
+      </section>
 
       <details class="maintenance" id="maintenancePanel" hidden>
         <summary>データ更新</summary>
@@ -1113,7 +2741,8 @@
 
       <section class="area-guide" aria-label="エリア別ガイド">
         <h2>エリア別ガイド</h2>
-        <p class="ag-lead">掲載している198店を、エリアごとの特徴とあわせて紹介します。店名の下は「代表菓子・特徴」と「掲載した理由」です。地図で場所を確認したい場合は、上の検索欄に店名を入力してください。</p>
+        <p class="ag-lead">掲載している198店を、エリアごとの特徴とあわせて紹介します。店名の下は「代表菓子・特徴」と「掲載した理由」です。地図で場所を確認したい場合は、上の検索欄に店名を入力してください。<br>
+        <strong>📖 個別エリアの詳しいガイドページ：</strong><a href="area/">エリア別ガイド一覧</a>（<a href="area/tokyo-east.html">都心東52店</a>・<a href="area/tokyo-south.html">城南41店</a>・<a href="area/tokyo-west.html">多摩38店</a>・<a href="area/tokyo-north.html">城北27店</a>・<a href="area/kanagawa.html">神奈川15店</a>・<a href="area/saitama.html">埼玉10店</a>・<a href="area/chiba.html">千葉8店</a>・<a href="area/kitakanto.html">北関東7店</a>）</p>
 
         <h3>東京 東側・都心東（52店）</h3>
         <p class="ag-intro">銀座・日本橋から浅草・谷根千、清澄白河までを含むエリアで、掲載数は52店と最多です。性格の異なる街が並んでいるのが特徴で、<strong>銀座（8店）</strong>は銀座ウエストや資生堂パーラーといった老舗洋菓子・喫茶と、フレデリック・カッセルなど百貨店に入る名店が重なるエリア。<strong>日本橋・三越前（4店）</strong>と<strong>東京駅（5店）</strong>は手土産の拠点で、デパ地下・駅ナカのスイーツ売場がまとまっています。一方<strong>清澄白河（5店）</strong>はブルーボトルコーヒーやARiSE COFFEE ROASTERSを中心としたコーヒーの街、<strong>蔵前（4店）</strong>はダンデライオン・チョコレートや喫茶 半月など、歩きながら寄りたい店が集まります。兜町のtealやpatisserie ease、日暮里・谷根千のイナムラショウゾウとカヤバ珈琲のように、ケーキ店とカフェを一日で組み合わせやすいのもこのエリアです。</p>
@@ -1352,7 +2981,7 @@
           <summary>千葉の掲載店8件を見る</summary>
           <ul class="ag-list">
             <li><b>ル・パティシエ ヨコヤマ 京成大久保店</b><span class="ag-meta">京成大久保駅 徒歩5分前後／名店・遠征級・手土産</span><span class="ag-desc">岩シュー、ロールケーキ、生菓子。千葉の有名店。売り切れ注意。</span></li>
-            <li><b>Rêve</b><span class="ag-meta">検見川浜駅 徒歩2分前後／名店・遠征級・手土産</span><span class="ag-desc">生菓子、焼き菓子、アントルメ。千葉側の有名候補。駅近で行きやすい。※2026年8月時点で公式サイト reve1972.co.jp がDNS解決できず（NXDOMAIN）。閉店は未確認のため掲載を維持。訪問前に営業確認を推奨。</span></li>
+            <li><b>Rêve</b><span class="ag-meta">検見川浜駅 徒歩2分前後／名店・遠征級・手土産</span><span class="ag-desc">生菓子、焼き菓子、アントルメ。千葉側の有名候補。駅近で行きやすい。※2026年8月・11月時点で公式サイト reve1972.co.jp がDNS解決できず（NXDOMAIN）、Web検索でも最新の営業情報を確認できず。閉店は未確認のため掲載を維持。訪問前に営業確認を推奨。</span></li>
             <li><b>レタンプリュス 本店</b><span class="ag-meta">流山おおたかの森駅/流山セントラルパーク駅 徒歩12分前後／名店・遠征級・手土産</span><span class="ag-desc">モンブラン、カンテサンス、ガトーマロン、焼き菓子。流山おおたかの森の名店で、食べログ スイーツ百名店に複数回選出。千葉北西部では遠征先の筆頭候補。年始を除き無休で、柏高島屋にも売場があるため手土産の受け皿としても使いやすい。</span></li>
             <li><b>そごう千葉店 デパ地下スイーツ</b><span class="ag-meta">千葉駅 徒歩3分前後／デパ地下・手土産・散歩向き</span><span class="ag-desc">千葉駅前スイーツ、和洋菓子、手土産。千葉駅周辺のデパ地下スイーツ拠点。県内手土産の確認に便利。</span></li>
             <li><b>柏高島屋ステーションモール デパ地下スイーツ</b><span class="ag-meta">柏駅 徒歩1分／デパ地下・手土産・散歩向き</span><span class="ag-desc">柏駅直結スイーツ、手土産、食品売場。千葉北西部の駅直結スイーツ拠点。柏方面を補完するハブ。</span></li>
@@ -1379,12 +3008,12 @@
       </section>
 
       <footer class="panel-footer">
-        <p>駅徒歩は実用目安です。営業時間・定休日・売り切れ・予約可否は訪問前に公式または店舗SNSで確認してください。「行った」の記録はこの端末のブラウザにのみ保存されます。</p>
+        <p data-i18n="footerNote">駅徒歩は実用目安です。営業時間・定休日・売り切れ・予約可否は訪問前に公式または店舗SNSで確認してください。「行った」の記録はこの端末のブラウザにのみ保存されます。</p>
         <nav class="panel-footer-links" aria-label="サイト情報">
-          <a href="./privacy.html">プライバシーポリシー</a>
-          <a href="./contact.html">お問い合わせ</a>
-          <a href="./about.html">運営者情報</a>
-          <a href="https://avansare.com/">運営: Avansare</a>
+          <a href="./privacy.html" data-i18n="footerLinkPrivacy">プライバシーポリシー</a>
+          <a href="./contact.html" data-i18n="footerLinkContact">お問い合わせ</a>
+          <a href="./about.html" data-i18n="footerLinkAbout">運営者情報</a>
+          <a href="https://avansare.com/" data-i18n="footerLinkPortal">運営: Avansare</a>
         </nav>
       </footer>
       </div><!-- /.sheet-scroll-body -->
@@ -1393,15 +3022,99 @@
     <main>
       <div id="map" role="application" aria-label="関東有名ケーキ店・カフェマップ"></div>
       <div class="legend" aria-label="地図アイコン凡例">
-        <span class="legend-item"><span class="legend-icon cake">🍰</span>ケーキ</span>
-        <span class="legend-item"><span class="legend-icon cafe">☕</span>カフェ</span>
-        <span class="legend-item"><span class="legend-icon depachika">🎁</span>デパ地下</span>
+        <span class="legend-item"><span class="legend-icon cake">🍰</span><span data-i18n="catCake">ケーキ</span></span>
+        <span class="legend-item"><span class="legend-icon cafe">☕</span><span data-i18n="catCafe">カフェ</span></span>
+        <span class="legend-item"><span class="legend-icon depachika">🎁</span><span data-i18n="typeDepachika">デパ地下</span></span>
       </div>
-      <div class="map-note">駅徒歩は実用目安です。営業時間・定休日・売り切れ・予約可否は訪問前に公式または店舗SNSで確認してください。</div>
+      <div class="map-note" data-i18n="mapNote">駅徒歩は実用目安です。営業時間・定休日・売り切れ・予約可否は訪問前に公式または店舗SNSで確認してください。</div>
     </main>
   </div>
 
+  <!-- 制覇マップ モーダル -->
+  <div class="conquest-modal-backdrop" id="conquestModal" role="dialog" aria-modal="true" aria-labelledby="conquestTitle" hidden>
+    <div class="conquest-modal">
+      <button class="conquest-close-btn" id="closeConquestBtn" type="button" aria-label="閉じる">×</button>
+      <div class="conquest-header">
+        <span class="conquest-icon">🏆</span>
+        <h2 id="conquestTitle" data-i18n="conquestTitle">私の関東ケーキ制覇マップ</h2>
+        <p class="conquest-subtitle" data-i18n="conquestSubtitle">訪問した名店・サロンの記録と獲得称号</p>
+      </div>
+
+      <div class="conquest-score-card">
+        <div class="conquest-score-main">
+          <span class="conquest-score-number" id="modalConquestCount">0</span>
+          <span class="conquest-score-total">/ <span id="modalTotalShops">198</span> 店</span>
+          <span class="conquest-score-pct" id="modalConquestPct">0.0%</span>
+        </div>
+        <div class="conquest-progress-bg">
+          <div class="conquest-progress-bar" id="modalProgressBar" style="width: 0%;"></div>
+        </div>
+        <div class="conquest-badge-unlocked" id="modalTitleBadge">
+          🍰 スイーツ探検の旅立ち
+        </div>
+      </div>
+
+      <div class="conquest-section">
+        <h3 data-i18n="conquestAreaHeading">📍 エリア別制覇状況</h3>
+        <div class="conquest-area-grid" id="modalAreaGrid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <div class="conquest-actions">
+        <button class="action-button primary conquest-share-btn" id="shareToXBtn" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px; margin-right:4px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <span data-i18n="conquestShareX">𝕏 で制覇率をポスト</span>
+        </button>
+        <button class="action-button conquest-copy-btn" id="copyConquestBtn" type="button" data-i18n="conquestCopyText">
+          📋 記録テキストをコピー
+        </button>
+      </div>
+      <p class="conquest-toast" id="conquestToast" hidden data-i18n="conquestToast">クリップボードにコピーしました！</p>
+    </div>
+  </div>
+
+  <script src="./i18n.js"></script>
   <script>
+    const LOCALE = window.LOCALE || "ja";
+    const I18N = (window.I18N_STRINGS && window.I18N_STRINGS[LOCALE]) || {};
+    const I18N_JA = (window.I18N_STRINGS && window.I18N_STRINGS.ja) || {};
+    const t = k => (k in I18N ? I18N[k] : I18N_JA[k]) ?? "";
+    const has = k => k in I18N || k in I18N_JA;
+
+    function applyI18n() {
+      document.documentElement.lang = t("htmlLang") || "ja";
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        if (has(el.dataset.i18n)) el.textContent = t(el.dataset.i18n);
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach(el => {
+        el.dataset.i18nAttr.split(",").forEach(pair => {
+          const [attr, key] = pair.split(":").map(x => x.trim());
+          if (has(key)) el.setAttribute(attr, t(key));
+        });
+      });
+      const noteEl = document.getElementById("dataNoteJa");
+      if (noteEl) {
+        const noteText = t("dataNote");
+        if (noteText) {
+          noteEl.textContent = noteText;
+          noteEl.hidden = false;
+        } else {
+          noteEl.hidden = true;
+        }
+      }
+      const dayArr = t("days");
+      if (Array.isArray(dayArr)) {
+        document.querySelectorAll("#dayChips [data-day]").forEach(el => {
+          const d = el.dataset.day;
+          if (d !== "all" && d !== "today") {
+            const num = parseInt(d, 10);
+            if (!isNaN(num) && dayArr[num]) el.textContent = dayArr[num];
+          }
+        });
+      }
+    }
+
     const baseShops = [
       {
         name: "フレデリック・カッセル 銀座三越店",
@@ -1413,6 +3126,7 @@
         walk: "徒歩1分",
         type: ["top", "gift"],
         signature: "ミルフィーユ・ヴァニーユ、フランス菓子",
+        mustEat: "ミルフィーユ・ヴァニーユ（最高級タヒチバニラ香る極上クリームとサクサクパイの代名詞）",
         note: "東側広義なら最上位候補。百貨店内で買いやすい。",
         url: "https://www.frederic-cassel.jp/",
         tabelogUrl: "https://tabelog.com/tokyo/A1301/A130101/13116839/",
@@ -1427,6 +3141,7 @@
         walk: "徒歩1分",
         type: ["top", "gift", "salon"],
         signature: "KUMO、ホテルメイドのケーキ",
+        mustEat: "KUMO（季節ごとに中身が変わる雲モチーフのシグネチャーケーキ）",
         note: "日本橋でホテルメイドの華やかさを狙うなら強い。",
         url: "https://www.mandarinoriental.com/ja/tokyo/nihonbashi/dine/the-mandarin-oriental-gourmet-shop",
         tabelogUrl: "https://tabelog.com/tokyo/A1302/A130202/13022977/",
@@ -1441,6 +3156,7 @@
         walk: "徒歩1分",
         type: ["top", "gift"],
         signature: "季節の生菓子、焼き菓子",
+        mustEat: "季節の生ケーキ、サブレ（江藤英樹シェフ監修の洗練された香りと美しさ）",
         note: "2026年6月オープンの注目店。江藤英樹シェフ系。",
         url: "https://paysage-he.com/shop",
         tabelogUrl: "https://tabelog.com/tokyo/A1302/A130202/13323404/",
@@ -1461,6 +3177,7 @@
         walk: "徒歩4〜5分",
         type: ["top", "gift", "salon"],
         signature: "チョコレート、アイスクリーム、ケーキ",
+        mustEat: "チョコレート＆キャラメルバー（ラム酒香るブラウニーと濃厚キャラメル）、アマゾンカカオのジェラート",
         note: "兜町・日証館のチョコレート&アイスクリーム店。ケーキランキングだけだと漏れやすい重要候補。",
         url: "https://teal-chocolate-and-icecream.com/",
         tabelogUrl: "https://tabelog.com/tokyo/A1302/A130202/13264147/",
@@ -1481,6 +3198,7 @@
         walk: "東京駅徒歩5分",
         type: ["top", "salon", "gift"],
         signature: "生ケーキ、カウンターデザート",
+        mustEat: "ジャン・ピエール（艶やかなショコラグラサージュにピスタチオのクレムブリュレ）、ピュイ・ダムール",
         note: "買うだけでなく、その場で食べる体験込みで強い。",
         url: "https://www.grand-patissier.info/ToshiYoroizuka/",
         tabelogUrl: "https://tabelog.com/tokyo/A1302/A130202/13202758/",
@@ -1495,6 +3213,7 @@
         walk: "徒歩2〜3分",
         type: ["top", "gift", "walk"],
         signature: "現代的な生菓子、焼き菓子",
+        mustEat: "アマゾンカカオのシュークリーム（香り高いカカオクリームたっぷり）、季節のデセール・タルト",
         note: "日本橋兜町の現代的パティスリー。東側散歩にも足しやすい。",
         url: "https://patisserie-ease.com/",
         tabelogUrl: "https://tabelog.com/tokyo/A1302/A130202/13246269/",
@@ -1571,6 +3290,7 @@
         walk: "徒歩2分",
         type: ["top", "gift"],
         signature: "モンブラン、ショコラ、ムース",
+        mustEat: "上野の山モンブラン（栗の深いコクと繊細なメレンゲの伝説的モンブラン）、ドームショコラ",
         note: "東側の名店感が強い。日暮里・谷根千散歩にも。",
         url: "https://www.inamura.jp/",
         tabelogUrl: "https://tabelog.com/tokyo/A1311/A131105/13047298/",
@@ -1591,6 +3311,7 @@
         walk: "徒歩1分",
         type: ["top", "gift"],
         signature: "本格フランス菓子、ムース、タルト",
+        mustEat: "アヴランシュ・ゲネー（ピスタチオ・チェリー・ショコラが美しく重なる店名冠のスペシャリテ）、ギモーヴ",
         note: "東京全体でも上位級。後楽園・小石川散歩に。",
         url: "https://avranches-guesnay.com/",
         tabelogUrl: "https://tabelog.com/tokyo/A1310/A131004/13186450/",
@@ -1619,6 +3340,7 @@
         walk: "徒歩3〜4分",
         type: ["top", "salon", "gift"],
         signature: "ピクシー、ピスタチオ×苺",
+        mustEat: "ピクシー（鮮やかなピスタチオムースと苺のジュレが調和した世界大会優勝作品）",
         note: "亀有香取神社境内の有名店。カフェ利用も可。",
         url: "https://www.kameari-katori.or.jp/la-rose-japonais/",
         tabelogUrl: "https://tabelog.com/tokyo/A1324/A132403/13218730/",
@@ -1633,6 +3355,7 @@
         walk: "徒歩3分",
         type: ["top", "gift"],
         signature: "予約制ケーキ、ショコラ、焼き菓子",
+        mustEat: "タルト、フレジエ、シュークリーム（完全予約制・争奪戦の人気ガトー）",
         note: "東京トップ級。予約難度込みで遠征級。",
         url: "https://www.ryoco.jp/",
         tabelogUrl: "https://tabelog.com/tokyo/A1316/A131603/13137010/",
@@ -1647,6 +3370,7 @@
         walk: "徒歩15〜18分",
         type: ["top", "gift"],
         signature: "モンブラン、ショコラ、フランス菓子",
+        mustEat: "モンブラン（サクサクのメレンゲと和栗・洋栗の濃厚クリームがそびえ立つ東京No.1呼び声高い名物）、シュー・アラ・クレーム",
         note: "東京を代表するパティスリー。駅から歩くが行く価値あり。",
         url: "https://www.atessouhaits.co.jp/",
         tabelogUrl: "https://tabelog.com/tokyo/A1320/A132001/13005853/",
@@ -1661,6 +3385,7 @@
         walk: "徒歩8〜10分",
         type: ["top", "gift"],
         signature: "フランス菓子、焼き菓子、ガトー",
+        mustEat: "カスレット（キャラメリゼしたシュー生地に濃厚カスタードと洋梨）、シャンティ・フレーズ（口どけ極まる究極のショートケーキ）、トルシュ・オ・マロン",
         note: "クラシックな強さ。手土産にも遠征にも。",
         url: "https://www.aigredouce.jp/",
         tabelogUrl: "https://tabelog.com/tokyo/A1305/A130502/13005641/",
@@ -1675,6 +3400,7 @@
         walk: "徒歩3分",
         type: ["top", "salon", "gift"],
         signature: "幻のチーズケーキ、チョコレート",
+        mustEat: "幻のチーズケーキ（10分で2000本売れた驚異のふわとろ食感）、トレゾー（極上ガナッシュの濃厚チョコケーキ）",
         note: "買いやすさと知名度のバランスが良い。",
         url: "https://ecolecriollo.com/",
         tabelogUrl: "https://tabelog.com/tokyo/A1322/A132202/13194959/",
@@ -1689,6 +3415,7 @@
         walk: "徒歩3分",
         type: ["top", "salon", "gift"],
         signature: "パフェ、季節の生菓子、焼き菓子",
+        mustEat: "パルフェビジュー®（旬の極上フルーツとハーブ・自家製ジェラートが美しく織りなす完全予約制の宝石パフェ）",
         note: "サロン体験込みで東京トップ級。",
         url: "https://patisserie.asakoiwayanagi.net/",
         tabelogUrl: "https://tabelog.com/tokyo/A1317/A131715/13189509/",
@@ -1703,6 +3430,7 @@
         walk: "徒歩3分",
         type: ["top", "gift"],
         signature: "正統派フランス菓子、季節ケーキ",
+        mustEat: "ミルフィーユ、エクレール、パルファン（フルーツと花の香りが広がる華やかガトー）",
         note: "世田谷方面の実力派。華やかで完成度が高い。",
         url: "https://www.ryoura.com/",
         tabelogUrl: "https://tabelog.com/tokyo/A1317/A131707/13188208/",
@@ -1723,6 +3451,7 @@
         walk: "徒歩15分前後",
         type: ["top", "gift"],
         signature: "ザッハトルテ、季節菓子、焼き菓子",
+        mustEat: "ザッハトルテ（シャリッとしたフォンダンとアプリコットの酸味。無糖生クリーム添えが至高）、季節のフルーツタルト",
         note: "神奈川を代表する名店。建物の雰囲気も良い。",
         url: "https://www.lilienberg.jp/",
         tabelogUrl: "https://tabelog.com/kanagawa/A1405/A140508/14000034/",
@@ -1737,6 +3466,7 @@
         walk: "徒歩1分",
         type: ["top", "gift"],
         signature: "生ケーキ、焼き菓子、アントルメ",
+        mustEat: "安食ロール（生地・極上クリーム・巻きのバランスが完璧な伝説のロールケーキ）、ミルクレープ、季節のモンブラン",
         note: "横浜北部の超有名店。駅近なのも強い。",
         url: "https://sweets-garden-yuji-ajiki.com/",
         tabelogUrl: "https://tabelog.com/kanagawa/A1401/A140203/14035784/",
@@ -1806,6 +3536,7 @@
         walk: "徒歩15分前後",
         type: ["top", "gift"],
         signature: "アントワネット、フランス菓子",
+        mustEat: "アントワネット（サントノレを華麗に昇華させた至高のスペシャリテ）、あまりんのタルト、ムラングシャンティ",
         note: "埼玉を代表する名店。遠征価値あり。",
         url: "https://acacier.co.jp/",
         tabelogUrl: "https://tabelog.com/saitama/A1101/A110102/11003500/",
@@ -1847,7 +3578,7 @@
         walk: "徒歩2分前後",
         type: ["top", "gift"],
         signature: "生菓子、焼き菓子、アントルメ",
-        note: "千葉側の有名候補。駅近で行きやすい。※2026年8月時点で公式サイト reve1972.co.jp がDNS解決できず（NXDOMAIN）。閉店は未確認のため掲載を維持。訪問前に営業確認を推奨。",
+        note: "千葉側の有名候補。駅近で行きやすい。※2026年8月・11月時点で公式サイト reve1972.co.jp がDNS解決できず（NXDOMAIN）、Web検索でも最新の営業情報を確認できず。閉店は未確認のため掲載を維持。訪問前に営業確認を推奨。",
         url: "https://www.google.com/search?q=%E3%83%91%E3%83%86%E3%82%A3%E3%82%B9%E3%83%AA%E3%83%BC+R%C3%AAve+%E6%A4%9C%E8%A6%8B%E5%B7%9D%E6%B5%9C+%E5%96%B6%E6%A5%AD"
       },
       {
@@ -2146,6 +3877,7 @@
         walk: "徒歩3分前後",
         type: ["top", "salon", "gift"],
         signature: "フランス菓子、ムース、タルト",
+        mustEat: "アルノー（旧ムッシュ アルノー。オレンジ風味ガナッシュとサクサクプラリネの最高峰ショコラ）、サントノーレ キャラメル",
         note: "自由が丘を代表する名店。東京全体でも上位級。",
         url: "https://www.google.com/search?q=%E3%83%91%E3%83%86%E3%82%A3%E3%82%B9%E3%83%AA%E3%83%BC%E3%83%BB%E3%83%91%E3%83%AA%E3%82%BB%E3%83%B4%E3%82%A7%E3%82%A4%E3%83%A6%20%E8%87%AA%E7%94%B1%E3%81%8C%E4%B8%98%E9%A7%85"
       },
@@ -2160,6 +3892,7 @@
         walk: "徒歩10分前後",
         type: ["top", "salon", "gift"],
         signature: "セラヴィ、ショコラ、季節ケーキ",
+        mustEat: "セラヴィ（ホワイトチョコの甘みとピスタチオ・フランボワーズが調和した世界コンクール優勝作）、モンサンクレール",
         note: "辻口博啓シェフの有名店。自由が丘パティスリー巡りの中心。",
         url: "https://www.ms-clair.co.jp/",
         tabelogUrl: "https://tabelog.com/tokyo/A1317/A131703/13003221/",
@@ -2175,6 +3908,7 @@
         walk: "徒歩5分前後",
         type: ["top", "salon", "gift"],
         signature: "クラシックなフランス菓子、焼き菓子",
+        mustEat: "オーボンヴュータン（ほろ苦い洋梨キャラメルケーキ）、ガトー・ピレネー、ウイークエンド",
         note: "日本のフランス菓子史を語るうえで外せない老舗名店。",
         url: "https://www.aubonvieuxtemps.jp/",
         tabelogUrl: "https://tabelog.com/tokyo/A1317/A131715/13181654/",
@@ -2190,6 +3924,7 @@
         walk: "徒歩3〜5分",
         type: ["top", "salon", "gift"],
         signature: "スーパーメロンショートケーキ",
+        mustEat: "スーパーメロンショートケーキ（糖度14度以上の静岡県産極上マスクメロンを惜しみなく使用した至高の逸品）",
         note: "ホテルニューオータニ東京内。ホテルケーキの代表格。",
         url: "https://www.newotani.co.jp/tokyo/restaurant/p-satsuki/",
         tabelogUrl: "https://tabelog.com/tokyo/A1308/A130803/13000178/",
@@ -2355,6 +4090,7 @@
         walk: "徒歩7分前後",
         type: ["top", "gift"],
         signature: "ミルフィーユ、フランス菓子",
+        mustEat: "ミルフィーユ、タルト・タタン、焼き菓子（オーボンヴュータン出身シェフによる正統派フランス菓子）",
         note: "さいたま新都心の有名パティスリー。百名店常連級。",
         url: "https://www.ungrandpas.jp/",
         tabelogUrl: "https://tabelog.com/saitama/A1101/A110101/11035130/",
@@ -2370,6 +4106,7 @@
         walk: "徒歩6分前後",
         type: ["top", "gift"],
         signature: "ショコラ、フランス菓子、ケーキ",
+        mustEat: "ミゼラブル（濃厚で口どけなめらかな極上バタークリームの伝統菓子）、ショコラ系プチガトー（トロワ・ショコラ）",
         note: "川口の名店。ショコラティエとしても有名。",
         url: "https://chant-doiseau.com/",
         tabelogUrl: "https://tabelog.com/saitama/A1102/A110201/11025121/",
@@ -2634,6 +4371,7 @@
         walk: "徒歩7分前後",
         type: ["top", "gift"],
         signature: "クラシックフランス菓子、焼き菓子",
+        mustEat: "ジョルジュ・サンド、ロワイヤル、ミルフィーユ（パリ最古の菓子店で修行した木村シェフの伝統菓子）",
         note: "京王線沿線の名店。Yu Sasageと合わせて西側候補に入れたい。",
         url: "https://www.lavieillefrance.jp/",
         tabelogUrl: "https://tabelog.com/tokyo/A1318/A131809/13043939/",
@@ -2649,6 +4387,7 @@
         walk: "徒歩5分前後",
         type: ["top", "salon", "gift"],
         signature: "フランス菓子、ショコラ、焼き菓子",
+        mustEat: "スフレ・オ・ショコラ、ピスタッシュ・グリオット（フランス伝統とモダンが融合した人気作）",
         note: "恵比寿の実力派。華やかさと買いやすさのバランスが良い。",
         url: "https://lesanneesfolles.jp/",
         tabelogUrl: "https://tabelog.com/tokyo/A1303/A130302/13149501/",
@@ -2664,6 +4403,7 @@
         walk: "徒歩6分前後",
         type: ["top", "gift", "salon"],
         signature: "パネトーネ、焼き菓子、ケーキ",
+        mustEat: "パネトーネ（通年焼き上げる究極のしっとり食感）、クッキー、タルト",
         note: "ケーキ店ランキングだけでは漏れやすい、恵比寿の個性派スイーツ店。",
         url: "https://less-tokyo.com/",
         tabelogUrl: "https://tabelog.com/tokyo/A1303/A130302/13274859/",
@@ -2679,6 +4419,7 @@
         walk: "徒歩2分前後",
         type: ["top", "gift"],
         signature: "フランス菓子、ショコラ、焼き菓子",
+        mustEat: "モンブランクレメ（愛媛県産和栗を惜しみなく絞り、サクサクのメレンゲと極上生クリーム）、ミラージュ",
         note: "代々木上原の代表的パティスリー。駅近で寄りやすい。",
         url: "https://www.asterisque-izumi.com/",
         tabelogUrl: "https://tabelog.com/tokyo/A1318/A131811/13140735/",
@@ -2694,6 +4435,7 @@
         walk: "徒歩4分前後",
         type: ["top", "salon", "gift"],
         signature: "季節パフェ、焼き菓子、ケーキ",
+        mustEat: "月替わりの季節パフェ（二度と同じ組み合わせを作らない一期一会のイートイン限定パフェ）",
         note: "パフェ・焼き菓子文脈で強い。アステリスクと近い。",
         url: "https://bien-etre-patisserie.com/",
         tabelogUrl: "https://tabelog.com/tokyo/A1318/A131811/13113676/",
@@ -3373,6 +5115,7 @@
         walk: "徒歩3分前後",
         type: ["top", "salon", "gift"],
         signature: "ダミエ、バウムクーヘン、クラシック洋菓子",
+        mustEat: "ダミエ（市松模様のバタークリームスポンジをチョココーティングした名作）、モカソフト、バウムクーヘン",
         note: "学芸大学の老舗名店。城南の洋菓子史としても外せない。",
         url: "https://matterhorn-tokyo.com/",
         tabelogUrl: "https://tabelog.com/tokyo/A1317/A131702/13003197/",
@@ -3388,6 +5131,7 @@
         walk: "徒歩15分前後",
         type: ["top", "gift"],
         signature: "フランス菓子、タルト、焼き菓子",
+        mustEat: "タルト・カフェ（濃厚な珈琲クリームと香ばしいタルト生地）、ミルフィーユ",
         note: "碑文谷の人気パティスリー。都立大学・学芸大学エリアの重要候補。",
         url: "https://www.google.com/search?q=%E3%83%91%E3%83%86%E3%82%A3%E3%82%B9%E3%83%AA%E3%83%BC%20%E3%82%B8%E3%83%A5%E3%83%B3%E3%82%A6%E3%82%B8%E3%82%BF%20%E9%83%BD%E7%AB%8B%E5%A4%A7%E5%AD%A6%E9%A7%85"
       },
@@ -3402,6 +5146,7 @@
         walk: "徒歩3分前後",
         type: ["top", "salon", "gift"],
         signature: "レアチーズケーキ、シュークリーム、喫茶",
+        mustEat: "レアチーズケーキ（濃厚なクリームチーズのコクとレモンの爽やかな酸味、底のビスケットが完璧な超名作）、シュークリーム",
         note: "クラシックなチーズケーキ名店。城南・都心南側の老舗枠。",
         url: "https://www.google.com/search?q=%E3%81%97%E3%82%8D%E3%81%9F%E3%81%88%20%E8%B5%A4%E5%9D%82%20%E8%B5%A4%E5%9D%82%E8%A6%8B%E9%99%84%E9%A7%85"
       },
@@ -3416,6 +5161,7 @@
         walk: "徒歩12分前後",
         type: ["top", "gift", "salon"],
         signature: "ミニャルディーズ、焼き菓子、ケーキ",
+        mustEat: "ミニャルディーズ（一粒に美味しさを凝縮した手のひらサイズの宝石菓子各種）",
         note: "小さな菓子のコース感がある南青山の個性派。手土産にも強い。",
         url: "https://www.ungrain.tokyo/",
         tabelogUrl: "https://tabelog.com/tokyo/A1306/A130602/13189012/",
@@ -4359,8 +6105,112 @@
       "柏高島屋ステーションモール デパ地下スイーツ": ["アンリ・シャルパンティエ", "ゴディバ", "モロゾフ", "ユーハイム", "銀座あけぼの", "宗家 源吉兆庵", "叶 匠壽庵", "文明堂"]
     };
 
+    const shopBusinessMap = {
+      "エーグルドゥース": { closedDays: [1, 2], hours: "10:00〜19:00", closedNote: "月・火曜（祝日の場合は営業）", eatIn: "テイクアウト専門（サロン休止中）" },
+      "アテスウェイ": { closedDays: [1, 2], hours: "11:00〜18:00", closedNote: "月・火曜（祝日の場合は営業・水曜休）", eatIn: "テイクアウト専門（イートイン休止中）" },
+      "パティスリー・パリセヴェイユ": { closedDays: [2, 3], hours: "11:00〜19:00", closedNote: "火・水曜（不定休あり）", eatIn: "あり（サロン10席・予約不可）" },
+      "オーボンヴュータン 尾山台店": { closedDays: [2, 3], hours: "10:00〜17:00", closedNote: "火・水曜", eatIn: "あり（カフェ席併設）" },
+      "リリエンベルグ": { closedDays: [1, 2], hours: "10:00〜17:00", closedNote: "月曜・第1第3火曜", eatIn: "テイクアウト専門（ティールーム休業中）" },
+      "SWEETS garden YUJI AJIKI": { closedDays: [1, 2, 3], hours: "10:00〜18:00", closedNote: "月・火・水曜（臨時休あり）", eatIn: "テイクアウト専門" },
+      "アカシエ 浦和店": { closedDays: [3], hours: "10:00〜18:00", closedNote: "水曜（不定休あり）", eatIn: "テイクアウト専門" },
+      "シャンドワゾー 本店": { closedDays: [2], hours: "10:00〜19:00", closedNote: "火曜（不定休あり）", eatIn: "テイクアウト専門（グラシエ店にサロンあり）" },
+      "クリオロ本店": { closedDays: [2], hours: "10:00〜18:00", closedNote: "火曜（祝日の場合は営業）", eatIn: "あり（カフェ席・テラス席）" },
+      "teal": { closedDays: [3], hours: "11:00〜18:00", closedNote: "水曜（不定休あり）", eatIn: "あり（イートイン席あり）" },
+      "patisserie ease": { closedDays: [3], hours: "11:00〜19:00", closedNote: "水曜（不定休あり）", eatIn: "あり（カウンター席あり）" },
+      "イナムラショウゾウ": { closedDays: [1, 2], hours: "11:00〜18:00", closedNote: "月・火曜（祝日の場合は営業）", eatIn: "テイクアウト専門" },
+      "アヴランシュ・ゲネー": { closedDays: [1, 2], hours: "11:00〜19:00", closedNote: "月曜・火曜不定休", eatIn: "テイクアウト専門" },
+      "ラ・ローズ・ジャポネ": { closedDays: [1, 2], hours: "10:00〜18:00", closedNote: "月・火曜", eatIn: "あり（カフェ併設・テラス席あり）" },
+      "パティスリー リョーコ": { closedDays: [1, 2, 3, 4], hours: "12:00〜17:00", closedNote: "月〜木曜（金土日のみ営業）", eatIn: "完全予約受取制" },
+      "PÂTISSERIE ASAKO IWAYANAGI": { closedDays: [1, 2], hours: "11:00〜18:00", closedNote: "月・火曜（祝日の場合は営業）", eatIn: "あり（完全予約制パルフェサロン）" },
+      "Ryoura": { closedDays: [2, 3], hours: "11:00〜18:00", closedNote: "火・水曜（不定休あり）", eatIn: "テイクアウト専門" },
+      "モンサンクレール": { closedDays: [3], hours: "11:00〜18:00", closedNote: "水曜（臨時休あり）", eatIn: "あり（サロン席あり）" },
+      "トシ・ヨロイヅカ 東京": { closedDays: [2], hours: "11:00〜20:00", closedNote: "火曜（サロン席不定休あり）", eatIn: "あり（2Fサロンカウンター席）" },
+      "フレデリック・カッセル 銀座三越店": { closedDays: [], hours: "10:00〜20:00", closedNote: "無休（銀座三越に準ずる）", eatIn: "テイクアウト専門（デパ地下）" },
+      "ザ マンダリン オリエンタル グルメショップ": { closedDays: [], hours: "11:00〜19:00", closedNote: "年中無休", eatIn: "あり（カフェ・テラス席）" },
+      "PAYSAGE 日本橋三越本店": { closedDays: [], hours: "10:00〜19:30", closedNote: "無休（三越に準ずる）", eatIn: "テイクアウト専門（デパ地下）" },
+      "PÂTISSERIE SATSUKI": { closedDays: [], hours: "11:00〜20:00", closedNote: "年中無休", eatIn: "あり（ホテルラウンジ併設）" },
+      "アングランパ": { closedDays: [1, 2], hours: "10:00〜19:00", closedNote: "月曜・第1第3火曜", eatIn: "テイクアウト専門" },
+      "パティスリー ラ・ヴィエイユ・フランス 本店": { closedDays: [1, 2], hours: "10:30〜19:00", closedNote: "月・火曜", eatIn: "あり（サロン数席あり）" },
+      "パティスリー レザネフォール 恵比寿本店": { closedDays: [], hours: "10:00〜20:00", closedNote: "年中無休（元旦除く）", eatIn: "あり（イートインカウンターあり）" },
+      "LESS": { closedDays: [2, 3], hours: "11:00〜19:00", closedNote: "火・水曜", eatIn: "テイクアウト中心（イートイン数席）" },
+      "アステリスク": { closedDays: [1, 2], hours: "10:00〜18:00", closedNote: "月・火曜（祝日の場合は翌日休）", eatIn: "テイクアウト専門" },
+      "ビヤンネートル": { closedDays: [], hours: "11:00〜19:30", closedNote: "不定休（公式Instagram要確認）", eatIn: "あり（完全予約優先パフェサロン）" },
+      "MATTERHORN": { closedDays: [2], hours: "9:30〜18:30", closedNote: "火曜（祝日の場合は営業）", eatIn: "あり（喫茶室あり）" },
+      "パティスリー ジュンウジタ": { closedDays: [1, 2], hours: "10:30〜18:30", closedNote: "月・火曜（祝日営業・翌日休）", eatIn: "あり（カフェ席あり）" },
+      "しろたえ 赤坂": { closedDays: [0], hours: "10:30〜19:00", closedNote: "日曜・祝日不定休", eatIn: "あり（喫茶室あり・予約不可）" },
+      "UN GRAIN": { closedDays: [3], hours: "11:00〜19:00", closedNote: "水曜（不定休あり）", eatIn: "あり（カウンターイートイン4席）" },
+      "銀座ウエスト 銀座本店": { closedDays: [], hours: "9:00〜22:00 (土日祝11:00〜20:00)", closedNote: "年中無休", eatIn: "あり（老舗喫茶室あり）" },
+      "資生堂パーラー 銀座本店ショップ": { closedDays: [1], hours: "11:00〜21:00", closedNote: "月曜（祝日の場合は営業）", eatIn: "あり（上階サロン・カフェあり）" },
+      "トリコロール本店": { closedDays: [], hours: "8:00〜18:00", closedNote: "年中無休", eatIn: "あり（老舗喫茶・2フロア）" },
+      "カヤバ珈琲": { closedDays: [1], hours: "8:00〜18:00", closedNote: "月曜（祝日の場合は営業）", eatIn: "あり（古民家カフェ席あり）" },
+      "ダンデライオン・チョコレート ファクトリー&カフェ蔵前": { closedDays: [], hours: "10:00〜19:00", closedNote: "不定休", eatIn: "あり（2F広々カフェ席）" },
+      "ブルーボトルコーヒー 清澄白河フラッグシップカフェ": { closedDays: [], hours: "8:00〜19:00", closedNote: "年中無休", eatIn: "あり（席数多め）" },
+      "キルフェボン グランメゾン銀座": { closedDays: [], hours: "11:00〜19:00", closedNote: "年中無休（元旦除く）", eatIn: "あり（B1Fカフェサロン）" },
+      "Patisserie Etienne": { closedDays: [1, 2], hours: "10:00〜18:30", closedNote: "月・火曜（不定休あり）", eatIn: "テイクアウト専門" },
+      "CALVA": { closedDays: [2, 3], hours: "9:00〜19:00", closedNote: "火・水曜", eatIn: "テイクアウト専門" },
+      "ル・パティシエ ヨコヤマ 京成大久保店": { closedDays: [2, 3], hours: "10:00〜18:00", closedNote: "火・水曜", eatIn: "テイクアウト専門" },
+      "レタンプリュス 本店": { closedDays: [], hours: "10:00〜18:30", closedNote: "年始除き無休", eatIn: "あり（サロン席あり）" },
+      "ラ・コート・ダジュール 本店": { closedDays: [], hours: "9:30〜19:00", closedNote: "年中無休（元旦除く）", eatIn: "あり（サロン席あり）" },
+      "SHIROIYA the PÂTISSERIE": { closedDays: [1, 2], hours: "10:00〜18:00", closedNote: "月・火曜（祝日の場合は営業）", eatIn: "あり（白井屋ホテル併設ラウンジ）" },
+      "コボリ洋菓子店": { closedDays: [3], hours: "9:30〜18:30", closedNote: "水曜（不定休あり）", eatIn: "テイクアウト専門" },
+      "パティシエ・シマ": { closedDays: [0], hours: "10:00〜19:00", closedNote: "日曜・祝日不定休", eatIn: "テイクアウト専門" },
+      "喫茶 半月": { closedDays: [], hours: "12:00〜18:30", closedNote: "不定休", eatIn: "あり（バーカウンター風喫茶）" },
+      "ARiSE COFFEE ROASTERS": { closedDays: [1], hours: "10:00〜17:00", closedNote: "月曜", eatIn: "あり（コーヒースタンド席）" },
+      "パティシエ・ヒロ ヤマモト": { closedDays: [2, 3], hours: "10:30〜19:00", closedNote: "火・水曜", eatIn: "テイクアウト専門" },
+      "アルカイク": { closedDays: [3, 4], hours: "10:00〜19:00", closedNote: "水・木曜", eatIn: "テイクアウト専門" },
+      "シマノコーヒー大正館": { closedDays: [], hours: "8:00〜19:00", closedNote: "不定休", eatIn: "あり（純喫茶サロン席）" },
+      "菓子工房オークウッド": { closedDays: [2, 3], hours: "10:00〜18:00", closedNote: "火・水曜", eatIn: "あり（カフェ併設）" }
+    };
+
+    function getShopBusinessInfo(shop) {
+      if (shopBusinessMap[shop.name]) {
+        return shopBusinessMap[shop.name];
+      }
+      if (isDepachika(shop) || (shop.type && shop.type.includes("depachika"))) {
+        return {
+          closedDays: [],
+          hours: "10:00〜20:00 (施設に準ずる)",
+          closedNote: "無休（百貨店営業日に準ずる）",
+          eatIn: "テイクアウト中心（館内休憩スペースあり）"
+        };
+      }
+      const hasSalon = (shop.type && shop.type.includes("salon")) || /サロン|カフェ|喫茶|イートイン/.test((shop.signature || "") + " " + (shop.note || ""));
+      const isReserve = /完全予約|要予約/.test((shop.signature || "") + " " + (shop.note || ""));
+      return {
+        closedDays: shop.closedDays || [],
+        hours: shop.businessHours || "日中営業（訪問前要確認）",
+        closedNote: shop.closedNote || "不定休または要確認",
+        eatIn: isReserve ? "完全予約制" : hasSalon ? "あり（サロン・カフェ席）" : "テイクアウト専門"
+      };
+    }
+
+    function isOpenOnDay(shop, day) {
+      if (!shop.closedDays || !shop.closedDays.length) return true;
+      return !shop.closedDays.includes(day);
+    }
+
+    function businessStripHtml(shop) {
+      const today = new Date().getDay();
+      const openToday = isOpenOnDay(shop, today);
+      const openText = openToday ? t("badgeOpenToday") : t("badgeClosedToday");
+      const hoursText = escapeHtml(shop.businessHours || t("hoursNeedConfirm"));
+      const closedText = escapeHtml(shop.closedNote || t("hoursNeedConfirm"));
+      const eatInText = escapeHtml(shop.eatIn || t("hoursNeedConfirm"));
+      return `
+        <div class="business-strip">
+          <span class="badge-today-status ${openToday ? "badge-today-open" : "badge-today-closed"}">
+            ${openText}
+          </span>
+          <span class="biz-detail">🕒 ${hoursText}</span>
+          <span class="biz-detail">💤 定休: ${closedText}</span>
+          <span class="biz-eatin-badge">🪑 ${eatInText}</span>
+        </div>
+      `;
+    }
+
     const storageKey = "kantoCakeMap.extraShops.v1";
     const visitedStorageKey = "kantoCakeMap.visited.v1";
+    const wishlistStorageKey = "kantoCakeMap.wishlist.v1";
     let shops = loadShops();
 
     const rankingSources = [
@@ -4414,10 +6264,28 @@
       depachika: "デパ地下"
     };
 
+    function getTypeLabel(type) {
+      const typeKeyMap = {
+        top: "typeTop",
+        walk: "typeWalk",
+        gift: "typeGift",
+        salon: "typeSalon",
+        depachika: "typeDepachika"
+      };
+      const key = typeKeyMap[type];
+      return (key && t(key)) || typeLabel[type] || type;
+    }
+
     const categoryLabel = {
       cake: "ケーキ",
       cafe: "カフェ"
     };
+
+    function getCategoryLabel(cat) {
+      if (cat === "cake") return t("catCake");
+      if (cat === "cafe") return t("catCafe");
+      return categoryLabel[cat] || cat;
+    }
 
     const map = L.map("map", { zoomControl: true }).setView([35.6800, 139.7300], 10);
     // コンテナサイズ変更(モバイルのレイアウト確定・回転・シート開閉)でLeafletの
@@ -4455,8 +6323,12 @@
     let activeCategory = "all";
     let activeType = "all";
     let activeVisited = "all";
+    let activeDay = "all";
+    let activeMood = "all";
+    let activeViewMode = localStorage.getItem("kantoCakeMap.viewMode") || "list";
     let filtered = shops.slice();
     let visitedSet = loadVisited();
+    let wishlistSet = loadWishlist();
     let visibleListLimit = 30;
     let sortMode = "default";
     let userLocation = null;
@@ -4465,6 +6337,95 @@
     const listPageSize = 30;
     const searchDebounceMs = 180;
     let searchTimer = 0;
+
+    const moodKeywords = {
+      montblanc: ["モンブラン", "栗"],
+      shortcake: ["ショートケーキ", "生ケーキ", "アントルメ", "苺", "いちご"],
+      chocolat: ["ショコラ", "チョコレート", "生ショコラ", "カカオ"],
+      millefeuille: ["ミルフィーユ", "タルト", "パイ"],
+      parfait: ["パフェ", "アイス", "ジェラート", "かき氷", "焼き氷", "カウンターデザート"],
+      baked: ["焼き菓子", "焼菓子", "フィナンシェ", "カヌレ", "マドレーヌ", "クッキー", "ゴーフレット", "サブレ", "リーフパイ", "スコーン"],
+      cheesecake: ["チーズケーキ", "フロマージュ", "レアチーズ"],
+      retro_cafe: ["喫茶", "純喫茶", "珈琲", "古民家", "レトロ", "サイフォン", "焙煎"]
+    };
+
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function matchesMood(shop, mood) {
+      if (mood === "all") return true;
+      const kws = moodKeywords[mood];
+      if (!kws) return true;
+      const text = `${shop.name} ${shop.signature || ""} ${shop.note || ""}`.toLowerCase();
+      return kws.some(w => text.includes(w.toLowerCase()));
+    }
+
+    function practicalBadgesHtml(shop) {
+      const text = `${shop.signature || ""} ${shop.note || ""}`.toLowerCase();
+      const badges = [];
+      if (/売り切れ|午前中|早い時間/.test(text)) {
+        badges.push('<span class="tag badge-alert">⚠️ 完売注意</span>');
+      }
+      if (/予約|要予約|完全予約/.test(text)) {
+        badges.push('<span class="tag badge-reserve">🎟️ 予約推奨</span>');
+      }
+      if (shop.type.includes("salon") || /イートイン|サロン|カフェ併設|茶房|カウンターデザート/.test(text)) {
+        badges.push('<span class="tag badge-salon">🪑 イートイン可</span>');
+      }
+      return badges.join("");
+    }
+
+    function loadWishlist() {
+      try {
+        const values = JSON.parse(localStorage.getItem(wishlistStorageKey) || "[]");
+        return new Set(Array.isArray(values) ? values : []);
+      } catch {
+        return new Set();
+      }
+    }
+
+    function saveWishlist() {
+      localStorage.setItem(wishlistStorageKey, JSON.stringify(Array.from(wishlistSet)));
+    }
+
+    function isWishlist(shop) {
+      return wishlistSet.has(shop.name);
+    }
+
+    function toggleWishlist(shopName) {
+      if (wishlistSet.has(shopName)) {
+        wishlistSet.delete(shopName);
+      } else {
+        wishlistSet.add(shopName);
+      }
+      saveWishlist();
+      updateWishlistControls(shopName);
+      updateSummary();
+      if (activeVisited === "wishlist") {
+        render();
+      }
+    }
+
+    function updateWishlistControls(shopName) {
+      const wishlist = wishlistSet.has(shopName);
+      const encodedName = encodeURIComponent(shopName);
+      document.querySelectorAll("[data-card-wishlist], [data-wishlist-toggle]").forEach(button => {
+        const buttonName = button.dataset.cardWishlist || button.dataset.wishlistToggle;
+        if (buttonName !== encodedName) return;
+        button.classList.toggle("active", wishlist);
+        button.textContent = wishlist ? t("btnWishlistActive") : t("btnWishlistAdd");
+      });
+
+      const shop = shops.find(item => item.name === shopName);
+      const marker = markers.get(shopName);
+      if (shop && marker) marker.setPopupContent(popupHtml(shop));
+    }
 
     function loadVisited() {
       try {
@@ -4492,6 +6453,9 @@
       saveVisited();
       updateVisitedControls(shopName);
       updateSummary();
+      if (activeVisited === "visited" || activeVisited === "unvisited") {
+        render();
+      }
     }
 
     function updateVisitedControls(shopName) {
@@ -4501,7 +6465,7 @@
         const buttonName = button.dataset.cardVisited || button.dataset.visitedToggle;
         if (buttonName !== encodedName) return;
         button.classList.toggle("active", visited);
-        button.textContent = visited ? "行った ✓" : "未訪問";
+        button.textContent = visited ? t("btnVisitedActive") : t("btnVisitedAdd");
         const card = button.closest(".shop-card");
         if (card) card.classList.toggle("visited", visited);
       });
@@ -4522,7 +6486,7 @@
 
     function mergeShops(base, additions) {
       const byName = new Map();
-      base.forEach(shop => byName.set(shop.name, { ...shop }));
+      base.forEach(shop => byName.set(shop.name, normalizeShop({ ...shop })));
       additions.forEach(shop => {
         if (!shop || !shop.name) return;
         if (shop.status === "closed") {
@@ -4537,6 +6501,7 @@
 
     function normalizeShop(shop) {
       const area = shop.area || areaFromLabel(shop.areaLabel);
+      const biz = getShopBusinessInfo(shop);
       return {
         name: String(shop.name || "").trim(),
         area,
@@ -4548,10 +6513,16 @@
         category: shop.category || "cake",
         type: Array.isArray(shop.type) ? shop.type : String(shop.type || "gift").split("|").map(s => s.trim()).filter(Boolean),
         signature: shop.signature || "代表菓子要確認",
+        mustEat: shop.mustEat || "",
         note: shop.note || "追加候補。詳細要確認。",
         url: shop.url || googleMapUrl({ name: shop.name, station: shop.station || "" }),
+        tabelogUrl: shop.tabelogUrl || "",
         image: shop.image || null,
-        score: shop.score || ""
+        score: shop.score || "",
+        closedDays: biz.closedDays,
+        businessHours: biz.hours,
+        closedNote: biz.closedNote,
+        eatIn: biz.eatIn
       };
     }
 
@@ -4567,6 +6538,18 @@
     }
 
     function labelFromArea(area) {
+      const areaI18nMap = {
+        "tokyo-east": "areaBadgeTokyoEast",
+        "tokyo-west": "areaBadgeTokyoWest",
+        "tokyo-south": "areaBadgeTokyoSouth",
+        "tokyo-north": "areaBadgeTokyoNorth",
+        "kanagawa": "areaBadgeKanagawa",
+        "saitama": "areaBadgeSaitama",
+        "chiba": "areaBadgeChiba",
+        "north-kanto": "areaBadgeNorthKanto"
+      };
+      const key = areaI18nMap[area];
+      if (key && has(key)) return t(key);
       return {
         "tokyo-east": "東京 東側・都心東",
         "tokyo-west": "東京 西側・多摩",
@@ -4627,6 +6610,16 @@
       `;
     }
 
+    function cardImageHtml(shop) {
+      const image = imageData(shop);
+      if (!image) return "";
+      return `
+        <figure class="shop-photo">
+          <img src="${image.src}" alt="${image.alt}" loading="lazy" referrerpolicy="no-referrer">
+        </figure>
+      `;
+    }
+
     function markerIcon(shop) {
       const category = shop.category || "cake";
       const iconType = isDepachika(shop) ? "depachika" : category;
@@ -4669,6 +6662,12 @@
 
     function googleMapUrl(shop) {
       return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(shop.name + " " + shop.station)}`;
+    }
+
+    function ikyuUrl(shop) {
+      if (!shop) return "https://restaurant.ikyu.com/search?kwd=アフタヌーンティー";
+      // 店舗名でダイレクトに一休.comレストランのアフタヌーンティー・席予約を検索
+      return `https://restaurant.ikyu.com/search?kwd=${encodeURIComponent(shop.name)}`;
     }
 
     function formatDistance(km) {
@@ -4725,14 +6724,14 @@
     function setLocationButtonsLoading(loading) {
       const currentButton = document.getElementById("currentLocationButton");
       const nearbyButton = document.getElementById("nearbyButton");
-      currentButton.disabled = loading;
-      nearbyButton.disabled = loading;
+      if (currentButton) currentButton.disabled = loading;
+      if (nearbyButton) nearbyButton.disabled = loading;
       if (loading) {
-        currentButton.textContent = "現在地を取得中";
+        if (currentButton) currentButton.textContent = t("locating") || "現在地を取得中...";
         return;
       }
-      currentButton.textContent = "現在地へ";
-      nearbyButton.textContent = "近い順";
+      if (currentButton) currentButton.textContent = t("locateBtn") || "📍 現在地";
+      if (nearbyButton) nearbyButton.textContent = "近い順";
     }
 
     function moveToUserLocation() {
@@ -4743,33 +6742,230 @@
     }
 
     function updateSummary() {
-      const visibleVisitedCount = filtered.filter(isVisited).length;
-      document.getElementById("filteredCount").textContent = `${filtered.length}件`;
-      document.getElementById("visitedCount").textContent = `${visibleVisitedCount}/${filtered.length}件`;
-      document.getElementById("listCount").textContent = filtered.length
-        ? `${Math.min(visibleListLimit, filtered.length)}/${filtered.length}件`
-        : "0件";
+      const allShops = shops || loadShops();
+      const totalVisitedCount = allShops.filter(isVisited).length;
+      const totalWishlistCount = allShops.filter(isWishlist).length;
+      const totalShopsCount = allShops.length || 198;
+      const rate = ((totalVisitedCount / totalShopsCount) * 100).toFixed(1);
+      const unit = t("countUnit") || "件";
+
+      document.getElementById("filteredCount").textContent = `${filtered.length}${unit}`;
+      document.getElementById("visitedCount").textContent = `${totalVisitedCount}${unit}`;
+      if (document.getElementById("wishlistCount")) {
+        document.getElementById("wishlistCount").textContent = `${totalWishlistCount}${unit}`;
+      }
+      if (document.getElementById("conquestRate")) {
+        document.getElementById("conquestRate").textContent = `${rate}%`;
+      }
+      if (document.getElementById("catCountAll")) {
+        document.getElementById("catCountAll").textContent = allShops.length;
+      }
+      if (document.getElementById("catCountCake")) {
+        document.getElementById("catCountCake").textContent = allShops.filter(s => (s.category || "cake") === "cake").length;
+      }
+      if (document.getElementById("catCountCafe")) {
+        document.getElementById("catCountCafe").textContent = allShops.filter(s => s.category === "cafe").length;
+      }
+      if (document.getElementById("wishlistFilterCount")) {
+        document.getElementById("wishlistFilterCount").textContent = totalWishlistCount;
+      }
+      if (document.getElementById("visitedFilterCount")) {
+        document.getElementById("visitedFilterCount").textContent = totalVisitedCount;
+      }
+      if (document.getElementById("listCount")) {
+        document.getElementById("listCount").textContent = filtered.length
+          ? `${Math.min(visibleListLimit, filtered.length)}/${filtered.length}${unit}`
+          : `0${unit}`;
+      }
+
+      const wishlistBtn = document.getElementById("summaryWishlistBtn");
+      if (wishlistBtn) {
+        wishlistBtn.classList.toggle("active", activeVisited === "wishlist");
+        if (wishlistBtn.setAttribute) wishlistBtn.setAttribute("aria-pressed", activeVisited === "wishlist" ? "true" : "false");
+      }
+      const visitedBtn = document.getElementById("summaryVisitedBtn");
+      if (visitedBtn) {
+        visitedBtn.classList.toggle("active", activeVisited === "visited");
+        if (visitedBtn.setAttribute) visitedBtn.setAttribute("aria-pressed", activeVisited === "visited" ? "true" : "false");
+      }
+
+      updateQuickChipStates();
+    }
+
+    function getConquestStats() {
+      const allShops = shops || loadShops();
+      const totalShopsCount = allShops.length || 198;
+      const visitedShops = allShops.filter(isVisited);
+      const visitedCount = visitedShops.length;
+      const pct = ((visitedCount / totalShopsCount) * 100).toFixed(1);
+
+      const areaMap = [
+        { id: "tokyo-east", label: t("areaBadgeTokyoEast") || "都心東・下町" },
+        { id: "tokyo-south", label: t("areaBadgeTokyoSouth") || "城南・自由が丘" },
+        { id: "tokyo-west", label: t("areaBadgeTokyoWest") || "西側・吉祥寺多摩" },
+        { id: "tokyo-north", label: t("areaBadgeTokyoNorth") || "城北・池袋" },
+        { id: "kanagawa", label: t("areaBadgeKanagawa") || "神奈川・横浜" },
+        { id: "saitama", label: t("areaBadgeSaitama") || "埼玉" },
+        { id: "chiba", label: t("areaBadgeChiba") || "千葉" },
+        { id: "north-kanto", label: t("areaBadgeNorthKanto") || "北関東" }
+      ];
+
+      const areaBreakdown = areaMap.map(a => {
+        const inArea = allShops.filter(s => s.area === a.id);
+        const visitedInArea = inArea.filter(isVisited).length;
+        return {
+          id: a.id,
+          label: a.label,
+          total: inArea.length,
+          visited: visitedInArea,
+          pct: inArea.length ? Math.round((visitedInArea / inArea.length) * 100) : 0
+        };
+      });
+
+      let title = t("rank0");
+      let desc = t("rank0Desc");
+      if (visitedCount >= 50) {
+        title = t("rank50");
+        desc = t("rank50Desc");
+      } else if (visitedCount >= 30) {
+        title = t("rank30");
+        desc = t("rank30Desc");
+      } else if (visitedCount >= 15) {
+        title = t("rank15");
+        desc = t("rank15Desc");
+      } else if (visitedCount >= 7) {
+        title = t("rank7");
+        desc = t("rank7Desc");
+      } else if (visitedCount >= 3) {
+        title = t("rank3");
+        desc = t("rank3Desc");
+      } else if (visitedCount >= 1) {
+        title = t("rank1");
+        desc = t("rank1Desc");
+      }
+
+      return {
+        total: totalShopsCount,
+        visited: visitedCount,
+        pct,
+        title,
+        desc,
+        areaBreakdown
+      };
+    }
+
+    function openConquestModal() {
+      const stats = getConquestStats();
+      document.getElementById("modalConquestCount").textContent = stats.visited;
+      document.getElementById("modalTotalShops").textContent = stats.total;
+      document.getElementById("modalConquestPct").textContent = `${stats.pct}%`;
+      document.getElementById("modalProgressBar").style.width = `${Math.min(100, Math.max(parseFloat(stats.pct), 2))}%`;
+      document.getElementById("modalTitleBadge").innerHTML = `<strong>${stats.title}</strong><div style="font-size:11px;font-weight:normal;margin-top:2px;color:#785a28;">${stats.desc}</div>`;
+
+      const grid = document.getElementById("modalAreaGrid");
+      grid.innerHTML = stats.areaBreakdown.map(a => `
+        <div class="conquest-area-card">
+          <div class="conquest-area-header">
+            <span class="conquest-area-name">${a.label}</span>
+            <span class="conquest-area-ratio">${a.visited} / ${a.total}店</span>
+          </div>
+          <div class="conquest-area-bar-bg">
+            <div class="conquest-area-bar-fill" style="width: ${a.pct}%;"></div>
+          </div>
+        </div>
+      `).join("");
+
+      const modal = document.getElementById("conquestModal");
+      modal.hidden = false;
+      requestAnimationFrame(() => modal.classList.add("open"));
+    }
+
+    function closeConquestModal() {
+      const modal = document.getElementById("conquestModal");
+      modal.classList.remove("open");
+      setTimeout(() => { modal.hidden = true; }, 200);
+    }
+
+    function shareConquestToX() {
+      const stats = getConquestStats();
+      const wishlistCount = (shops || loadShops()).filter(isWishlist).length;
+      const text = `関東ケーキ・カフェ巡りマップで【${stats.visited}店舗制覇（達成率 ${stats.pct}%）】！現在の称号は『${stats.title}』🍰✨ 行きたい店は${wishlistCount}店ストック中！ #関東ケーキマップ #スイーツ巡り\nhttps://avansare.com/kanto-cake-cafe-map/`;
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+      window.open(url, "_blank", "noopener");
+    }
+
+    function copyConquestText() {
+      const stats = getConquestStats();
+      const wishlistCount = (shops || loadShops()).filter(isWishlist).length;
+      const text = `【私の関東ケーキ制覇マップ】\n巡回達成: ${stats.visited} / ${stats.total}店舗 (${stats.pct}%)\n現在の称号: ${stats.title}\n行きたいストック: ${wishlistCount}店\nhttps://avansare.com/kanto-cake-cafe-map/`;
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById("conquestToast");
+        toast.hidden = false;
+        setTimeout(() => { toast.hidden = true; }, 2500);
+      });
+    }
+
+    function xSearchUrl(shop) {
+      const q = `${shop.name} ケーキ`;
+      return `https://x.com/search?q=${encodeURIComponent(q)}&f=live`;
+    }
+
+    function blogSearchUrl(shop) {
+      const q = `${shop.name} ケーキ ブログ 実食 レビュー`;
+      return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+    }
+
+    function mustEatHtml(shop) {
+      if (!shop.mustEat) return "";
+      return `
+        <div class="must-eat-box">
+          <span class="must-eat-label">${t("specialtyMustEat")}</span>
+          <p class="must-eat-text">${escapeHtml(shop.mustEat)}</p>
+        </div>
+      `;
+    }
+
+    function externalLinksHtml(shop) {
+      return `
+        <div class="shop-external-links">
+          <a class="ext-link ext-link-x" href="${xSearchUrl(shop)}" target="_blank" rel="noopener" title="𝕏">${t("linkX")}</a>
+          <a class="ext-link ext-link-blog" href="${blogSearchUrl(shop)}" target="_blank" rel="noopener" title="${t("linkBlog")}">${t("linkBlog")}</a>
+          ${shop.tabelogUrl ? `<a class="ext-link ext-link-tabelog" href="${shop.tabelogUrl}" target="_blank" rel="noopener">${t("linkTabelog")}</a>` : ""}
+          <a class="ext-link ext-link-official" href="${shop.url}" target="_blank" rel="noopener">${t("linkOfficial")}</a>
+          <a class="ext-link ext-link-map" href="${googleMapUrl(shop)}" target="_blank" rel="noopener">${t("linkMap")}</a>
+        </div>
+      `;
     }
 
     function popupHtml(shop) {
-      const tags = shop.type.map(t => typeLabel[t]).join(" / ");
+      const tags = shop.type.map(tKey => getTypeLabel(tKey)).join(" / ");
       const visited = isVisited(shop);
+      const wishlist = isWishlist(shop);
       const distance = formatDistance(distanceKm(shop));
+      const distStr = distance ? t("distanceFromHere").replace("{d}", distance) : "";
+      const catLabel = getCategoryLabel(shop.category || "cake");
+      const areaLabel = labelFromArea(shop.area);
       return `
         <div class="popup">
           <h3>${shop.name}</h3>
           ${imageHtml(shop)}
-          <p><strong>${categoryLabel[shop.category || "cake"]}</strong>・${shop.areaLabel}・${shop.station} ${shop.walk}</p>
-          ${distance ? `<p><strong>現在地から約${distance}</strong></p>` : ""}
+          <p><strong>${catLabel}</strong>・${areaLabel}・${shop.station} ${shop.walk}</p>
+          ${distStr ? `<p><strong>${distStr}</strong></p>` : ""}
+          ${mustEatHtml(shop)}
+          ${businessStripHtml(shop)}
           <p>${shop.signature}</p>
           ${shop.score ? `<p><strong>${shop.score}</strong></p>` : ""}
           <p>${shop.note}</p>
           <p>${tags}</p>
           ${insideListHtml(shop)}
-          <button class="visited-toggle ${visited ? "active" : ""}" type="button" data-visited-toggle="${encodeURIComponent(shop.name)}">${visited ? "行った ✓" : "未訪問"}</button><br>
-          <a href="${shop.url}" target="_blank" rel="noreferrer">公式/店舗情報を見る</a><br>
-          <a href="${googleMapUrl(shop)}" target="_blank" rel="noreferrer">Googleマップで開く</a>
-          ${shop.tabelogUrl ? `<br><a href="${shop.tabelogUrl}" target="_blank" rel="noreferrer">食べログで見る</a>` : ""}
+          <div style="margin: 8px 0 2px; display: flex; gap: 6px;">
+            <button class="wishlist-toggle ${wishlist ? "active" : ""}" type="button" data-wishlist-toggle="${encodeURIComponent(shop.name)}">${wishlist ? t("btnWishlistActive") : t("btnWishlistAdd")}</button>
+            <button class="visited-toggle ${visited ? "active" : ""}" type="button" data-visited-toggle="${encodeURIComponent(shop.name)}">${visited ? t("btnVisitedActive") : t("btnVisitedAdd")}</button>
+          </div>
+          <a class="popup-reserve-btn" href="${ikyuUrl(shop)}" target="_blank" rel="noopener sponsored">
+            ${t("cardReserveBtn") || "🫖 席・アフタヌーンティー予約（一休）›"}
+          </a>
+          ${externalLinksHtml(shop)}
         </div>
       `;
     }
@@ -4798,6 +6994,10 @@
         shop.walk,
         categoryLabel[shop.category || "cake"],
         shop.signature,
+        shop.mustEat || "",
+        shop.businessHours || "",
+        shop.closedNote || "",
+        shop.eatIn || "",
         shop.note,
         shop.score,
         shop.type.map(t => typeLabel[t]).join(" ")
@@ -4807,9 +7007,24 @@
       const areaOk = area === "all" || shop.area === area;
       const categoryOk = activeCategory === "all" || (shop.category || "cake") === activeCategory;
       const typeOk = activeType === "all" || shop.type.includes(activeType);
+      
       const visited = isVisited(shop);
-      const visitedOk = activeVisited === "all" || (activeVisited === "visited" && visited) || (activeVisited === "unvisited" && !visited);
-      return queryOk && areaOk && categoryOk && typeOk && visitedOk;
+      const wishlist = isWishlist(shop);
+      let visitedOk = true;
+      if (activeVisited === "visited") visitedOk = visited;
+      else if (activeVisited === "unvisited") visitedOk = !visited;
+      else if (activeVisited === "wishlist") visitedOk = wishlist;
+
+      let dayOk = true;
+      if (activeDay === "today") {
+        const todayDay = new Date().getDay();
+        dayOk = isOpenOnDay(shop, todayDay);
+      } else if (activeDay !== "all") {
+        dayOk = isOpenOnDay(shop, Number(activeDay));
+      }
+
+      const moodOk = matchesMood(shop, activeMood);
+      return queryOk && areaOk && categoryOk && typeOk && visitedOk && dayOk && moodOk;
     }
 
     function render() {
@@ -4846,13 +7061,14 @@
     function renderList() {
       const list = document.getElementById("shopList");
       list.innerHTML = "";
+      list.classList.toggle("grid-view", activeViewMode === "grid");
       const shown = filtered.slice(0, visibleListLimit);
 
       if (!shown.length) {
         list.innerHTML = `
           <div class="empty-state">
-            <strong>条件に合う候補がありません</strong>
-            <p>検索語を短くするか、エリア・タイプ・訪問状況を戻してみてください。</p>
+            <strong>${t("emptyTitle")}</strong>
+            <p>${t("emptyBody")}</p>
           </div>
         `;
       }
@@ -4860,31 +7076,83 @@
       shown.forEach((shop, index) => {
         const article = document.createElement("article");
         const visited = isVisited(shop);
+        const wishlist = isWishlist(shop);
         const shouldShowInside = activeType === "depachika" && isDepachika(shop);
         const distance = formatDistance(distanceKm(shop));
+        const distStr = distance ? t("distanceFromHere").replace("{d}", distance) : "";
+        const hasImg = !!imageData(shop);
+        const catIcon = shop.category === "cafe" ? "☕" : isDepachika(shop) ? "🎁" : "🍰";
+        const todayDay = new Date().getDay();
+        const openToday = isOpenOnDay(shop, todayDay);
+        const areaLabel = labelFromArea(shop.area);
+
+        // 警告バッジ（完売注意・予約推奨のみ最重要で1点表示し、タグ多すぎを防ぐ）
+        let alertBadge = "";
+        const noteText = `${shop.signature || ""} ${shop.note || ""}`.toLowerCase();
+        if (/売り切れ|午前中|早い時間/.test(noteText)) {
+          alertBadge = `<span class="tag badge-alert">${t("badgeAlertSoldout")}</span>`;
+        } else if (/予約|要予約|完全予約/.test(noteText)) {
+          alertBadge = `<span class="tag badge-reserve">${t("badgeAlertReserve")}</span>`;
+        }
+
+        // 看板・必食（逸品情報があれば必食、なければ看板を1行で魅力的に表示）
+        const specialtyText = shop.mustEat || shop.signature || "";
+        const specialtyLead = shop.mustEat ? t("specialtyMustEat") : t("specialtySignature");
+        const cleanScore = shop.score ? escapeHtml(shop.score.replace(/^食べログ\s*/, "")) : "";
+        const btnWishlist = wishlist ? t("btnWishlistActive") : t("btnWishlistAdd");
+        const btnVisited = visited ? t("btnVisitedActive") : t("btnVisitedAdd");
+
         article.className = `shop-card${visited ? " visited" : ""}`;
         article.tabIndex = 0;
         article.dataset.shopName = shop.name;
         article.innerHTML = `
-          ${imageHtml(shop)}
+          ${cardImageHtml(shop)}
+          ${!hasImg ? `
+            <div class="shop-card-badge-header">
+              <span class="shop-cat-icon">${catIcon}</span>
+              <span class="shop-signature-lead">${escapeHtml(specialtyText.split("、")[0])}</span>
+            </div>
+          ` : ""}
           <div class="shop-title">
             <h3 class="shop-name">${shop.name}</h3>
-            <button class="visited-toggle ${visited ? "active" : ""}" type="button" data-card-visited="${encodeURIComponent(shop.name)}">${visited ? "行った ✓" : "未訪問"}</button>
+            <div class="shop-card-actions">
+              <button class="wishlist-toggle ${wishlist ? "active" : ""}" type="button" data-card-wishlist="${encodeURIComponent(shop.name)}" title="${t("visitedWishlist")}">${btnWishlist}</button>
+              <button class="visited-toggle ${visited ? "active" : ""}" type="button" data-card-visited="${encodeURIComponent(shop.name)}" title="${t("visitedVisited")}">${btnVisited}</button>
+            </div>
           </div>
           <div class="meta">
-            <span class="tag ${areaClass[shop.area]}">${shop.areaLabel}</span>
-            <span class="tag">${categoryLabel[shop.category || "cake"]}</span>
-            <span class="tag">${shop.station} ${shop.walk}</span>
-            ${distance ? `<span class="tag">現在地から約${distance}</span>` : ""}
-            ${shop.score ? `<span class="tag">${shop.score}</span>` : ""}
-            ${shop.type.map(t => `<span class="tag">${typeLabel[t]}</span>`).join("")}
+            <span class="tag ${areaClass[shop.area]}">${areaLabel}</span>
+            <span class="tag station-tag">📍 ${shop.station} ${shop.walk}</span>
+            <span class="tag tag-status ${openToday ? "status-open" : "status-closed"}">${openToday ? t("badgeOpenToday") : t("badgeClosedToday")}</span>
+            ${cleanScore ? `<span class="tag tag-score">★ ${cleanScore}</span>` : ""}
+            ${distStr ? `<span class="tag">${distStr}</span>` : ""}
+            ${alertBadge}
           </div>
-          <p class="note">${shop.signature}。${shop.note}</p>
-          ${shop.tabelogUrl ? `<a class="card-tabelog-link" href="${shop.tabelogUrl}" target="_blank" rel="noreferrer">食べログで見る</a>` : ""}
+          ${specialtyText ? `
+            <div class="card-highlight">
+              <span class="card-highlight-label">${specialtyLead}</span>
+              <span class="card-highlight-text">${escapeHtml(specialtyText)}</span>
+            </div>
+          ` : ""}
+          ${shop.note ? `<p class="shop-card-desc">${escapeHtml(shop.note)}</p>` : ""}
           ${shouldShowInside ? insideListHtml(shop) : ""}
+          <div class="shop-card-footer">
+            <span class="card-hours-hint">🕒 ${escapeHtml(shop.businessHours || t("hoursNeedConfirm"))}</span>
+            <div class="card-footer-links">
+              <a class="card-mini-link" href="${blogSearchUrl(shop)}" target="_blank" rel="noopener" title="${t("linkBlog")}">${t("linkBlog")}</a>
+              ${shop.tabelogUrl ? `<a class="card-mini-link card-mini-tabelog" href="${shop.tabelogUrl}" target="_blank" rel="noopener" title="${t("linkTabelog")}">${t("linkTabelog")}</a>` : ""}
+              <a class="card-mini-link card-mini-x" href="${xSearchUrl(shop)}" target="_blank" rel="noopener" title="${t("linkX")}">${t("linkX")}</a>
+              <span class="card-map-action">${t("linkMap")}</span>
+            </div>
+          </div>
+          <div class="card-reserve-row">
+            <a class="card-reserve-btn" href="${ikyuUrl(shop)}" target="_blank" rel="noopener sponsored" title="一休.comで席・アフタヌーンティー予約">
+              ${t("cardReserveBtn") || "🫖 席・アフタヌーンティー予約（一休）›"}
+            </a>
+          </div>
         `;
         article.addEventListener("click", (event) => {
-          if (event.target.closest(".card-tabelog-link")) return;
+          if (event.target.closest(".card-mini-link") || event.target.closest(".ext-link") || event.target.closest(".card-tabelog-link") || event.target.closest(".card-reserve-btn") || event.target.closest(".visited-toggle") || event.target.closest(".wishlist-toggle")) return;
           focusShop(shop, article);
         });
         article.addEventListener("keydown", (event) => {
@@ -4901,7 +7169,8 @@
       const hasMore = visibleListLimit < filtered.length;
       moreRow.hidden = !hasMore;
       if (hasMore) {
-        moreButton.textContent = `さらに表示 (${Math.min(listPageSize, filtered.length - visibleListLimit)}件)`;
+        const moreCount = Math.min(listPageSize, filtered.length - visibleListLimit);
+        moreButton.textContent = (t("btnShowMoreCount") || "さらに表示 ({n}件)").replace("{n}", moreCount);
       }
       updateSummary();
     }
@@ -4968,6 +7237,21 @@
         event.preventDefault();
         event.stopPropagation();
         toggleVisited(decodeURIComponent(cardToggle.dataset.cardVisited));
+        return;
+      }
+      const popupWishlist = event.target.closest("[data-wishlist-toggle]");
+      if (popupWishlist) {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleWishlist(decodeURIComponent(popupWishlist.dataset.wishlistToggle));
+        return;
+      }
+      const cardWishlist = event.target.closest("[data-card-wishlist]");
+      if (cardWishlist) {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleWishlist(decodeURIComponent(cardWishlist.dataset.cardWishlist));
+        return;
       }
     });
 
@@ -4980,12 +7264,32 @@
       document.querySelectorAll(`${groupSelector} .chip`).forEach(chip => {
         chip.classList.toggle("active", chip.dataset[dataName] === value);
       });
+      updateQuickChipStates();
+    }
+
+    function updateQuickChipStates() {
+      document.querySelectorAll("#quickChipsBar .quick-chip").forEach(chip => {
+        const q = chip.dataset.quick;
+        let isActive = false;
+        if (q === "today") isActive = (activeDay === "today");
+        else if (q === "top" || q === "salon" || q === "gift" || q === "depachika") isActive = (activeType === q);
+        else if (q === "shortcake" || q === "montblanc" || q === "chocolat") isActive = (activeMood === q);
+        chip.classList.toggle("is-active", isActive);
+      });
+
+      const badge = document.getElementById("activeFilterBadge");
+      const hasDetailed = (document.getElementById("areaSelect") && document.getElementById("areaSelect").value !== "all") ||
+        (activeDay !== "all" && activeDay !== "today") ||
+        (activeVisited !== "all");
+      if (badge) badge.hidden = !hasDetailed;
     }
 
     function resetFilters() {
       activeCategory = "all";
       activeType = "all";
       activeVisited = "all";
+      activeDay = "all";
+      activeMood = "all";
       sortMode = "default";
       userLocation = null;
       if (userLocationMarker) {
@@ -4993,13 +7297,25 @@
         userLocationMarker = null;
       }
       document.getElementById("searchInput").value = "";
-      document.getElementById("areaSelect").value = "all";
-      document.getElementById("currentLocationButton").classList.remove("active");
-      document.getElementById("nearbyButton").classList.remove("active");
-      document.getElementById("nearbySalonButton").classList.remove("active");
-      setActiveChip("#categoryChips", "category", "all");
+      const areaSel = document.getElementById("areaSelect");
+      if (areaSel) areaSel.value = "all";
+      const sortSel = document.getElementById("sortSelect");
+      if (sortSel) sortSel.value = "default";
+      const curBtn = document.getElementById("currentLocationButton");
+      if (curBtn) curBtn.classList.remove("active");
+      const nearBtn = document.getElementById("nearbyButton");
+      if (nearBtn) nearBtn.classList.remove("active");
+      const nearSalonBtn = document.getElementById("nearbySalonButton");
+      if (nearSalonBtn) nearSalonBtn.classList.remove("active");
+
+      document.querySelectorAll("#categoryChips [data-category]").forEach(tab => {
+        tab.classList.toggle("active", tab.dataset.category === "all");
+      });
       setActiveChip("#typeChips", "type", "all");
       setActiveChip("#visitedChips", "visited", "all");
+      setActiveChip("#dayChips", "day", "all");
+      setActiveChip("#moodChips", "mood", "all");
+      updateQuickChipStates();
       resetAndRender();
     }
 
@@ -5007,18 +7323,20 @@
       const { moveMap = true, sortNearby = false } = options;
       const currentButton = document.getElementById("currentLocationButton");
       const nearbyButton = document.getElementById("nearbyButton");
+      const sortSelect = document.getElementById("sortSelect");
       if (userLocation) {
         if (sortNearby) {
           sortMode = "nearby";
-          nearbyButton.classList.add("active");
+          if (nearbyButton) nearbyButton.classList.add("active");
+          if (sortSelect && sortSelect.value !== "salonNearby") sortSelect.value = "nearby";
           resetAndRender();
         }
-        currentButton.classList.add("active");
+        if (currentButton) currentButton.classList.add("active");
         if (moveMap) moveToUserLocation();
         return;
       }
       if (!navigator.geolocation) {
-        showLocationStatus("このブラウザでは現在地を取得できません。");
+        showLocationStatus(t("locatingError") || "このブラウザでは現在地を取得できません。");
         return;
       }
       setLocationButtonsLoading(true);
@@ -5029,10 +7347,11 @@
             lng: position.coords.longitude
           };
           setUserLocationMarker();
-          currentButton.classList.add("active");
+          if (currentButton) currentButton.classList.add("active");
           if (sortNearby) {
             sortMode = "nearby";
-            nearbyButton.classList.add("active");
+            if (nearbyButton) nearbyButton.classList.add("active");
+            if (sortSelect && sortSelect.value !== "salonNearby") sortSelect.value = "nearby";
           }
           setLocationButtonsLoading(false);
           showLocationStatus(sortNearby
@@ -5043,7 +7362,7 @@
         },
         () => {
           setLocationButtonsLoading(false);
-          showLocationStatus("現在地を取得できませんでした。ブラウザの位置情報許可を確認してください。");
+          showLocationStatus(t("locatingError") || "現在地を取得できませんでした。ブラウザの位置情報許可を確認してください。");
         },
         { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 }
       );
@@ -5058,22 +7377,68 @@
       clearTimeout(searchTimer);
       searchTimer = setTimeout(resetAndRender, searchDebounceMs);
     });
-    document.getElementById("areaSelect").addEventListener("change", resetAndRender);
+    document.getElementById("areaSelect").addEventListener("change", () => {
+      updateQuickChipStates();
+      resetAndRender();
+    });
     document.getElementById("resetFilters").addEventListener("click", resetFilters);
     document.getElementById("currentLocationButton").addEventListener("click", () => locateUser({ moveMap: true, sortNearby: false }));
-    document.getElementById("nearbyButton").addEventListener("click", () => locateUser({ moveMap: false, sortNearby: true }));
-    document.getElementById("nearbySalonButton").addEventListener("click", () => {
-      activeType = "salon";
-      setActiveChip("#typeChips", "type", "salon");
-      document.getElementById("nearbySalonButton").classList.add("active");
-      locateUser({ moveMap: false, sortNearby: true });
+    
+    const sortSelect = document.getElementById("sortSelect");
+    if (sortSelect) {
+      sortSelect.addEventListener("change", () => {
+        const val = sortSelect.value;
+        if (val === "nearby") {
+          locateUser({ moveMap: false, sortNearby: true });
+        } else if (val === "salonNearby") {
+          activeType = "salon";
+          setActiveChip("#typeChips", "type", "salon");
+          updateQuickChipStates();
+          locateUser({ moveMap: false, sortNearby: true });
+        } else {
+          sortMode = "default";
+          resetAndRender();
+        }
+      });
+    }
+
+    const quickChipsBar = document.getElementById("quickChipsBar");
+    if (quickChipsBar) {
+      quickChipsBar.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-quick]");
+        if (!button) return;
+        const q = button.dataset.quick;
+        if (q === "today") {
+          activeDay = activeDay === "today" ? "all" : "today";
+          setActiveChip("#dayChips", "day", activeDay);
+        } else if (q === "top" || q === "salon" || q === "gift" || q === "depachika") {
+          activeType = activeType === q ? "all" : q;
+          setActiveChip("#typeChips", "type", activeType);
+        } else if (q === "shortcake" || q === "montblanc" || q === "chocolat") {
+          activeMood = activeMood === q ? "all" : q;
+          setActiveChip("#moodChips", "mood", activeMood);
+        }
+        updateQuickChipStates();
+        resetAndRender();
+      });
+    }
+
+    document.getElementById("moodChips").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-mood]");
+      if (!button) return;
+      activeMood = button.dataset.mood;
+      document.querySelectorAll("#moodChips .chip").forEach(chip => chip.classList.remove("active"));
+      button.classList.add("active");
+      updateQuickChipStates();
+      resetAndRender();
     });
     document.getElementById("categoryChips").addEventListener("click", (event) => {
       const button = event.target.closest("[data-category]");
       if (!button) return;
       activeCategory = button.dataset.category;
-      document.querySelectorAll("#categoryChips .chip").forEach(chip => chip.classList.remove("active"));
-      button.classList.add("active");
+      document.querySelectorAll("#categoryChips [data-category]").forEach(tab => {
+        tab.classList.toggle("active", tab.dataset.category === activeCategory);
+      });
       resetAndRender();
     });
     document.getElementById("typeChips").addEventListener("click", (event) => {
@@ -5082,6 +7447,7 @@
       activeType = button.dataset.type;
       document.querySelectorAll("#typeChips .chip").forEach(chip => chip.classList.remove("active"));
       button.classList.add("active");
+      updateQuickChipStates();
       resetAndRender();
     });
     document.getElementById("visitedChips").addEventListener("click", (event) => {
@@ -5090,8 +7456,64 @@
       activeVisited = button.dataset.visited;
       document.querySelectorAll("#visitedChips .chip").forEach(chip => chip.classList.remove("active"));
       button.classList.add("active");
+      updateQuickChipStates();
       resetAndRender();
     });
+
+    document.getElementById("dayChips").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-day]");
+      if (!button) return;
+      activeDay = button.dataset.day;
+      document.querySelectorAll("#dayChips .chip").forEach(chip => chip.classList.remove("active"));
+      button.classList.add("active");
+      updateQuickChipStates();
+      resetAndRender();
+    });
+
+    document.getElementById("summaryWishlistBtn").addEventListener("click", () => {
+      activeVisited = activeVisited === "wishlist" ? "all" : "wishlist";
+      setActiveChip("#visitedChips", "visited", activeVisited);
+      resetAndRender();
+    });
+
+    document.getElementById("summaryVisitedBtn").addEventListener("click", () => {
+      activeVisited = activeVisited === "visited" ? "all" : "visited";
+      setActiveChip("#visitedChips", "visited", activeVisited);
+      resetAndRender();
+    });
+
+    document.getElementById("openConquestBtn").addEventListener("click", openConquestModal);
+    document.getElementById("closeConquestBtn").addEventListener("click", closeConquestModal);
+    document.getElementById("conquestModal").addEventListener("click", (e) => {
+      if (e.target.id === "conquestModal") closeConquestModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !document.getElementById("conquestModal").hidden) {
+        closeConquestModal();
+      }
+    });
+    document.getElementById("shareToXBtn").addEventListener("click", shareConquestToX);
+    document.getElementById("copyConquestBtn").addEventListener("click", copyConquestText);
+
+    const viewListBtn = document.getElementById("viewListBtn");
+    const viewGridBtn = document.getElementById("viewGridBtn");
+
+    function setViewMode(mode) {
+      activeViewMode = mode;
+      try {
+        localStorage.setItem("kantoCakeMap.viewMode", mode);
+      } catch (e) {}
+      if (viewListBtn) viewListBtn.classList.toggle("active", mode === "list");
+      if (viewGridBtn) viewGridBtn.classList.toggle("active", mode === "grid");
+      renderList();
+    }
+
+    if (viewListBtn) viewListBtn.addEventListener("click", () => setViewMode("list"));
+    if (viewGridBtn) viewGridBtn.addEventListener("click", () => setViewMode("grid"));
+    if (activeViewMode === "grid") {
+      if (viewListBtn) viewListBtn.classList.remove("active");
+      if (viewGridBtn) viewGridBtn.classList.add("active");
+    }
 
     document.getElementById("runUpdateCheck").addEventListener("click", () => {
       const container = document.getElementById("updateLinks");
@@ -5106,10 +7528,10 @@
         });
       const links = [...sourceLinks, ...closureLinks];
       container.innerHTML = links
-        .map(({ label, url, group }) => `<a href="${url}" target="_blank" rel="noreferrer">[${group}] ${label}</a>`)
+        .map(({ label, url, group }) => `<a href="${url}" target="_blank" rel="noopener">[${group}] ${label}</a>`)
         .join("");
 
-      sourceLinks.slice(0, 8).forEach(({ url }) => window.open(url, "_blank", "noopener,noreferrer"));
+      sourceLinks.slice(0, 8).forEach(({ url }) => window.open(url, "_blank", "noopener"));
       setUpdateLog(`${sourceLinks.length}件の候補探索リンクと${closureLinks.length}件の掲載店確認リンクを生成しました。ブラウザのポップアップ制限がある場合は、下のリンク一覧から開いてください。`);
     });
 
@@ -5118,6 +7540,7 @@
       document.getElementById("maintenancePanel").hidden = false;
     }
 
+    applyI18n();
     render();
 
     // Mobile bottom sheet drag & tap
